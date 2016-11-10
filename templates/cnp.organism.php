@@ -19,7 +19,7 @@ abstract class Organism {
 
 	public function get_attributes() {
 
-		$filtered_attributes = apply_filters( $this->name . '_attributes_filter', $this->attributes );
+		$filtered_attributes = apply_filters( $this->class_root() . '_attributes_filter', $this->attributes );
 
 		$out = $filtered_attributes;
 		if ( is_array( $filtered_attributes ) ) {
@@ -34,6 +34,11 @@ abstract class Organism {
 
 	public function get_content() {
 
-		return apply_filters( $this->name . '_content_filter', $this->prepend . $this->content . $this->append );
+		return apply_filters( $this->class_root() . '_content_filter', $this->prepend . $this->content . $this->append );
+	}
+
+	public function class_root() {
+
+		return sprintf( '%s_%s_', __CLASS__, $this->name );
 	}
 }
