@@ -17,7 +17,7 @@ class Autoloader {
 				}
 
 				if ( is_dir( $dir . '/' . $entry ) ) {
-					self::load_directory( $entry );
+					self::load_directory( $dir . '/' . $entry );
 					continue;
 				}
 
