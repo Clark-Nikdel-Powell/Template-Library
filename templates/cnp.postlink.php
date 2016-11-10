@@ -3,17 +3,8 @@ namespace CNP;
 
 class PostLink extends Link {
 
-	public function __construct() {
-	}
+	public function __construct( $name = '', $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-	public function get_markup() {
-
-		ob_start();
-		?>
-		<a href=""></a>
-		<?php
-		$out = ob_get_clean();
-
-		return $out;
+		parent::__construct( get_permalink( $data ), 'postlink', $attributes, get_the_title( $data ), $before, $prepend, $append, $after );
 	}
 }
