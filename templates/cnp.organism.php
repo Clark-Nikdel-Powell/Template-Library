@@ -12,6 +12,9 @@ abstract class Organism {
 	public $append;
 	public $after;
 
+	public function __construct() {
+	}
+
 	public function get_markup() {
 
 		return (array) $this;
