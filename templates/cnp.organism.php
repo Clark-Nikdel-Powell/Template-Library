@@ -12,6 +12,18 @@ abstract class Organism {
 	public $append;
 	public $after;
 
+	public function __construct( $name = '', $tag = 'div', $attributes = [], $content = '', $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
+		$this->name       = $name;
+		$this->tag        = $tag;
+		$this->attributes = $attributes;
+		$this->content    = $content;
+		$this->data       = $data;
+		$this->before     = $before;
+		$this->prepend    = $prepend;
+		$this->append     = $append;
+		$this->after      = $after;
+	}
+
 	public function get_markup() {
 
 		return (array) $this;
@@ -19,7 +31,7 @@ abstract class Organism {
 
 	public function get_attributes() {
 
-		$filtered_attributes = apply_filters( $this->name . '_attributes_filter', $this->attributes );
+		$filtered_attributes = apply_filters( __CLASS__ . '_' . $this->name . '_attributes_filter', $this->attributes );
 
 		$out = $filtered_attributes;
 		if ( is_array( $filtered_attributes ) ) {
