@@ -3,19 +3,17 @@ namespace CNP;
 
 class PostTitleLink extends Organism {
 
-	public $data;
+	public $link;
 
-	public function __construct() {
+	public function __construct( $data, $name = 'posttitlelink', $tag = 'h2', $attributes = [], $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
+
+		$this->link = new Link( get_permalink( $data ), $name, $attributes, get_the_title( $data ), $before, $prepend, $append, $after );
 	}
 
 	public function get_markup() {
 
-		ob_start();
-		?>
+		$this->content = $this->link->get_markup();
 
-		<?php
-		$out = ob_get_clean();
-
-		return $out;
+		return parent::get_markup();
 	}
 }

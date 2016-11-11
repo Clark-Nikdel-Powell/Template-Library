@@ -6,9 +6,10 @@ abstract class Organism {
 	public $name;
 	public $tag;
 	public $attributes;
+	public $content;
+	public $data;
 	public $before;
 	public $prepend;
-	public $content;
 	public $append;
 	public $after;
 
@@ -27,7 +28,7 @@ abstract class Organism {
 
 	public function get_markup() {
 
-		return (array) $this;
+		return sprintf( '%s<%s %s>%s</%s>%s', $this->before, $this->tag, $this->get_attributes(), $this->get_content(), $this->tag, $this->after );
 	}
 
 	public function get_attributes() {
