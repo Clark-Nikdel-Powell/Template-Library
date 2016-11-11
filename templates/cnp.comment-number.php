@@ -9,8 +9,4 @@ class CommentNumber extends Organism {
 			$this->content = get_comments_number( $this->data->ID );
 		}
 	}
-
-	public function get_markup() {
-		return sprintf( '<%s %s>%s</%s>', $this->tag, $this->get_attributes(), $this->get_content(), $this->tag );
-	}
 }

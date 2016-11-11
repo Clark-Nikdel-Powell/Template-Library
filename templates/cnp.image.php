@@ -24,6 +24,6 @@ class Image extends Organism {
 	}
 
 	public function get_markup() {
-		return wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes );
+		return $this->before . wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes ) . $this->after;
 	}
 }
