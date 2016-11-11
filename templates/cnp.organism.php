@@ -13,6 +13,7 @@ abstract class Organism {
 	public $after;
 
 	public function __construct( $name = '', $tag = 'div', $attributes = [], $content = '', $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
+
 		$this->name       = $name;
 		$this->tag        = $tag;
 		$this->attributes = $attributes;
@@ -49,8 +50,13 @@ abstract class Organism {
 		return apply_filters( $this->class_root() . '_content_filter', $this->prepend . $this->content . $this->append );
 	}
 
+	public function class_name() {
+
+		return strtolower( get_class( $this ) );
+	}
+
 	public function class_root() {
 
-		return sprintf( '%s_%s_', __CLASS__, $this->name );
+		return sprintf( '%s_%s_', $this->class_name(), $this->name );
 	}
 }
