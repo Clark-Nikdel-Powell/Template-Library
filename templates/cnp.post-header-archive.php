@@ -3,24 +3,19 @@ namespace CNP;
 
 class PostHeaderArchive extends Organism {
 
-	public $data;
+	public $posttitle;
 
-	public function __construct( $name, $data ) {
+	public function __construct( $data, $name = 'postheaderarchive', $tag = 'div', array $attributes, $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		$this->name = $name;
-		$this->data = $data;
+		parent::__construct( $name, $tag, $attributes, $content, $data, $before, $prepend, $append, $after );
+
+		$this->posttitle = new PostTitleLink( $data, $name . '__title', $tag, $attributes, $before, $prepend, $append, $after );
 	}
 
 	public function get_markup() {
 
-		ob_start();
-		?>
-		<div <?php echo $this->get_attributes() ?>>
-			<h3 class="<?php echo $this->name?>__title"></h3>
-		</div>
-		<?php
-		$out = ob_get_clean();
+		$this->content = $this->posttitle->get_markup();
 
-		return $out;
+		return parent::get_markup();
 	}
 }

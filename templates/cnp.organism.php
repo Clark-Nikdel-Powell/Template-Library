@@ -33,6 +33,12 @@ abstract class Organism {
 
 	public function get_attributes() {
 
+		if ( key_exists( 'class', $this->attributes ) ) {
+			array_push( $this->attributes['class'], $this->name );
+		} else {
+			$this->attributes['class'] = [ $this->name ];
+		}
+
 		$filtered_attributes = apply_filters( $this->class_root() . '_attributes_filter', $this->attributes );
 
 		$out = $filtered_attributes;
