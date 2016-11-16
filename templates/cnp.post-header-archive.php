@@ -22,7 +22,7 @@ class PostHeaderArchive extends Organism {
 
 	public function get_markup() {
 
-		$this->content = $this->post_title->get_markup();
+		$this->content .= $this->post_title->get_markup();
 		$this->content .= $this->post_date->get_markup();
 		$this->content .= $this->post_author->get_markup();
 		$this->content .= $this->category_list->get_markup();

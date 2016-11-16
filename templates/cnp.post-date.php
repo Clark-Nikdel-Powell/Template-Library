@@ -15,6 +15,6 @@ class PostDate extends Organism {
 			$this->date_format = $date_format;
 		}
 
-		$this->content = get_the_date( $this->date_format, $data );
+		$this->content = get_the_date( $this->date_format, $this->data );
 	}
 }
