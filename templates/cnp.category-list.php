@@ -9,6 +9,8 @@ class CategoryList extends Organism {
 
 		parent::__construct( $name, $tag, $attributes, '', $data, $before, $prepend, $append, $after );
 
+		$this->separator = $separator;
+
 		if ( isset( $this->data ) ) {
 			$this->content = get_the_category_list( $this->separator, '', $this->data );
 		}
