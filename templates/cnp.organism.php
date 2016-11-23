@@ -73,4 +73,9 @@ abstract class Organism {
 
 		return $this->name . '__' . $org_name;
 	}
+
+	public function debug() {
+
+		var_dump( $this );
+	}
 }
