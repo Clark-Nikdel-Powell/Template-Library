@@ -39,26 +39,24 @@ abstract class Organism {
 			$this->attributes['class'] = [ $this->name ];
 		}
 
-		$filtered_attributes = apply_filters( $this->class_root() . '_attributes_filter', $this->attributes );
-
-		$out = $filtered_attributes;
-		if ( is_array( $filtered_attributes ) ) {
-			foreach ( $filtered_attributes as $key => $value ) {
+		$attributes = '';
+		if ( is_array( $this->attributes ) ) {
+			foreach ( $this->attributes as $key => $value ) {
 				if ( ! $value ) {
-					$out .= $key . ' ';
+					$attributes .= $key . ' ';
 					continue;
 				}
 				$attr_value = is_array( $value ) ? implode( ' ', $value ) : $value;
-				$out .= sprintf( '%s="%s" ', $key, $attr_value );
+				$attributes .= sprintf( '%s="%s" ', $key, $attr_value );
 			}
 		}
 
-		return $out;
+		return $attributes;
 	}
 
 	public function get_content() {
 
-		return apply_filters( $this->class_root() . '_content_filter', $this->prepend . $this->content . $this->append );
+		return $this->prepend . $this->content . $this->append;
 	}
 
 	public function class_name() {
