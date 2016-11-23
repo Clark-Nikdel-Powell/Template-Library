@@ -44,8 +44,12 @@ abstract class Organism {
 		$out = $filtered_attributes;
 		if ( is_array( $filtered_attributes ) ) {
 			foreach ( $filtered_attributes as $key => $value ) {
-				$attr_value = implode( ' ', $value );
-				$out .= sprintf( '%s="%s"', $key, $attr_value );
+				if ( ! $value ) {
+					$out .= $key . ' ';
+					continue;
+				}
+				$attr_value = is_array( $value ) ? implode( ' ', $value ) : $value;
+				$out .= sprintf( '%s="%s" ', $key, $attr_value );
 			}
 		}
 
