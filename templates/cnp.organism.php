@@ -70,4 +70,9 @@ abstract class Organism {
 
 		return sprintf( '%s_%s_', $this->class_name(), $this->name );
 	}
+
+	public function organism_name( $org_name ) {
+
+		return $this->name . '__' . $org_name;
+	}
 }
