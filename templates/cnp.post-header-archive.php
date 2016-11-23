@@ -13,11 +13,13 @@ class PostHeaderArchive extends Organism {
 
 		parent::__construct( $name, $tag, $attributes, '', $data, $before, $prepend, $append, $after );
 
-		$this->post_title    = new PostTitleLink( $data, $name . '__title' );
-		$this->post_date     = new PostDate( $data, $name . '__date' );
-		$this->post_author   = new PostAuthor( $data, '', $name . '__author' );
-		$this->category_list = new CategoryList( $data, '', $name . '__categories' );
-		$this->excerpt       = new ExcerptForce( $data, $name . '__excerpt' );
+		$this->post_title    = new PostTitleLink( $data, $this->organism_name( 'title' ) );
+		$this->post_date     = new PostDate( $data, $this->organism_name( 'date' ) );
+		$this->post_author   = new PostAuthor( $data, '', $this->organism_name( 'author' ) );
+		$this->category_list = new CategoryList( $data, '', $this->organism_name( 'categories' ) );
+
+		$excerpt_class = is_search() ? 'ExcerptSearch' : 'ExcerptForce';
+		$this->excerpt = new $excerpt_class( $data, $this->organism_name( 'excerpt' ) );
 	}
 
 	public function get_markup() {
