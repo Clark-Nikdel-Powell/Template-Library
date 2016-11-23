@@ -8,18 +8,20 @@ abstract class Organism {
 	public $attributes;
 	public $content;
 	public $data;
+	public $structure;
 	public $before;
 	public $prepend;
 	public $append;
 	public $after;
 
-	public function __construct( $name = '', $tag = 'div', $attributes = [], $content = '', $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = '', $tag = 'div', $attributes = [], $content = '', $data = null, $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		$this->name       = $name;
 		$this->tag        = $tag;
 		$this->attributes = $attributes;
 		$this->content    = $content;
 		$this->data       = $data;
+		$this->structure  = $structure;
 		$this->before     = $before;
 		$this->prepend    = $prepend;
 		$this->append     = $append;
@@ -57,6 +59,18 @@ abstract class Organism {
 	public function get_content() {
 
 		return $this->prepend . $this->content . $this->append;
+	}
+
+	public function get_structure() {
+
+		if ( ! isset( $this->structure ) || ! is_array( $this->structure ) ) {
+			return;
+		}
+
+		foreach ( $this->structure as $child ) {
+			$child->get_structure();
+			$this->content .= $child->get_markup();
+		}
 	}
 
 	public function class_name() {
