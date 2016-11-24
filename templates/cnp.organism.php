@@ -58,19 +58,22 @@ abstract class Organism {
 
 	public function get_content() {
 
-		return $this->prepend . $this->content . $this->append;
+		return $this->prepend . $this->content . $this->get_structure() . $this->append;
 	}
 
 	public function get_structure() {
 
 		if ( ! isset( $this->structure ) || ! is_array( $this->structure ) ) {
-			return;
+			return '';
 		}
 
+		$structure = '';
 		foreach ( $this->structure as $child ) {
 			$child->get_structure();
-			$this->content .= $child->get_markup();
+			$structure .= $child->get_markup();
 		}
+
+		return $structure;
 	}
 
 	public function class_name() {
