@@ -1,7 +1,5 @@
 {
-  "require": {
-    "phpunit/phpunit": "4.8.*"
-  },
+  "name": "cnp/template-library",
   "autoload": {
     "psr-4": {
       "CNP\\TemplateLibrary\\": "src/"
