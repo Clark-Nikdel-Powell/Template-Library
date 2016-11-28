@@ -1,5 +1,5 @@
 {
-  "name": "cnp/template-library",
+  "name": "clark-nikdel-powell/template-library",
   "autoload": {
     "psr-4": {
       "CNP\\TemplateLibrary\\": "src/"
