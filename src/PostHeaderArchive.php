@@ -1,5 +1,5 @@
 <?php
-namespace CNP;
+namespace CNP\TemplateLibrary;
 
 class PostHeaderArchive extends Organism {
 

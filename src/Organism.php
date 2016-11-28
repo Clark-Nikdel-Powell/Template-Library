@@ -1,5 +1,5 @@
 <?php
-namespace CNP;
+namespace CNP\TemplateLibrary;
 
 abstract class Organism {
 

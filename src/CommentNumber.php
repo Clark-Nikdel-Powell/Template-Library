@@ -1,5 +1,5 @@
 <?php
-namespace CNP;
+namespace CNP\TemplateLibrary;
 
 class CommentNumber extends Organism {
 	public function __construct( $name = 'comment-number', $tag = 'div', $attributes = [], $content = '', $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {

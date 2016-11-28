@@ -1,6 +1,6 @@
 <?php
 
-namespace CNP;
+namespace CNP\TemplateLibrary;
 
 class Image extends Organism {
 
