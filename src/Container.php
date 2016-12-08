@@ -7,4 +7,9 @@ class Container extends Organism {
 
 		parent::__construct( $name, 'div', $attributes );
 	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
 }

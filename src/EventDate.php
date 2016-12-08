@@ -21,6 +21,11 @@ class EventDate extends Organism {
 		$this->set_content();
 	}
 
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
+
 	private function set_event_date_type() {
 
 		$timezone_string = get_option( 'timezone_string' );

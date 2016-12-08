@@ -7,4 +7,9 @@ class PostLink extends Link {
 
 		parent::__construct( get_permalink( $data ), $name, $attributes, get_the_title( $data ), $before, $prepend, $append, $after );
 	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
 }

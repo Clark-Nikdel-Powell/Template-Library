@@ -6,6 +6,7 @@ class BackgroundVideo extends Organism {
 	public $vide_bg;
 
 	public function __construct( $vide_bg, $name = 'backgroundVideo', $tag = 'div', $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+
 		parent::__construct( $name, $tag, $attributes, '', null, $before, $prepend, $append, $after );
 
 		$this->vide_bg = $vide_bg;
@@ -17,5 +18,10 @@ class BackgroundVideo extends Organism {
 		if ( ! isset( $this->attributes['data-vide-options'] ) ) {
 			$this->attributes['data-vide-options'] = 'autoplay: true, posterType: jpg, loop: true, muted: true, position: left top';
 		}
+	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
 	}
 }

@@ -15,4 +15,9 @@ class PostAuthor extends Organism {
 			$this->content = get_the_author_meta( $this->author_meta, $data->post_author );
 		}
 	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
 }

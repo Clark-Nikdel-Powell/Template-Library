@@ -9,4 +9,9 @@ class ExcerptForce extends Excerpt {
 
 		$this->content = get_the_excerpt( $data );
 	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
 }

@@ -12,7 +12,12 @@ class EmailShare extends Link {
 		$this->data         = $data;
 		$this->message_body = trim( $message_body ) . ' ';
 
-		$this->href .= $this->encode_body();
+		$this->attributes['href'] = $this->encode_body();
+	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
 	}
 
 	private function encode_body() {

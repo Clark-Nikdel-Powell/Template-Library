@@ -7,4 +7,9 @@ class PostTitle extends Organism {
 
 		parent::__construct( $name, $tag, $attributes, get_the_title( $data ), $data, $before, $prepend, $append, $after );
 	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
 }

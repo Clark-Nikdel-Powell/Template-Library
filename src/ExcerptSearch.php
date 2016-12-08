@@ -16,6 +16,11 @@ class ExcerptSearch extends Excerpt {
 		$this->content = $this->search_excerpt();
 	}
 
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
+
 	public function search_excerpt() {
 
 		if ( ! is_object( $this->data ) ) {

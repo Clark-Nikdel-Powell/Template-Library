@@ -17,4 +17,9 @@ class PostDate extends Organism {
 
 		$this->content = get_the_date( $this->date_format, $this->data );
 	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
 }

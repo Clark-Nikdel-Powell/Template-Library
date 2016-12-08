@@ -11,4 +11,9 @@ class Excerpt extends Organism {
 			$this->content = $this->data->post_excerpt;
 		}
 	}
+
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
 }
