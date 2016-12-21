@@ -8,8 +8,9 @@ class Image extends Organism {
 	public $image_size;
 	public $icon;
 
-	public function __construct( $image_size, $icon, $name = 'image', $tag = '', $attributes = [], $content = '', $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
-		parent::__construct( $name, $tag, $attributes, $content, $data, $before, $prepend, $append, $after );
+	public function __construct( $image_size, $icon, $name = 'image', $attributes = [], $data = null, $before = '', $after = '' ) {
+
+		parent::__construct( $name, 'img', $attributes, null, $data, $before, null, null, $after );
 
 		$this->image_size = $image_size;
 		$this->icon       = $icon;
@@ -24,6 +25,13 @@ class Image extends Organism {
 	}
 
 	public function get_markup() {
-		return $this->before . wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes ) . $this->after;
+
+		Organism::do_filter();
+
+		if ( defined( 'WP_CONTENT_DIR' ) ) {
+			return $this->before . wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes ) . $this->after;
+		}
+
+		return null;
 	}
 }
