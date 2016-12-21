@@ -1,13 +1,17 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class BackgroundVideo
+ * @package CNP\TemplateLibrary
+ */
 class BackgroundVideo extends Organism {
 
 	public $vide_bg;
 
 	/**
 	 * BackgroundVideo constructor.
-	 * See: https://github.com/VodkaBears/Vide#readme
+	 * @link https://github.com/VodkaBears/Vide#readme
 	 * TODO: discuss whether we need to change to a different implementation now that iOS supports inline background videos. We could always fork the thing, too.
 	 *
 	 * @param array $vide_bg Expects an array of settings for Vide's data attribute. The keys are 'mp4', 'webm', and 'jpg'. mp4 and jpg are required.
