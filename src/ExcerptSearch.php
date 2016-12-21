@@ -1,6 +1,10 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class ExcerptSearch
+ * @package CNP\TemplateLibrary
+ */
 class ExcerptSearch extends Excerpt {
 
 	public $characters_before;
@@ -20,7 +24,7 @@ class ExcerptSearch extends Excerpt {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $data, $characters_before = 100, $characters_total = 250, $name = 'excerpt', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $data, $characters_before = 100, $characters_total = 250, $name = 'excerpt-search', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $tag, $attributes, $data, $before, $prepend, $append, $after );
 
@@ -30,15 +34,21 @@ class ExcerptSearch extends Excerpt {
 		$this->content = $this->search_excerpt();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function get_markup() {
 
 		return parent::get_markup();
 	}
 
+	/**
+	 * @return $this|string
+	 */
 	public function search_excerpt() {
 
 		if ( ! is_object( $this->data ) ) {
-			return $this;
+			return;
 		}
 
 		// Get the search term
@@ -92,5 +102,4 @@ class ExcerptSearch extends Excerpt {
 
 		return $search_excerpt;
 	}
-
 }

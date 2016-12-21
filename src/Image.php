@@ -1,8 +1,12 @@
 <?php
-
 namespace CNP\TemplateLibrary;
 
-// TODO: discuss whether we need to rename this to "WPImage" and create a separate Organism for Image.
+/**
+ * Class Image
+ * @package CNP\TemplateLibrary
+ *
+ * TODO: discuss whether we need to rename this to "WPImage" and create a separate Organism for Image.
+ */
 class Image extends Organism {
 
 	private $attachment_id = '';
