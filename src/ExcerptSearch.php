@@ -6,13 +6,23 @@ class ExcerptSearch extends Excerpt {
 	public $characters_before;
 	public $characters_total;
 
+	/**
+	 * ExcerptSearch constructor.
+	 *
+	 * @param string $data Optional. WP_Post Object. Set by Excerpt if not defined.
+	 * @param int $characters_before
+	 * @param int $characters_total
+	 * @param string $name
+	 * @param string $tag
+	 * @param array $attributes
+	 * @param string $before
+	 * @param string $prepend
+	 * @param string $append
+	 * @param string $after
+	 */
 	public function __construct( $data, $characters_before = 100, $characters_total = 250, $name = 'excerpt', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $data, $name, $tag, $attributes, $before, $prepend, $append, $after );
-
-		if ( null === $this->data ) {
-			$this->data = get_post();
-		}
 
 		$this->characters_before = $characters_before;
 		$this->characters_total  = $characters_total;
