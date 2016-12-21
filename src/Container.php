@@ -13,6 +13,7 @@ class Container extends Organism {
 	 * Container constructor.
 	 *
 	 * @param string $name
+	 * @param string $tag
 	 * @param array $attributes
 	 * @param array $structure
 	 * @param string $before
@@ -20,9 +21,9 @@ class Container extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name, array $attributes = [], array $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name, $tag = 'div', array $attributes = [], array $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag = 'div', $attributes, $content = null, $data = null, $structure, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = null, $data = null, $structure, $before, $prepend, $append, $after );
 	}
 
 	/**
