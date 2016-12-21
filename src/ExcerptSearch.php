@@ -10,6 +10,10 @@ class ExcerptSearch extends Excerpt {
 
 		parent::__construct( $data, $name, $tag, $attributes, $before, $prepend, $append, $after );
 
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
+
 		$this->characters_before = $characters_before;
 		$this->characters_total  = $characters_total;
 
@@ -24,7 +28,7 @@ class ExcerptSearch extends Excerpt {
 	public function search_excerpt() {
 
 		if ( ! is_object( $this->data ) ) {
-			return;
+			return $this;
 		}
 
 		// Get the search term
@@ -55,7 +59,7 @@ class ExcerptSearch extends Excerpt {
 		// If our projected length is longer than the content string, then we don't need an ellipsis afterward,
 		// and the length of the substr needs to be adjusted.
 		if ( ( $start + $this->characters_total ) > strlen( $content ) ) {
-			$this->characters_total = strlen( $content ) - $key_position;
+			$this->characters_total = strlen( $content ) - $start;
 			$after                  = '';
 		}
 
@@ -65,7 +69,7 @@ class ExcerptSearch extends Excerpt {
 		// Find matches for the search term.
 		preg_match_all( "/$key+/i", $search_excerpt_raw, $matches );
 
-		$search_excerpt_highlights = '';
+		$search_excerpt_highlights = $search_excerpt_raw;
 
 		// If we have matches (we should), add a span to each match for special styles.
 		if ( is_array( $matches[0] ) && count( $matches[0] ) >= 1 ) {
