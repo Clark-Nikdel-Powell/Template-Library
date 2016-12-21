@@ -5,6 +5,8 @@ namespace CNP\TemplateLibrary;
  * Class CommentNumber
  * @package CNP\TemplateLibrary
  *
+ * Displays the number of comments on a post.
+ *
  * @link https://developer.wordpress.org/reference/functions/get_comments_number/
  */
 class CommentNumber extends Organism {
@@ -22,9 +24,9 @@ class CommentNumber extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = 'comment-number', $data = 0, $tag = 'div', $attributes = [], $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'comment-number', $data = 0, $tag = 'div', array $attributes = [], $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content, $data, null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content, $data, $structure = null, $before, $prepend, $append, $after );
 
 		$this->content = get_comments_number( $this->data );
 	}

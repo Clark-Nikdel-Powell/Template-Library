@@ -22,7 +22,7 @@ class ExcerptSearch extends Excerpt {
 	 */
 	public function __construct( $data, $characters_before = 100, $characters_total = 250, $name = 'excerpt', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $data, $name, $tag, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $data, $before, $prepend, $append, $after );
 
 		$this->characters_before = $characters_before;
 		$this->characters_total  = $characters_total;

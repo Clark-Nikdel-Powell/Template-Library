@@ -6,6 +6,7 @@ namespace CNP\TemplateLibrary;
  * @package CNP\TemplateLibrary
  *
  * Uses get_the_category_list() to return a comma-delimited list of category links wrapped in a paragraph.
+ *
  * @link https://developer.wordpress.org/reference/functions/get_the_category_list/
  */
 class CategoryList extends Organism {
@@ -17,7 +18,7 @@ class CategoryList extends Organism {
 	 * CategoryList constructor.
 	 *
 	 * @param string $name
-	 * @param string|bool $data A WordPress post ID. Optional, as it can detect based on the current global $post in The Loop. Defaults to false.
+	 * @param string|bool $data Optional. A WordPress post ID. Assumes global $post if not supplied.
 	 * @param string $separator The separator for the category links.
 	 * @param string $parents
 	 * @param string $tag
@@ -27,9 +28,9 @@ class CategoryList extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = 'category-list', $data = false, $separator = ', ', $parents = '', $tag = 'p', $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'category-list', $data = false, $separator = ', ', $parents = '', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, '', $data, null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = null, $before, $prepend, $append, $after );
 
 		$this->separator = $separator;
 		$this->parents   = $parents;

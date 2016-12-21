@@ -1,15 +1,39 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class PostTitleLink
+ * @package CNP\TemplateLibrary
+ *
+ * A link with the post title set as the content.
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_permalink/
+ * @link https://developer.wordpress.org/reference/functions/get_the_title/
+ */
 class PostTitleLink extends Organism {
 
 	public $link;
 
-	public function __construct( $data, $name = 'posttitlelink', $tag = 'h2', $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	/**
+	 * PostTitleLink constructor.
+	 *
+	 * @param string $name
+	 * @param string $tag Optional. Defaults to h2.
+	 * @param array $attributes
+	 * @param int|WP_Post $data Optional. Takes either a post ID or a WP_Post object. Defaults to the global $post.
+	 * @param string $before
+	 * @param string $prepend
+	 * @param string $append
+	 * @param string $after
+	 */
+	public function __construct( $name = 'posttitlelink', $tag = 'h2', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		$this->link = new Link( get_permalink( $data ), $name, $attributes, get_the_title( $data ), $before, $prepend, $append, $after );
+		$this->link = new Link( $href = get_permalink( $data ), $name, $attributes, $content = get_the_title( $data ), $before, $prepend, $append, $after );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function get_markup() {
 
 		$this->content = $this->link->get_markup();

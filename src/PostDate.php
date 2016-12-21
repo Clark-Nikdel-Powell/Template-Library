@@ -1,13 +1,31 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class PostDate
+ * @package CNP\TemplateLibrary
+ */
 class PostDate extends Organism {
 
 	private $date_format = '';
 
-	public function __construct( $data, $date_format = '', $name = 'post-date', $tag = 'p', array $attributes, $content = '', $before = '', $prepend = '<strong>Published:</strong> ', $append = '', $after = '' ) {
+	/**
+	 * PostDate constructor.
+	 *
+	 * @param string $date_format Optional. Defaults to WordPress data_format option.
+	 * @param string $name
+	 * @param string $tag
+	 * @param array $attributes
+	 * @param null $data Optional. A WP_Post Object. Defaults to global $post.
+	 * @param string $content
+	 * @param string $before
+	 * @param string $prepend
+	 * @param string $append
+	 * @param string $after
+	 */
+	public function __construct( $date_format = '', $name = 'post-date', $tag = 'p', array $attributes = [], $data = null, $content = '', $before = '', $prepend = '<strong>Published:</strong> ', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content, $data, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content, $data, $structure = null, $before, $prepend, $append, $after );
 
 		if ( empty( $date_format ) ) {
 			$this->date_format = get_option( 'date_format' );
@@ -15,9 +33,17 @@ class PostDate extends Organism {
 			$this->date_format = $date_format;
 		}
 
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
+
 		$this->content = get_the_date( $this->date_format, $this->data );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function get_markup() {
 
 		return parent::get_markup();

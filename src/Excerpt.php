@@ -4,6 +4,9 @@ namespace CNP\TemplateLibrary;
 /**
  * Class Excerpt
  * @package CNP\TemplateLibrary
+ *
+ * A WordPress post excerpt. Only disaplys if a Post Excerpt has been set. To always display something, use ExcerptForce, which grabs post content if an excerpt is not set using get_the_excerpt().
+ * @link
  */
 class Excerpt extends Organism {
 
@@ -21,13 +24,14 @@ class Excerpt extends Organism {
 	 */
 	public function __construct( $name = 'excerpt', $tag = 'p', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, '', $data, null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = null, $before, $prepend, $append, $after );
 
+		// This catches if we didn't pass anything in.
 		if ( null === $this->data ) {
 			$this->data = get_post();
 		}
 
-		if ( isset( $this->data->post_excerpt ) ) {
+		if ( ! empty( $this->data->post_excerpt ) ) {
 			$this->content = $this->data->post_excerpt;
 		}
 	}

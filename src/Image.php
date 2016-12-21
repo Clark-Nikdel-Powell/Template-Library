@@ -20,9 +20,9 @@ class Image extends Organism {
 	 * @param string $before
 	 * @param string $after
 	 */
-	public function __construct( $image_size, $icon, $data, $name = 'image', $attributes = [], $before = '', $after = '' ) {
+	public function __construct( $image_size, $icon, $data, $name = 'image', array $attributes = [], $before = '', $after = '' ) {
 
-		parent::__construct( $name, 'img', $attributes, null, $data, null, $before, null, null, $after );
+		parent::__construct( $name, $tag = 'img', $attributes, $content = null, $data, $structure = null, $before, $prepend = null, $append = null, $after );
 
 		$this->image_size = $image_size;
 		$this->icon       = $icon;

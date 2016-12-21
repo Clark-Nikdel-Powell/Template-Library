@@ -4,6 +4,8 @@ namespace CNP\TemplateLibrary;
 /**
  * Class Container
  * @package CNP\TemplateLibrary
+ *
+ * A containing div
  */
 class Container extends Organism {
 
@@ -14,13 +16,13 @@ class Container extends Organism {
 	 * @param array $attributes
 	 * @param array $structure
 	 * @param string $before
-	 * @param null $prepend
-	 * @param array $append
+	 * @param string $prepend
+	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name, array $attributes, $structure, $before, $prepend, $append, $after ) {
+	public function __construct( $name, array $attributes = [], array $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, 'div', $attributes, null, null, $structure, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag = 'div', $attributes, $content = null, $data = null, $structure, $before, $prepend, $append, $after );
 	}
 
 	/**

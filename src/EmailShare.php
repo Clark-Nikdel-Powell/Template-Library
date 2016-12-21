@@ -1,6 +1,10 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class EmailShare
+ * @package CNP\TemplateLibrary
+ */
 class EmailShare extends Link {
 
 	public $message_body;
@@ -16,7 +20,7 @@ class EmailShare extends Link {
 	 */
 	public function __construct( $message_body = 'Check out this link!', $data = null, $name = 'email-share', $content = 'Email This', $attributes = [ 'target' => '_blank' ] ) {
 
-		parent::__construct( 'mailto:?', $name, $attributes, $content );
+		parent::__construct( $href = 'mailto:?', $name, $attributes, $content );
 
 		$this->data         = $data;
 		$this->message_body = trim( $message_body ) . ' ';

@@ -1,6 +1,13 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class EventDate
+ * @package CNP\TemplateLibrary
+ *
+ * Displays an event date.
+ *
+ */
 class EventDate extends Organism {
 
 	public $event_start;
@@ -9,9 +16,18 @@ class EventDate extends Organism {
 
 	private $event_date_type = 'uncategorized';
 
-	public function __construct( $event_start, $event_end, $event_all_day = false, $name = 'eventdate' ) {
+	/**
+	 * EventDate constructor.
+	 *
+	 * @param string $event_start
+	 * @param string $event_end
+	 * @param bool $event_all_day
+	 * @param string $name
+	 * @param string $tag
+	 */
+	public function __construct( $event_start, $event_end, $event_all_day = false, $name = 'eventdate', $tag = 'p' ) {
 
-		parent::__construct( $name, 'p' );
+		parent::__construct( $name, $tag );
 
 		$this->event_start   = $event_start;
 		$this->event_end     = $event_end;
@@ -21,14 +37,24 @@ class EventDate extends Organism {
 		$this->set_content();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function get_markup() {
 
 		return parent::get_markup();
 	}
 
+	/**
+	 * set_event_date_type
+	 */
 	private function set_event_date_type() {
 
-		$timezone_string = get_option( 'timezone_string' );
+		$timezone_string = '';
+
+		if ( defined( 'WP_CONTENT_DIR' ) ) {
+			$timezone_string = get_option( 'timezone_string' );
+		}
 
 		// Temporary fix-- TODO: figure out a bulletproof way of getting the current time
 		if ( '' === $timezone_string ) {
@@ -62,6 +88,9 @@ class EventDate extends Organism {
 		}
 	}
 
+	/**
+	 * set_content
+	 */
 	private function set_content() {
 
 		switch ( $this->event_date_type ) {
@@ -118,5 +147,9 @@ class EventDate extends Organism {
 				break;
 		}
 
+		// This filter is here so that we can adjust the event date format site wide, if necessary.
+		if ( defined( 'WP_CONTENT_DIR' ) ) {
+			$this->content = apply_filters( 'event_date_format', $this->content, $this );
+		}
 	}
 }

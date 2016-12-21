@@ -28,7 +28,7 @@ abstract class Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = '', $tag = 'div', $attributes = [], $content = '', $data = null, $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = '', $tag = 'div', array $attributes = [], $content = '', $data = null, array $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		$this->name       = $name;
 		$this->tag        = $tag;

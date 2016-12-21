@@ -1,21 +1,52 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class PostAuthor
+ * @package CNP\TemplateLibrary
+ */
 class PostAuthor extends Organism {
 
 	public $author_meta;
 
-	public function __construct( $data, $author_meta = 'display_name', $name = 'post-author', $tag = 'p', array $attributes, $content = '', $before = '', $prepend = 'By: ', $append = '', $after = '' ) {
+	/**
+	 * PostAuthor constructor.
+	 *
+	 * @param string $author_meta
+	 * @param string $name
+	 * @param string $tag
+	 * @param array $attributes
+	 * @param WP_Post|int $data Optional. A WP_Post object, or an Author ID. Defaults to global $post if not supplied.
+	 * @param string $content
+	 * @param string $before
+	 * @param string $prepend
+	 * @param string $append
+	 * @param string $after
+	 */
+	public function __construct( $author_meta = 'display_name', $name = 'post-author', $tag = 'p', array $attributes = [], $data = null, $content = '', $before = '', $prepend = 'By: ', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content, $data, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content, $data, $structure = null, $before, $prepend, $append, $after );
 
 		$this->author_meta = $author_meta;
 
-		if ( isset( $this->data ) && isset( $this->data->post_author ) ) {
-			$this->content = get_the_author_meta( $this->author_meta, $data->post_author );
+		// This catches if we didn't pass anything in.
+		if ( null === $this->data ) {
+			$this->data = get_post();
 		}
+
+		// This catches objects that are passed in, and if we didn't pass anything in.
+		if ( is_object( $this->data ) ) {
+			$this->data = $this->data->post_author;
+		}
+
+		// The other alternative for $data is if an author id has been passed in directly.
+
+		$this->content = get_the_author_meta( $this->author_meta, $this->data );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function get_markup() {
 
 		return parent::get_markup();
