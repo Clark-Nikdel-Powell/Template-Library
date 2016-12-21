@@ -5,6 +5,15 @@ class EmailShare extends Link {
 
 	public $message_body;
 
+	/**
+	 * EmailShare constructor.
+	 *
+	 * @param string $message_body
+	 * @param null $data
+	 * @param string $name
+	 * @param string $content
+	 * @param array $attributes
+	 */
 	public function __construct( $message_body = 'Check out this link!', $data = null, $name = 'email-share', $content = 'Email This', $attributes = [ 'target' => '_blank' ] ) {
 
 		parent::__construct( 'mailto:?', $name, $attributes, $content );
@@ -15,11 +24,17 @@ class EmailShare extends Link {
 		$this->attributes['href'] = $this->encode_body();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function get_markup() {
 
 		return parent::get_markup();
 	}
 
+	/**
+	 * @return mixed
+	 */
 	private function encode_body() {
 
 		if ( ! isset( $this->data ) ) {
