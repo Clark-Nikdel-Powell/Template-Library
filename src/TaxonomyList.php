@@ -1,0 +1,77 @@
+<?php
+namespace CNP\TemplateLibrary;
+
+/**
+ * Class TaxonomyList
+ * @package CNP\TemplateLibrary
+ *
+ * @link
+ */
+class TaxonomyList extends Organism {
+
+	public $taxonomy;
+	public $separator;
+
+	/**
+	 * TaxonomyList constructor.
+	 *
+	 * @param null $taxonomy
+	 * @param string $separator
+	 * @param string|array|WP_post $data Optional. Name of the type of taxonomy object, or an object (row from posts). Defaults to global $post.
+	 * @param string $name
+	 * @param string $tag
+	 * @param array $attributes
+	 * @param string $before
+	 * @param string $prepend
+	 * @param string $append
+	 * @param string $after
+	 */
+	public function __construct( $taxonomy = null, $separator = ', ', $data = null, $name = 'taxonomy-list', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+
+		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = null, $before, $prepend, $append, $after );
+
+		// This catches if we didn't pass anything in.
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
+
+		if ( null !== $taxonomy ) {
+			$this->taxonomy = $taxonomy;
+		} else {
+			$post_object_taxonomies = get_object_taxonomies( $this->data );
+			$this->taxonomy = array_shift( $post_object_taxonomies );
+		}
+	}
+
+	/**
+	 * get_content
+	 *
+	 * @return string
+	 */
+	public function get_content() {
+
+		$terms_arr      = get_the_terms( $this->data, $this->taxonomy );
+		$term_names_arr = array();
+
+		if ( ! empty( $terms_arr ) ) {
+
+			foreach ( $terms_arr as $term_obj ) {
+				$term_names_arr[] = '<span class="name">' . $term_obj->name . '</span>';
+			}
+
+			$terms_list = implode( $this->separator, $term_names_arr );
+
+			$this->content = $this->prepend . $terms_list . $this->append;
+		} else {
+			$this->content = '';
+		}
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_markup() {
+
+		return parent::get_markup();
+	}
+}
