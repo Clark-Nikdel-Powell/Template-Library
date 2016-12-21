@@ -2,12 +2,24 @@
 
 namespace CNP\TemplateLibrary;
 
+// TODO: discuss whether we need to rename this to "WPImage" and create a separate Organism for Image.
 class Image extends Organism {
 
 	private $attachment_id = '';
 	public $image_size;
 	public $icon;
 
+	/**
+	 * Image constructor.
+	 *
+	 * @param string $image_size A WordPress defined image size.
+	 * @param string $icon
+	 * @param string $name
+	 * @param array $attributes
+	 * @param null $data
+	 * @param string $before
+	 * @param string $after
+	 */
 	public function __construct( $image_size, $icon, $name = 'image', $attributes = [], $data = null, $before = '', $after = '' ) {
 
 		parent::__construct( $name, 'img', $attributes, null, $data, null, $before, null, null, $after );
@@ -24,6 +36,13 @@ class Image extends Organism {
 		}
 	}
 
+	/**
+	 * get_markup
+	 *
+	 * Returns WordPress responsive image markup.
+	 *
+	 * @return null|string
+	 */
 	public function get_markup() {
 
 		Organism::do_filter();
