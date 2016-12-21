@@ -13,16 +13,14 @@ class PostTitle extends Organism {
 	 * @param string $name
 	 * @param string $tag
 	 * @param array $attributes
-	 * @param string $data
-	 * @param string $content
 	 * @param string $before
 	 * @param string $prepend
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = 'posttitle', $tag = 'h2', array $attributes = [], $data = null, $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'posttitle', $tag = 'h2', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = get_the_title( $data ), $data, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = get_the_title( $data ), $data = null, $structure = null, $before, $prepend, $append, $after );
 	}
 
 	/**

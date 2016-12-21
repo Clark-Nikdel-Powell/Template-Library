@@ -10,7 +10,7 @@ namespace CNP\TemplateLibrary;
  * @link https://developer.wordpress.org/reference/functions/get_permalink/
  * @link https://developer.wordpress.org/reference/functions/get_the_title/
  */
-class PostTitleLink extends Organism {
+class PostTitleLink extends PostTitle {
 
 	public $link;
 
@@ -26,9 +26,11 @@ class PostTitleLink extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = 'posttitlelink', $tag = 'h2', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'posttitle-link', $tag = 'h2', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		$this->link = new Link( $href = get_permalink( $data ), $name, $attributes, $content = get_the_title( $data ), $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $before, $prepend, $append, $after );
+
+		$this->link = new LinkPost( $this->content, $this->name . '-anchor', $this->attributes, $this->data, $this->before, $this->prepend, $this->append, $this->after );
 	}
 
 	/**

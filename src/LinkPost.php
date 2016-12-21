@@ -2,7 +2,7 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class PostLink
+ * Class LinkPost
  * @package CNP\TemplateLibrary
  *
  * A post link with customizable content. To display a post link with the post title, use PostTitleLink instead.
@@ -10,7 +10,7 @@ namespace CNP\TemplateLibrary;
  * @see Link
  * @link https://developer.wordpress.org/reference/functions/get_permalink/
  */
-class PostLink extends Link {
+class LinkPost extends Link {
 
 	/**
 	 * PostLink constructor.
@@ -24,7 +24,7 @@ class PostLink extends Link {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $content, $name = 'postlink', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $content, $name = 'link-post', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $href = get_permalink( $data ), $name, $attributes, $content, $before, $prepend, $append, $after );
 	}

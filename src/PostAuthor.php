@@ -41,7 +41,10 @@ class PostAuthor extends Organism {
 
 		// The other alternative for $data is if an author id has been passed in directly.
 
-		$this->content = get_the_author_meta( $this->author_meta, $this->data );
+		// This is so that child classes (PostAuthorLink) can pass in their own content, if they need to.
+		if ( '' === $this->content ) {
+			$this->content = get_the_author_meta( $this->author_meta, $this->data );
+		}
 	}
 
 	/**
