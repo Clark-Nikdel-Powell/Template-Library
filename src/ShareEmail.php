@@ -2,15 +2,15 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class EmailShare
+ * Class ShareEmail
  * @package CNP\TemplateLibrary
  */
-class EmailShare extends Link {
+class ShareEmail extends Link {
 
 	public $message_body;
 
 	/**
-	 * EmailShare constructor.
+	 * ShareEmail constructor.
 	 *
 	 * @param string $message_body
 	 * @param null $data

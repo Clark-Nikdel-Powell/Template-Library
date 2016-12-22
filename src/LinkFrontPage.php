@@ -20,7 +20,7 @@ class LinkFrontPage extends Link {
 	 */
 	public function __construct( $name = 'link-front-page', array $attributes = [], $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $href = site_url(), $name, $attributes, $content, $before, $prepend, $append, $after );
+		parent::__construct( $href = get_site_url(), $name, $attributes, $content, $before, $prepend, $append, $after );
 	}
 
 	/**
