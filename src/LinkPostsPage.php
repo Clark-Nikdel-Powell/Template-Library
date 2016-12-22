@@ -4,6 +4,9 @@ namespace CNP\TemplateLibrary;
 /**
  * Class LinkPostsPage
  * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_permalink/
+ * @link https://developer.wordpress.org/reference/functions/get_option/
  */
 class LinkPostsPage extends Link {
 

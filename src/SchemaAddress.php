@@ -9,11 +9,29 @@ class SchemaAddress extends Organism {
 
 	public $address_data;
 
+	/**
+	 * SchemaAddress constructor.
+	 *
+	 * @param string $address_data
+	 * @param string $name
+	 * @param string $tag
+	 * @param array $attributes
+	 * @param string $before
+	 * @param string $prepend
+	 * @param string $append
+	 * @param string $after
+	 */
 	public function __construct( $address_data, $name = 'schema-address', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content, $data, $structure, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure = null, $before, $prepend, $append, $after );
 
 		$this->address_data = $address_data;
+	}
+
+	/**
+	 * get_content
+	 */
+	public function get_content() {
 
 		$address_pieces = array();
 
@@ -39,7 +57,7 @@ class SchemaAddress extends Organism {
 
 		$address = '<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">' . implode( '', $address_pieces ) . '</div>';
 
-		$this->content = $address;
+		$this->content = $this->prepend . $address . $this->append;
 	}
 
 	/**

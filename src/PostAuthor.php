@@ -4,6 +4,9 @@ namespace CNP\TemplateLibrary;
 /**
  * Class PostAuthor
  * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_post/
+ * @link https://developer.wordpress.org/reference/functions/get_the_author_meta/
  */
 class PostAuthor extends Organism {
 

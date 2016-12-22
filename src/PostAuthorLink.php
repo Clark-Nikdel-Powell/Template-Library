@@ -4,6 +4,8 @@ namespace CNP\TemplateLibrary;
 /**
  * Class PostAuthorLink
  * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_author_posts_url/
  */
 class PostAuthorLink extends PostAuthor {
 

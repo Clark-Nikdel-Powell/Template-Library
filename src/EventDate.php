@@ -1,6 +1,8 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+use CNP\TemplateLibrary\Util\Utility;
+
 /**
  * Class EventDate
  * @package CNP\TemplateLibrary
@@ -13,8 +15,7 @@ class EventDate extends Organism {
 	public $event_start;
 	public $event_end;
 	public $event_all_day;
-
-	private $event_date_type = 'uncategorized';
+	public $event_date_type;
 
 	/**
 	 * EventDate constructor.
@@ -24,17 +25,18 @@ class EventDate extends Organism {
 	 * @param bool $event_all_day
 	 * @param string $name
 	 * @param string $tag
+	 * @param array $attributes
 	 */
-	public function __construct( $event_start, $event_end, $event_all_day = false, $name = 'eventdate', $tag = 'p' ) {
+	public function __construct( $event_start, $event_end, $event_all_day = false, $name = 'event-date', $tag = 'p', array $attributes = [] ) {
 
-		parent::__construct( $name, $tag );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure = [], $before = '', $prepend = '', $append = '', $after = '' );
 
 		$this->event_start   = $event_start;
 		$this->event_end     = $event_end;
 		$this->event_all_day = $event_all_day;
 
-		$this->set_event_date_type();
-		$this->set_content();
+		$this->event_date_type = Utility::set_event_date_type( $this->event_start, $this->event_end, $this->event_all_day );
+		$this->get_content();
 	}
 
 	/**
@@ -46,52 +48,9 @@ class EventDate extends Organism {
 	}
 
 	/**
-	 * set_event_date_type
-	 */
-	private function set_event_date_type() {
-
-		$timezone_string = '';
-
-		if ( defined( 'WP_CONTENT_DIR' ) ) {
-			$timezone_string = get_option( 'timezone_string' );
-		}
-
-		// Temporary fix-- TODO: figure out a bulletproof way of getting the current time
-		if ( '' === $timezone_string ) {
-			$timezone_string = 'America/New_York';
-		}
-
-		$now = new \DateTime( current_time( 'mysql' ), new \DateTimeZone( $timezone_string ) );
-
-		$today    = false;
-		$same_day = false;
-
-		if ( $this->event_start < $now && $this->event_end > $now ) {
-			$today = true;
-		}
-
-		if ( date( 'Ymd', $this->event_start ) === date( 'Ymd', $this->event_end ) ) {
-			$same_day = true;
-		}
-
-		if ( true === $today && true === $same_day ) {
-			$this->event_date_type = 'now';
-		}
-		if ( true === $this->event_all_day && true === $same_day ) {
-			$this->event_date_type = 'allday-single';
-		}
-		if ( true === $this->event_all_day && false === $same_day ) {
-			$this->event_date_type = 'allday-multiple';
-		}
-		if ( true === $same_day && false === $this->event_all_day ) {
-			$this->event_date_type = 'single-day';
-		}
-	}
-
-	/**
 	 * set_content
 	 */
-	private function set_content() {
+	public function get_content() {
 
 		switch ( $this->event_date_type ) {
 
@@ -111,7 +70,6 @@ class EventDate extends Organism {
 				$this->content = date( 'M j, Y', $this->event_start ) . ' - All Day';
 
 				break;
-
 
 			case 'allday-multiple':
 

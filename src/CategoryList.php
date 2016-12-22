@@ -38,6 +38,9 @@ class CategoryList extends Organism {
 		$this->content = get_the_category_list( $this->separator, $this->parents, $this->data );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function get_markup() {
 
 		return parent::get_markup();

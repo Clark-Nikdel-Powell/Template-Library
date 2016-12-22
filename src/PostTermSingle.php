@@ -4,6 +4,10 @@ namespace CNP\TemplateLibrary;
 /**
  * Class PostTermSingle
  * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_post/
+ * @link https://developer.wordpress.org/reference/functions/wp_get_post_terms/
+ * @link https://developer.wordpress.org/reference/functions/is_wp_error/
  */
 class PostTermSingle extends Organism {
 

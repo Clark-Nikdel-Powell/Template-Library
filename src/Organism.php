@@ -1,6 +1,12 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class Organism
+ * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/apply_filters/
+ */
 abstract class Organism {
 
 	public $name;

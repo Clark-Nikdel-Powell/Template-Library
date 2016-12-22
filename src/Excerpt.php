@@ -6,7 +6,7 @@ namespace CNP\TemplateLibrary;
  * @package CNP\TemplateLibrary
  *
  * A WordPress post excerpt. Only disaplys if a Post Excerpt has been set. To always display something, use ExcerptForce, which grabs post content if an excerpt is not set using get_the_excerpt().
- * @link
+ * @link https://developer.wordpress.org/reference/functions/get_post/
  */
 class Excerpt extends Organism {
 

@@ -4,6 +4,10 @@ namespace CNP\TemplateLibrary;
 /**
  * Class PostDate
  * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_option/
+ * @link https://developer.wordpress.org/reference/functions/get_post/
+ * @link https://developer.wordpress.org/reference/functions/get_the_date/
  */
 class PostDate extends Organism {
 
@@ -32,7 +36,6 @@ class PostDate extends Organism {
 		} else {
 			$this->date_format = $date_format;
 		}
-
 
 		if ( null === $this->data ) {
 			$this->data = get_post();

@@ -4,6 +4,8 @@ namespace CNP\TemplateLibrary;
 /**
  * Class PostTermSingleLink
  * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_term_link/
  */
 class PostTermSingleLink extends PostTermSingle {
 

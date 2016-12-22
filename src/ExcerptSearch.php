@@ -35,14 +35,6 @@ class ExcerptSearch extends Excerpt {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
-	}
-
-	/**
 	 * @return $this|string
 	 */
 	public function search_excerpt() {
@@ -101,5 +93,13 @@ class ExcerptSearch extends Excerpt {
 		$search_excerpt = $before . $search_excerpt_highlights . $after;
 
 		return $search_excerpt;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_markup() {
+
+		return parent::get_markup();
 	}
 }

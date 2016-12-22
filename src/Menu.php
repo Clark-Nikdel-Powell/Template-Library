@@ -4,6 +4,9 @@ namespace CNP\TemplateLibrary;
 /**
  * Class Menu
  * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/wp_parse_args/
+ * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
  */
 class Menu extends Organism {
 

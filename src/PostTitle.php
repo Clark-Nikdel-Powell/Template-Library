@@ -4,6 +4,8 @@ namespace CNP\TemplateLibrary;
 /**
  * Class PostTitle
  * @package CNP\TemplateLibrary
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_the_title/
  */
 class PostTitle extends Organism {
 
@@ -13,14 +15,15 @@ class PostTitle extends Organism {
 	 * @param string $name
 	 * @param string $tag
 	 * @param array $attributes
+	 * @param array $data
 	 * @param string $before
 	 * @param string $prepend
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = 'posttitle', $tag = 'h2', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'posttitle', $tag = 'h2', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = get_the_title( $data ), $data = null, $structure = null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = get_the_title( $data ), $data, $structure = null, $before, $prepend, $append, $after );
 	}
 
 	/**

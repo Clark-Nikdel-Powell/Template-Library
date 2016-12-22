@@ -5,7 +5,9 @@ namespace CNP\TemplateLibrary;
  * Class TaxonomyList
  * @package CNP\TemplateLibrary
  *
- * @link
+ * @link https://developer.wordpress.org/reference/functions/get_post/
+ * @link https://developer.wordpress.org/reference/functions/get_object_taxonomies/
+ * @link https://developer.wordpress.org/reference/functions/get_the_terms/
  */
 class TaxonomyList extends Organism {
 

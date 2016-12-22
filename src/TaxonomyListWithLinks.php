@@ -5,12 +5,9 @@ namespace CNP\TemplateLibrary;
  * Class TaxonomyListWithLinks
  * @package CNP\TemplateLibrary
  *
- * @link
+ * @link https://developer.wordpress.org/reference/functions/get_the_term_list/
  */
 class TaxonomyListWithLinks extends TaxonomyList {
-
-	public $taxonomy;
-	public $separator;
 
 	/**
 	 * TaxonomyListWithLinks constructor.

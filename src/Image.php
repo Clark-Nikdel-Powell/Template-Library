@@ -5,7 +5,7 @@ namespace CNP\TemplateLibrary;
  * Class Image
  * @package CNP\TemplateLibrary
  *
- * TODO: discuss whether we need to rename this to "WPImage" and create a separate Organism for Image.
+ * @link https://developer.wordpress.org/reference/functions/wp_get_attachment_image/
  */
 class Image extends Organism {
 
@@ -51,10 +51,6 @@ class Image extends Organism {
 
 		Organism::do_filter();
 
-		if ( defined( 'WP_CONTENT_DIR' ) ) {
-			return $this->before . wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes ) . $this->after;
-		}
-
-		return null;
+		return $this->before . wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes ) . $this->after;
 	}
 }
