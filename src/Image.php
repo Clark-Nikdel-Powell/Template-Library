@@ -16,15 +16,15 @@ class Image extends Organism {
 	/**
 	 * Image constructor.
 	 *
-	 * @param string $image_size A WordPress defined image size.
-	 * @param string $icon
-	 * @param null $data Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
 	 * @param string $name
+	 * @param null $data Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
+	 * @param string $image_size A WordPress defined image size.
+	 * @param bool $icon Whether this image should be treated as an icon.
 	 * @param array $attributes
 	 * @param string $before
 	 * @param string $after
 	 */
-	public function __construct( $image_size, $icon, $data, $name = 'image', array $attributes = [], $before = '', $after = '' ) {
+	public function __construct( $name = 'image', $data, $image_size, $icon = false, array $attributes = [], $before = '', $after = '' ) {
 
 		parent::__construct( $name, $data, $content = null, $tag = 'img', $attributes, $structure = [], $before, $prepend = null, $append = null, $after );
 

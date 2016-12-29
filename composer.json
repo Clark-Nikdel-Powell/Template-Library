@@ -6,6 +6,7 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "5.5.*"
+    "phpunit/phpunit": "5.5.*",
+    "cnp/php-utilities": "0.*"
   }
 }
