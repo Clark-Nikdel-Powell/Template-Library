@@ -21,7 +21,7 @@ class Link extends Organism {
 	 */
 	public function __construct( $href, $content = '', $name = 'link', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag = 'a', $attributes, $content, $data = null, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data = null, $content, $tag = 'a', $attributes, $structure = [], $before, $prepend, $append, $after );
 
 		$this->attributes['href'] = $href;
 	}

@@ -29,7 +29,7 @@ class EventBadge extends Organism {
 	 */
 	public function __construct( $event_start, $event_end, $event_all_day = false, $name = 'event-badge', array $structure = [], $tag = 'div', array $attributes = [] ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure, $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure, $before = '', $prepend = '', $append = '', $after = '' );
 
 		$this->event_start   = $event_start;
 		$this->event_end     = $event_end;

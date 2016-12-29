@@ -23,7 +23,7 @@ class LinkFrontPage extends Link {
 	 */
 	public function __construct( $name = 'link-front-page', $content = '', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $href = get_site_url(), $name, $attributes, $content, $before, $prepend, $append, $after );
+		parent::__construct( $href = get_site_url(), $content, $name, $attributes, $before, $prepend, $append, $after );
 
 		if ( '' === $this->content ) {
 			$this->content = get_bloginfo( 'site_title' );

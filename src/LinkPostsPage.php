@@ -23,7 +23,7 @@ class LinkPostsPage extends Link {
 	 */
 	public function __construct( $name = 'link-posts-page', array $attributes = [], $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $href = get_permalink( get_option( 'page_for_posts' ) ), $name, $attributes, $content, $before, $prepend, $append, $after );
+		parent::__construct( $href = get_permalink( get_option( 'page_for_posts' ) ), $content, $name, $attributes, $before, $prepend, $append, $after );
 	}
 
 	/**

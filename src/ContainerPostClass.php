@@ -24,7 +24,7 @@ class ContainerPostClass extends Container {
 	 */
 	public function __construct( $name = 'container-post-class', $tag = 'div', array $attributes = [], $data = null, $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $structure, $before, $prepend, $append, $after );
+		parent::__construct( $name, $structure, $tag, $attributes, $before, $prepend, $append, $after );
 
 		array_merge( $this->attributes['class'], get_post_class( '', $this->data ) );
 	}

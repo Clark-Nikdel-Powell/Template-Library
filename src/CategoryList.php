@@ -30,7 +30,7 @@ class CategoryList extends Organism {
 	 */
 	public function __construct( $name = 'category-list', $data = false, $separator = ', ', $parents = '', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 
 		$this->separator = $separator;
 		$this->parents   = $parents;

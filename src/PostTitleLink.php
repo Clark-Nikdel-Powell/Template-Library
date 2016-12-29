@@ -28,7 +28,7 @@ class PostTitleLink extends PostTitle {
 	 */
 	public function __construct( $name = 'posttitle-link', $tag = 'h2', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $data, $before, $prepend, $append, $after );
 
 		$this->link = new LinkPost( $this->content, $this->name . '-anchor', $this->attributes, $this->data, $this->before, $this->prepend, $this->append, $this->after );
 	}

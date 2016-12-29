@@ -26,7 +26,7 @@ class LinkPost extends Link {
 	 */
 	public function __construct( $content, $name = 'link-post', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $href = get_permalink( $data ), $name, $attributes, $content, $before, $prepend, $append, $after );
+		parent::__construct( $href = get_permalink( $data ), $content, $name, $attributes, $before, $prepend, $append, $after );
 	}
 
 	/**
