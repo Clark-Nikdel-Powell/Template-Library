@@ -30,7 +30,7 @@ class TaxonomyList extends Organism {
 	 */
 	public function __construct( $taxonomy = null, $separator = ', ', $data = null, $name = 'taxonomy-list', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = [], $before, $prepend, $append, $after );
 
 		// This catches if we didn't pass anything in.
 		if ( null === $this->data ) {

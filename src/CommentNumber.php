@@ -26,7 +26,7 @@ class CommentNumber extends Organism {
 	 */
 	public function __construct( $name = 'comment-number', $data = 0, $tag = 'div', array $attributes = [], $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content, $data, $structure = null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content, $data, $structure = [], $before, $prepend, $append, $after );
 
 		$this->content = get_comments_number( $this->data );
 	}

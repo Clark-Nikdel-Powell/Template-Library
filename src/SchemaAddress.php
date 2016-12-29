@@ -23,7 +23,7 @@ class SchemaAddress extends Organism {
 	 */
 	public function __construct( $address_data, $name = 'schema-address', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure = null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure = [], $before, $prepend, $append, $after );
 
 		$this->address_data = $address_data;
 	}

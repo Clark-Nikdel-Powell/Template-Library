@@ -23,7 +23,7 @@ class WPList extends Organism {
 	 */
 	public function __construct( $list_args, $name = 'wp-list', $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure = null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure = [], $before, $prepend, $append, $after );
 	}
 
 	/**

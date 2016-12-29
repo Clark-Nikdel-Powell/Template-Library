@@ -28,7 +28,7 @@ class BackgroundVideo extends Organism {
 	 */
 	public function __construct( array $vide_bg, $name = 'backgroundVideo', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure = null, $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data = null, $structure = [], $before, $prepend, $append, $after );
 
 		$this->vide_bg = $vide_bg;
 
