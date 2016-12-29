@@ -69,11 +69,13 @@ abstract class Organism {
 	 *
 	 * Run a namespaced filter for this organism, if we're in WordPress.
 	 * The standard practice is to modify the object itself.
+	 *
+	 * @param string $suffix
 	 */
-	public function do_filter() {
+	public function do_filter( $suffix = '' ) {
 
 		if ( defined( 'WP_CONTENT_DIR' ) ) {
-			$filter_name = $this->name;
+			$filter_name = $this->name . $suffix;
 			apply_filters( $filter_name, $this );
 		}
 	}
@@ -92,7 +94,7 @@ abstract class Organism {
 			$this->attributes['class'] = [ $this->name ];
 		}
 
-		$attributes = '';
+		$attributes = [];
 		if ( is_array( $this->attributes ) ) {
 			foreach ( $this->attributes as $key => $value ) {
 				if ( ! $value ) {
@@ -100,11 +102,11 @@ abstract class Organism {
 					continue;
 				}
 				$attr_value = is_array( $value ) ? implode( ' ', $value ) : $value;
-				$attributes .= sprintf( '%s="%s" ', $key, $attr_value );
+				array_push( $attributes, sprintf( '%s="%s"', $key, $attr_value ) );
 			}
 		}
 
-		return $attributes;
+		return implode( ' ', $attributes );
 	}
 
 	/**
