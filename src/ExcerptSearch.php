@@ -24,7 +24,7 @@ class ExcerptSearch extends Excerpt {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $data, $characters_before = 100, $characters_total = 250, $name = 'excerpt-search', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'excerpt-search', $data, $characters_before = 100, $characters_total = 250, $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $tag, $attributes, $data, $before, $prepend, $append, $after );
 

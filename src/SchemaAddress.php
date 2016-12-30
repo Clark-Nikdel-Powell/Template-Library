@@ -21,7 +21,7 @@ class SchemaAddress extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $address_data, $name = 'schema-address', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'schema-address', $address_data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 

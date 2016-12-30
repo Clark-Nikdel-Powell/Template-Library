@@ -51,6 +51,8 @@ class Image extends Organism {
 
 		Organism::do_filter();
 
-		return $this->before . wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes ) . $this->after;
+		if ( defined( 'WP_CONTENT_DIR' ) ) {
+			return $this->before . wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes ) . $this->after;
+		}
 	}
 }

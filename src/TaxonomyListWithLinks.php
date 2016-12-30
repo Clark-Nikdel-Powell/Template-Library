@@ -23,7 +23,7 @@ class TaxonomyListWithLinks extends TaxonomyList {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $taxonomy = null, $separator = ', ', $data = null, $name = 'taxonomy-list-with-links', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'taxonomy-list-with-links', $taxonomy = null, $separator = ', ', $data = null, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $taxonomy, $separator, $data, $name, $tag, $attributes, $before, $prepend, $append, $after );
 

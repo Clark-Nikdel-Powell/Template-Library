@@ -27,7 +27,7 @@ class EventDate extends Organism {
 	 * @param string $tag
 	 * @param array $attributes
 	 */
-	public function __construct( $event_start, $event_end, $event_all_day = false, $name = 'event-date', $tag = 'p', array $attributes = [] ) {
+	public function __construct( $name = 'event-date', $event_start, $event_end, $event_all_day = false, $tag = 'p', array $attributes = [] ) {
 
 		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $before = '', $prepend = '', $append = '', $after = '' );
 

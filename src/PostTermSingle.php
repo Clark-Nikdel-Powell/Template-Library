@@ -27,7 +27,7 @@ class PostTermSingle extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $taxonomy = 'category', $name = 'post-term-single', $tag = 'div', $data = null, array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'div', $data = null, array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 

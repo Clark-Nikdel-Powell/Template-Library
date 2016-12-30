@@ -27,7 +27,7 @@ class EventBadge extends Organism {
 	 * @param string $tag
 	 * @param array $attributes
 	 */
-	public function __construct( $event_start, $event_end, $event_all_day = false, $name = 'event-badge', array $structure = [], $tag = 'div', array $attributes = [] ) {
+	public function __construct( $name = 'event-badge', $event_start, $event_end, $event_all_day = false, array $structure = [], $tag = 'div', array $attributes = [] ) {
 
 		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure, $before = '', $prepend = '', $append = '', $after = '' );
 

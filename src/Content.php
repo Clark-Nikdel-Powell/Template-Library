@@ -17,6 +17,8 @@ class Content extends Organism {
 	 */
 	public function get_markup() {
 
+		$this->hide = empty( $this->content );
+
 		return parent::get_markup();
 	}
 }

@@ -28,7 +28,7 @@ class TaxonomyList extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $taxonomy = null, $separator = ', ', $data = null, $name = 'taxonomy-list', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'taxonomy-list', $taxonomy = null, $separator = ', ', $data = null, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 

@@ -27,7 +27,7 @@ class PostDate extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $date_format = '', $name = 'post-date', $tag = 'p', array $attributes = [], $data = null, $content = '', $before = '', $prepend = '<strong>Published:</strong> ', $append = '', $after = '' ) {
+	public function __construct( $name = 'post-date', $date_format = '', $tag = 'p', array $attributes = [], $data = null, $content = '', $before = '', $prepend = '<strong>Published:</strong> ', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $data, $content, $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 

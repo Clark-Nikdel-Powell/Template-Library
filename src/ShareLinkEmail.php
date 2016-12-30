@@ -18,7 +18,7 @@ class ShareLinkEmail extends Link {
 	 * @param string $content
 	 * @param array $attributes
 	 */
-	public function __construct( $message_body = 'Check out this link!', $data = null, $name = 'email-share', $content = 'Email This', $attributes = [ 'target' => '_blank' ] ) {
+	public function __construct( $name = 'email-share', $message_body = 'Check out this link!', $data = null, $content = 'Email This', $attributes = [ 'target' => '_blank' ] ) {
 
 		parent::__construct( $href = 'mailto:?', $content, $name, $attributes );
 

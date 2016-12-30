@@ -23,7 +23,7 @@ class Container extends Organism {
 	 */
 	public function __construct( $name, $structure, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $tag, $attributes, $content = null, $data = null, $structure, $before, $prepend, $append, $after );
+		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure, $before, $prepend, $append, $after );
 	}
 
 	/**
@@ -31,6 +31,10 @@ class Container extends Organism {
 	 */
 	public function get_markup() {
 
-		return parent::get_markup();
+		$this->hide = empty( $this->structure );
+
+		$markup = parent::get_markup();
+
+		return $markup;
 	}
 }

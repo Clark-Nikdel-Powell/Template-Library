@@ -12,7 +12,7 @@ class WPListTerms extends WPList {
 
 	public $taxonomy;
 
-	public function __construct( $list_args, $taxonomy = '', $name = 'wp-list-terms', $data = null, $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'wp-list-terms', $list_args, $taxonomy = '', $data = null, $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $list_args, $name, $tag, $attributes, $before, $prepend, $append, $after );
 

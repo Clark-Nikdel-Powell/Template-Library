@@ -25,7 +25,7 @@ class Menu extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( array $menu_args, $name = 'menu', $tag = 'div', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'menu', array $menu_args, $tag = 'div', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 

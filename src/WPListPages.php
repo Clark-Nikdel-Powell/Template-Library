@@ -10,7 +10,7 @@ namespace CNP\TemplateLibrary;
  */
 class WPListPages extends WPList {
 
-	public function __construct( $list_args, $name = 'wp-list-pages', $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'wp-list-pages', $list_args, $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $list_args, $name, $tag, $attributes, $before, $prepend, $append, $after );
 

@@ -25,7 +25,7 @@ class PostAuthorLink extends PostAuthor {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $author_meta = 'display_name', $name = 'post-author-link', array $attributes = [], $content = '', $data = null, $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'post-author-link', $author_meta = 'display_name', array $attributes = [], $content = '', $data = null, $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $author_meta, $name, $tag = 'a', $attributes, $data, $content, $before, $prepend, $append, $after );
 

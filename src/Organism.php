@@ -19,6 +19,7 @@ abstract class Organism {
 	public $prepend;
 	public $append;
 	public $after;
+	public $hide = false;
 
 	/**
 	 * Organism constructor.
@@ -61,6 +62,10 @@ abstract class Organism {
 		// Note: If a child organism overwrites get_markup, please include Organism->do_filter so that we don't have a filterless Organism.
 		$this->do_filter();
 
+		if ( true === $this->hide ) {
+			return '';
+		}
+
 		return sprintf( '%s<%s %s>%s</%s>%s', $this->before, $this->tag, $this->get_attributes(), $this->get_content(), $this->tag, $this->after );
 	}
 
@@ -88,17 +93,25 @@ abstract class Organism {
 	public function get_attributes() {
 
 		// TODO: check for CSS class sanitation (as in Atom class)
+
+		// Add class for the Organism name.
 		if ( key_exists( 'class', $this->attributes ) ) {
-			array_push( $this->attributes['class'], $this->name );
+
+			if ( ! in_array( $this->name, $this->attributes['class'] ) ) {
+				array_push( $this->attributes['class'], $this->name );
+			}
 		} else {
 			$this->attributes['class'] = [ $this->name ];
 		}
+
+		// Remove duplicate classes
+		array_filter( $this->attributes['class'] );
 
 		$attributes = [];
 		if ( is_array( $this->attributes ) ) {
 			foreach ( $this->attributes as $key => $value ) {
 				if ( ! $value ) {
-					$attributes .= $key . ' ';
+					array_push( $attributes, $key . ' ' );
 					continue;
 				}
 				$attr_value = is_array( $value ) ? implode( ' ', $value ) : $value;
@@ -171,9 +184,9 @@ abstract class Organism {
 	 *
 	 * @return string
 	 */
-	public function organism_name( $org_name ) {
+	public function organism_name( $org_name, $separator = '__' ) {
 
-		return $this->name . '__' . $org_name;
+		return $this->name . $separator . $org_name;
 	}
 
 	/**

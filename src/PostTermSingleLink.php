@@ -25,7 +25,7 @@ class PostTermSingleLink extends PostTermSingle {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $taxonomy = 'category', $name = 'post-term-single', $tag = 'a', $data = null, array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'a', $data = null, array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $taxonomy, $name, $tag, $data, $attributes, $before, $prepend, $append, $after );
 

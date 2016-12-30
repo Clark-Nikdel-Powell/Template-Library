@@ -21,7 +21,7 @@ class WPList extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $list_args, $name = 'wp-list', $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'wp-list', $list_args, $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 	}

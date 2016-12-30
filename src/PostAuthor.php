@@ -26,7 +26,7 @@ class PostAuthor extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $author_meta = 'display_name', $name = 'post-author', $tag = 'p', array $attributes = [], $data = null, $content = '', $before = '', $prepend = 'By: ', $append = '', $after = '' ) {
+	public function __construct( $name = 'post-author', $author_meta = 'display_name', $tag = 'p', array $attributes = [], $data = null, $content = '', $before = '', $prepend = 'By: ', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $data, $content, $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 

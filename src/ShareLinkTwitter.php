@@ -12,18 +12,18 @@ class ShareLinkTwitter extends ShareLink {
 	/**
 	 * ShareLinkTwitter constructor.
 	 *
+	 * @param string $name
 	 * @param string $status Optional. The status is used to pre-fill a tweet.
 	 * @param string $share_url Optional. A custom URL to share. Defaults to the current post, or the site URL.
 	 * @param bool $use_icon Optional. Whether to substitute content with an icon. Resolved in parent ShareLink class.
 	 * @param string $content Optional. Content to display inside the link, can be overridden with use_icon parameter.
-	 * @param string $name
 	 * @param array $attributes
 	 * @param string $before
 	 * @param string $prepend
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $status = '', $share_url = '', $use_icon = false, $content = 'Share on Twitter', $name = 'share-link-twitter', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'share-link-twitter', $status = '', $share_url = '', $use_icon = false, $content = 'Share on Twitter', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $network = 'twitter', $href_base = 'https://twitter.com/home?status=', $share_url, $use_icon, $content, $name, $attributes, $before, $prepend, $append, $after );
 

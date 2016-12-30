@@ -14,8 +14,8 @@ class ExcerptForce extends Excerpt {
 	/**
 	 * ExcerptForce constructor.
 	 *
-	 * @param string $data Optional. WP_Post Object. Set by Excerpt if not defined.
 	 * @param string $name
+	 * @param string $data Optional. WP_Post Object. Set by Excerpt if not defined.
 	 * @param string $tag
 	 * @param array $attributes
 	 * @param string $before
@@ -23,7 +23,7 @@ class ExcerptForce extends Excerpt {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $data, $name = 'excerpt', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'excerpt', $data, $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $tag, $attributes, $data, $before, $prepend, $append, $after );
 
