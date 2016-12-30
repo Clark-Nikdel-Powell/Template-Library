@@ -35,10 +35,9 @@ class LoopTest extends \PHPUnit_Framework_TestCase {
 		$loop = new Loop( $sub_items_data, $sub_items_organism_class );
 
 		// Act
-		$loop->get_markup();
 
 		// Assert
-		$this->assertEquals( '<div class="loop"><a href="/about-us" class="about-link">About Us</a><a href="/contact" class="link">Contact</a><a href="/blog" class="blog-link">Blog</a></div>', $loop->markup );
+		$this->assertEquals( '<div class="loop"><a href="/about-us" class="about-link">About Us</a><a href="/contact" class="link">Contact</a><a href="/blog" class="blog-link">Blog</a></div>', $loop->get_markup() );
 
 	}
 }

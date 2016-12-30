@@ -11,6 +11,7 @@ class ACFBlurblistblurb extends Organism {
 	public $background_type;
 	public $link_type;
 	public $link_location;
+	public $separator = '-';
 
 	public $inside;
 	public $inside_tag;
@@ -25,7 +26,7 @@ class ACFBlurblistblurb extends Organism {
 
 	public function __construct( $data ) {
 
-		parent::__construct( $name = 'acf-blurblist__blurb', $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $before = '', $prepend = '', $append = '', $after = '' );
 
 		$this->blurb_classes   = $this->data['blurb_classes'];
 		$this->background_type = $this->data['background_type'];
@@ -40,13 +41,25 @@ class ACFBlurblistblurb extends Organism {
 
 		$this->do_background_link(); // Gets put on $this->inside
 		$this->do_background(); // TODO: add object check when adding this in
-		$this->image      = new Image( Organism::organism_name( 'image' ), $this->data['foreground_image'] );
-		$this->title      = new Content( Organism::organism_name( 'title' ), $this->data['title'] );
-		$this->subtitle   = new Content( Organism::organism_name( 'subtitle' ), $this->data['subtitle'] );
-		$this->text       = new Content( Organism::organism_name( 'text' ), $this->data['text'] );
+		$this->image    = new Image( Organism::organism_name( 'image', $this->separator ), $this->data['foreground_image'], '' );
+		$this->title    = new Content( Organism::organism_name( 'title', $this->separator ), $this->data['title'] );
+		$this->subtitle = new Content( Organism::organism_name( 'subtitle', $this->separator ), $this->data['subtitle'] );
+		$this->text     = new Content( Organism::organism_name( 'text', $this->separator ), $this->data['text'] );
 		$this->do_button();
 
-		$this->inside = new Container( Organism::organism_name( 'inside' ), [ $this->image, $this->title, $this->subtitle, $this->text ], $this->inside_tag, $this->inside_attributes );
+		$this->inside = new Container( Organism::organism_name( 'inside', $this->separator ), [ $this->image, $this->title, $this->subtitle, $this->text ], $this->inside_tag, $this->inside_attributes );
+
+		if ( is_object( $this->background ) ) {
+			array_unshift( $this->inside->structure, $this->background );
+		}
+
+		if ( is_object( $this->link ) ) {
+			array_push( $this->inside->structure, $this->link );
+		}
+
+		$this->structure = [
+			$this->inside,
+		];
 	}
 
 	/**
@@ -87,8 +100,44 @@ class ACFBlurblistblurb extends Organism {
 
 	private function do_classes() {
 
-		$classes                   = $this->blurb_classes . ',' . $this->data['class'];
-		$this->attributes['class'] = \CNP\Utility::parse_classes_as_array( $classes );
+		$classes = $this->data['class'];
+		if ( ! empty( $this->blurb_classes ) ) {
+			$classes .= ',' . $this->blurb_classes;
+		}
+		if ( class_exists( 'CNP\Utility' ) ) {
+			$this->attributes['class'] = \CNP\Utility::parse_classes_as_array( $classes );
+		} else {
+
+			// TODO: Debug function copied over until we figure out how to link this in development
+			if ( is_string( $classes ) ) {
+
+				if ( '' === $classes ) {
+					return false;
+				}
+
+				// Create an array
+				$data_classes_arr = explode( ',', $classes );
+
+				// Trim the input for any whitespace
+				$data_classes_arr = array_map( 'trim', $data_classes_arr );
+
+			}
+
+			if ( is_array( $classes ) ) {
+
+				if ( empty( $classes ) ) {
+					return false;
+				}
+
+				$data_classes_arr = $classes;
+			}
+
+			if ( ! empty( $data_classes_arr ) ) {
+				return $this->attributes['class'] = $data_classes_arr;
+			} else {
+				return false;
+			}
+		}
 	}
 
 	private function do_id() {
@@ -118,7 +167,7 @@ class ACFBlurblistblurb extends Organism {
 		$text = isset( $this->data['link_text'] ) && ! empty( $this->data['link_text'] ) ? $this->data['link_text'] : 'Learn More';
 
 		if ( $this->is_button_link() && $link ) {
-			$this->link = new Link( $link, $text );
+			$this->link = new Link( Organism::organism_name( 'link', $this->separator ), $link, $text );
 		}
 	}
 
@@ -128,8 +177,8 @@ class ACFBlurblistblurb extends Organism {
 
 		// If the background is a link, add a Link atom
 		if ( $this->is_background_link() && $link ) {
-			$this->inside_tag = 'a';
-			array_push( $this->inside_attributes, [ 'href' => $link ] );
+			$this->inside_tag                = 'a';
+			$this->inside_attributes['href'] = $link;
 		}
 	}
 
@@ -137,11 +186,11 @@ class ACFBlurblistblurb extends Organism {
 
 		if ( $this->has_background() ) {
 
-			$background_name = Organism::organism_name( 'background' );
+			$background_name = Organism::organism_name( 'background', $this->separator );
 
 			if ( $this->is_image_background() && isset( $this->data['background_image'] ) && ! empty( $this->data['background_image'] ) ) {
 
-				$this->background = new Image( $background_name, $this->data['background_image'] );
+				$this->background = new Image( $background_name, $this->data['background_image'], '' );
 			}
 			if ( $this->is_color_background() && isset( $this->data['background_color'] ) && ! empty( $this->data['background_color'] ) ) {
 
