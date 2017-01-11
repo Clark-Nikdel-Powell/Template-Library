@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Home
- * Date: 12/29/16
- * Time: 9:34 PM
- */
-
 namespace CNP\TemplateLibrary;
-
 
 class ACFBlurblistTest extends \PHPUnit_Framework_TestCase {
 
@@ -92,7 +84,7 @@ class ACFBlurblistTest extends \PHPUnit_Framework_TestCase {
 		// Act
 
 		// Assert
-		$this->assertEquals( '<div class="buttonlist--solutions buttonlist"><div class="buttonlist__list-header"><div class="buttonlist__list-title">Simple, Secure, Compliant</div><div class="buttonlist__list-intro">Protected Trust takes the complexity out of technology to make it work for your business.</div></div><div class="buttonlist__list-loop"><div class="buttonlist__blurb"><div class="buttonlist__blurb-inside"><a href="http://pt.dev/solutions/cloud/" class="buttonlist__blurb-link">Cloud</a></div></div><div class="buttonlist__blurb"><div class="buttonlist__blurb-inside"><a href="http://pt.dev/solutions/office-365/" class="buttonlist__blurb-link">Office 365</a></div></div><div class="buttonlist__blurb"><div class="buttonlist__blurb-inside"><a href="http://pt.dev/solutions/encrypted-email/" class="buttonlist__blurb-link">Encrypted Email</a></div></div></div></div>', $acf_blurblist->get_markup() );
+		$this->assertEquals( '<div class="buttonlist--solutions buttonlist"><div class="buttonlist__list-header"><div class="buttonlist__list-title">Simple, Secure, Compliant</div><div class="buttonlist__list-intro">Protected Trust takes the complexity out of technology to make it work for your business.</div></div><div class="buttonlist__list-loop"><div class="buttonlist__blurb"><div class="buttonlist__blurb-inside"><a href="http://pt.dev/solutions/cloud/" class="buttonlist__blurb-link">Cloud</a></div></div><div class="buttonlist__blurb"><div class="buttonlist__blurb-inside"><a href="http://pt.dev/solutions/office-365/" class="buttonlist__blurb-link">Office 365</a></div></div><div class="these are some classes buttonlist__blurb"><div class="buttonlist__blurb-inside"><a href="http://pt.dev/solutions/encrypted-email/" class="buttonlist__blurb-link">Encrypted Email</a></div></div></div></div>', $acf_blurblist->get_markup() );
 
 	}
 }

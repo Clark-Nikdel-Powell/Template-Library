@@ -12,6 +12,7 @@ abstract class Organism {
 	public $name;
 	public $tag;
 	public $attributes;
+	// TODO: ask again about attribute quote style.
 	public $content;
 	public $data;
 	public $structure;
@@ -92,8 +93,6 @@ abstract class Organism {
 	 */
 	public function get_attributes() {
 
-		// TODO: check for CSS class sanitation (as in Atom class)
-
 		// Add class for the Organism name.
 		if ( key_exists( 'class', $this->attributes ) ) {
 
@@ -119,7 +118,9 @@ abstract class Organism {
 			}
 		}
 
-		return implode( ' ', $attributes );
+		$imploded_value = implode( ' ', $attributes );
+
+		return $imploded_value;
 	}
 
 	/**
@@ -181,6 +182,7 @@ abstract class Organism {
 	 * Example: TODO: add example
 	 *
 	 * @param $org_name
+	 * @param $separator
 	 *
 	 * @return string
 	 */

@@ -9,7 +9,7 @@ namespace CNP\TemplateLibrary;
  *
  * @link http://php.net/manual/en/functions.arguments.php#functions.variable-arg-list
  */
-class Loop extends Organism {
+class ACFLoop extends Organism {
 
 	public $sub_item_organism_class;
 	public $sub_items_data;

@@ -11,7 +11,8 @@ class ACFBlurblist extends Organism {
 	public $elements;
 	public $class;
 	public $id;
-	public $blurb_data;
+	public $blurbs_data;
+	public $blurb_settings;
 
 	// Pieces
 	public $list_header;
@@ -23,26 +24,34 @@ class ACFBlurblist extends Organism {
 
 	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		if ( ! empty( $data['class'] ) ) {
-			$attributes['class'] = explode( ',', $data['class'] );
+		//——————————————————————————————————————————————————————————
+		//  0. Parse Data
+		//——————————————————————————————————————————————————————————
+		$name = 'acf-blurblist';
+		if ( isset( $data['name'] ) ) {
+			$name = $data['name'];
 		}
 
-		if ( ! empty( $data['id'] ) ) {
-			$attributes['id'] = $data['id'];
-		}
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 
-		parent::__construct( $data['name'], $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		Utilities::acf_set_class_and_id( $this, $data, $attributes );
 
-		$this->elements = $data['elements'];
+		$this->hide        = $this->data['hide'];
+		$this->elements    = $this->data['elements'];
+		$this->blurbs_data = $this->data['blurbs'];
 
-		$this->blurb_data = [
+		$this->blurb_settings = [
 			'name'            => Organism::organism_name( 'blurb' ),
 			'blurb_elements'  => $this->elements,
 			'blurb_classes'   => $this->data['blurb_classes'],
-			'background_type' => $data['background_type'],
-			'link_type'       => $data['link_type'],
-			'link_location'   => $data['link_location'],
+			'background_type' => $this->data['background_type'],
+			'link_type'       => $this->data['link_type'],
+			'link_location'   => $this->data['link_location'],
 		];
+
+		//——————————————————————————————————————————————————————————
+		//  1. Set Up Pieces
+		//——————————————————————————————————————————————————————————
 
 		//——————————————————————————————————————————
 		//  Header
@@ -70,7 +79,7 @@ class ACFBlurblist extends Organism {
 		//——————————————————————————————————————————
 		//  Loop
 		//——————————————————————————————————————————
-		$this->blurbs_loop = new Loop( Organism::organism_name( 'list-loop' ), $this->data['blurbs'], 'CNP\\TemplateLibrary\\ACFBlurblistblurb', $this->blurb_data );
+		$this->blurbs_loop = new ACFLoop( Organism::organism_name( 'list-loop' ), $this->blurbs_data, 'CNP\\TemplateLibrary\\ACFBlurblistblurb', $this->blurb_settings );
 
 		//——————————————————————————————————————————
 		//  Footer
@@ -83,6 +92,9 @@ class ACFBlurblist extends Organism {
 			$this->list_footer = new Container( Organism::organism_name( 'list-footer' ), [ $this->list_link ] );
 		}
 
+		//——————————————————————————————————————————————————————————
+		//  2. Assemble Structure
+		//——————————————————————————————————————————————————————————
 		if ( is_object( $this->list_header ) ) {
 			array_push( $this->structure, $this->list_header );
 		}
@@ -98,8 +110,6 @@ class ACFBlurblist extends Organism {
 	 * @return string
 	 */
 	public function get_markup() {
-
-		$this->hide = empty( $this->elements );
 
 		return parent::get_markup();
 	}
