@@ -34,7 +34,7 @@ class ACFBlurblist extends Organism {
 
 		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
 
-		Utilities::acf_set_class_and_id( $this, $data, $attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
 		$this->hide        = $this->data['hide'];
 		$this->elements    = $this->data['elements'];

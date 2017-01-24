@@ -2,17 +2,17 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class ACFSection
+ * Class ACFAccordion
  * @package CNP\TemplateLibrary
  */
-class ACFSection extends Organism {
+class ACFAccordion extends Organism {
 
 	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		//——————————————————————————————————————————————————————————
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
-		$name = 'acf-section';
+		$name = 'acf-accordion';
 		if ( isset( $data['name'] ) ) {
 			$name = $data['name'];
 		}
@@ -23,12 +23,7 @@ class ACFSection extends Organism {
 
 		$this->hide = $this->data['hide'];
 
-		//——————————————————————————————————————————————————————————
-		//  1. Set Up Content
-		//——————————————————————————————————————————————————————————
-		if ( isset( $data['section_layouts'] ) && ! empty( $data['section_layouts'] ) ) {
-			$this->content = get_acf_organisms( $this->data['section_layouts'] ); // TODO: namespace this function name in da plugin.
-		}
+
 	}
 
 	/**
