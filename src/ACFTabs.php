@@ -2,20 +2,23 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class ACFAccordion
+ * Class ACFTabs
  * @package CNP\TemplateLibrary
  */
-class ACFAccordion extends Organism {
+class ACFTabs extends Organism {
 
-	public $panels_data;
-	public $panels;
+	public $tabs_data;
+
+	public $background;
+	public $headings;
+	public $content;
 
 	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		//——————————————————————————————————————————————————————————
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
-		$name = 'acf-accordion';
+		$name = 'acf-tabs';
 		if ( isset( $data['name'] ) ) {
 			$name = $data['name'];
 		}
@@ -24,18 +27,19 @@ class ACFAccordion extends Organism {
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
-		$this->hide        = $this->data['hide'];
-		$this->panels_data = $this->data['panels'];
+		$this->hide      = $this->data['hide'];
+		$this->tabs_data = $this->data['tabs'];
 
 		//——————————————————————————————————————————————————————————
 		//  1. Set Up Pieces
 		//——————————————————————————————————————————————————————————
-		$this->panels = new ACFLoop( Organism::organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel', [], 'div', [ 'data-accordion' => '' ] );
+		$this->headings = new ACFLoop( Organism::organism_name( 'headings' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabHeading', [], 'ul', [ 'data-tabs' => '', 'id' => '' ] );
+		$this->content  = new ACFLoop( Organism::organism_name( 'content' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabContent', [], 'div', [ 'data-tabs-content' => '' ] );
 
 		//——————————————————————————————————————————————————————————
 		//  2. Assemble Structure
 		//——————————————————————————————————————————————————————————
-		$this->structure = [ $this->panels ];
+		$this->structure = [ $this->background, $this->headings, $this->content ];
 	}
 
 	/**

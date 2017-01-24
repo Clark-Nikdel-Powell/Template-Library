@@ -2,40 +2,44 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class ACFAccordion
+ * Class ACFAccordionPanel
  * @package CNP\TemplateLibrary
  */
-class ACFAccordion extends Organism {
+class ACFAccordionPanel extends Organism {
 
-	public $panels_data;
-	public $panels;
+	public $panel_title;
+	public $content;
+	public $content_title;
+	public $content_subtitle;
+	public $content_text;
 
-	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $data ) {
 
 		//——————————————————————————————————————————————————————————
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
-		$name = 'acf-accordion';
-		if ( isset( $data['name'] ) ) {
-			$name = $data['name'];
-		}
-
-		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $before = '', $prepend = '', $append = '', $after = '' );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
-		$this->hide        = $this->data['hide'];
-		$this->panels_data = $this->data['panels'];
+		$this->hide                              = $this->data['hide'];
+		$this->attributes['data-accordion-item'] = '';
 
 		//——————————————————————————————————————————————————————————
 		//  1. Set Up Pieces
 		//——————————————————————————————————————————————————————————
-		$this->panels = new ACFLoop( Organism::organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel', [], 'div', [ 'data-accordion' => '' ] );
+		$this->panel_title = new Link( Organism::organism_name( 'title' ), '#', $this->data['panel_title'] );
+
+		$this->content_title    = new Content( Organism::organism_name( 'content-title' ), $this->data['title'] );
+		$this->content_subtitle = new Content( Organism::organism_name( 'content-subtitle' ), $this->data['subtitle'] );
+		$this->content_text     = new Content( Organism::organism_name( 'content-text' ), $this->data['text'] );
+
+		$this->content = new Container( Organism::organism_name( 'content' ), [ $this->content_title, $this->content_subtitle, $this->content_text ], 'div', [ 'data-tab-content' => '' ] );
 
 		//——————————————————————————————————————————————————————————
 		//  2. Assemble Structure
 		//——————————————————————————————————————————————————————————
-		$this->structure = [ $this->panels ];
+		$this->structure = [ $this->panel_title, $this->content ];
 	}
 
 	/**

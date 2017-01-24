@@ -2,40 +2,38 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class ACFAccordion
+ * Class ACFTabHeading
  * @package CNP\TemplateLibrary
  */
-class ACFAccordion extends Organism {
+class ACFTabHeading extends Organism {
 
-	public $panels_data;
-	public $panels;
+	public $link;
 
-	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $data ) {
 
 		//——————————————————————————————————————————————————————————
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
-		$name = 'acf-accordion';
-		if ( isset( $data['name'] ) ) {
-			$name = $data['name'];
-		}
-
-		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'li', $attributes = [], $structure = [], $before = '', $prepend = '', $append = '', $after = '' );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
-		$this->hide        = $this->data['hide'];
-		$this->panels_data = $this->data['panels'];
+		$this->hide = $this->data['hide'];
 
 		//——————————————————————————————————————————————————————————
 		//  1. Set Up Pieces
 		//——————————————————————————————————————————————————————————
-		$this->panels = new ACFLoop( Organism::organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel', [], 'div', [ 'data-accordion' => '' ] );
+		$this->link = new Link( Organism::organism_name( 'link', '-' ), '#panel' . $this->data['loop-index'], $this->data['tab_title'] );
+
+		if ( 0 === $this->data['loop-index'] ) {
+			$this->attributes['class'][] = Organism::organism_name( 'isActive', '--' );
+			$this->link['attributes']['aria-selected'] = 'true';
+		}
 
 		//——————————————————————————————————————————————————————————
 		//  2. Assemble Structure
 		//——————————————————————————————————————————————————————————
-		$this->structure = [ $this->panels ];
+		$this->structure = [ $this->link ];
 	}
 
 	/**
