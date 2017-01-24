@@ -40,7 +40,7 @@ class ACFGallery extends Organism {
 
 		$this->hide        = $this->data['hide'];
 		$this->images_data = $this->data['images'];
-		$this->image_size  = $this->data['image_size'];
+		$this->image_size  = ( isset( $this->data['image_size'] ) && ! empty( $this->data['image_size'] ) ? $this->data['image_size'] : 'post-thumbnail' );
 
 		$images_count = count( $this->images_data );
 
@@ -54,25 +54,49 @@ class ACFGallery extends Organism {
 		//——————————————————————————————————————————————————————————
 
 		//——————————————————————————————————————————
-		//  Pagination
+		//  Images & Captions
 		//——————————————————————————————————————————
-		$this->pagination_current   = new Content( Organism::organism_name( 'pagination-current' ), '1' );
-		$this->pagination_separator = new Content( Organism::organism_name( 'pagination-separator' ), '/' );
-		$this->pagination_total     = new Content( Organism::organism_name( 'pagination-total' ), $images_count );
+		if ( ! empty( $this->images_data ) ) {
+			self::generate_images_and_captions();
+		}
 
-		$this->pagination = new Container( Organism::organism_name( 'pagination' ), [ $this->pagination_current, $this->pagination_separator, $this->pagination_total ] );
+		if ( is_object( $this->images ) ) {
 
-		//——————————————————————————————————————————
-		//  Nav
-		//——————————————————————————————————————————
-		$this->nav_prev = new Content( Organism::organism_name( 'prev' ), '<', 'button', [ 'class' => $this->name . '__nav-item' ] );
-		$this->nav_next = new Content( Organism::organism_name( 'next' ), '>', 'button', [ 'class' => $this->name . '__nav-item' ] );
+			//——————————————————————————————————————————
+			//  Pagination
+			//——————————————————————————————————————————
+			$this->pagination_current   = new Content( Organism::organism_name( 'pagination-current' ), '1' );
+			$this->pagination_separator = new Content( Organism::organism_name( 'pagination-separator' ), '/' );
+			$this->pagination_total     = new Content( Organism::organism_name( 'pagination-total' ), $images_count );
 
-		$this->nav = new Container( Organism::organism_name( 'nav' ), [ $this->nav_prev, $this->nav_next ] );
+			$this->pagination = new Container( Organism::organism_name( 'pagination' ), [ $this->pagination_current, $this->pagination_separator, $this->pagination_total ] );
+
+			//——————————————————————————————————————————
+			//  Nav
+			//——————————————————————————————————————————
+			$this->nav_prev = new Content( Organism::organism_name( 'prev' ), '<', 'button', [ 'class' => $this->name . '__nav-item' ] );
+			$this->nav_next = new Content( Organism::organism_name( 'next' ), '>', 'button', [ 'class' => $this->name . '__nav-item' ] );
+
+			$this->nav = new Container( Organism::organism_name( 'nav' ), [ $this->nav_prev, $this->nav_next ] );
+
+			//——————————————————————————————————————————
+			//  Footer
+			//——————————————————————————————————————————
+			$this->footer = new Container( Organism::organism_name( 'footer' ), [ $this->pagination, $this->captions, $this->nav ] );
+
+			//——————————————————————————————————————————
+			//  Inside
+			//——————————————————————————————————————————
+			$this->inside = new Container( Organism::organism_name( 'inside' ), [ $this->images, $this->footer ] );
+
+		}
 
 		//——————————————————————————————————————————————————————————
 		//  2. Assemble Structure
 		//——————————————————————————————————————————————————————————
+		if ( is_object( $this->inside ) ) {
+			$this->structure = [ $this->inside ];
+		}
 	}
 
 	/**
@@ -80,25 +104,38 @@ class ACFGallery extends Organism {
 	 */
 	public function get_markup() {
 
-		try {
-
-			if ( empty( $this->images ) ) {
-				throw new \Exception( 'No images defined.' );
-			}
-
-			foreach ( $this->images as $image_index => $image_data ) {
-				$this->generate_image( $image_index, $image_data );
-			}
-
-			return parent::get_markup();
-
-		} catch ( \Exception $e ) {
-
-			return '<!-- Gallery failed: ' . $e->getMessage() . '-->' . "\n";
-		}
+		return parent::get_markup();
 	}
 
-	public function generate_image( $image_index, $image_data ) {
 
+	/**
+	 *
+	 */
+	public function generate_images_and_captions() {
+
+		$this->images   = new Container( Organism::organism_name( 'images' ), [] );
+		$this->captions = new Container( Organism::organism_name( 'captions' ), [] );
+
+		foreach ( $this->images_data as $image_index => $image_datum ) {
+
+			$new_image   = new Image( Organism::organism_name( 'image' ), $image_datum['id'], $this->image_size, $icon = false, [ 'data-image' => $image_index ] );
+
+
+
+			$new_caption = new Content( Organism::organism_name( 'caption' ), $image_datum['caption'], 'div', [ 'data-image' => $image_index ] );
+
+			if ( 0 === $image_index ) {
+				$active_caption_class = $this->name . '__caption--isActive';
+
+				if ( is_array( $new_caption->attributes['class'] ) ) {
+					array_push( $new_caption->attributes['class'], $active_caption_class );
+				} else {
+					$new_caption->attributes['class'] = [ $active_caption_class ];
+				}
+			}
+
+			$this->images->structure[]   = $new_image;
+			$this->captions->structure[] = $new_caption;
+		}
 	}
 }
