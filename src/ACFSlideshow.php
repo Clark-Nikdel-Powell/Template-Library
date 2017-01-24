@@ -48,6 +48,7 @@ class ACFSlideshow extends Organism {
 		//——————————————————————————————————————————————————————————
 		//  2. Assemble Structure
 		//——————————————————————————————————————————————————————————
+		$this->structure = [ $this->slides ];
 	}
 
 	/**
