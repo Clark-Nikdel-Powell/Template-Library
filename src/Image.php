@@ -9,7 +9,7 @@ namespace CNP\TemplateLibrary;
  */
 class Image extends Organism {
 
-	private $attachment_id = '';
+	public $attachment_id = '';
 	public $image_size;
 	public $icon;
 
@@ -18,15 +18,16 @@ class Image extends Organism {
 	 *
 	 * @param string $name
 	 * @param null $data Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
-	 * @param string $image_size A WordPress defined image size.
+	 * @param string $image_size A registered WordPress image size.
 	 * @param bool $icon Whether this image should be treated as an icon.
+	 * @param string $tag Default to 'img,' but could be div if it's a ImageBackground Organism.
 	 * @param array $attributes
 	 * @param string $before
 	 * @param string $after
 	 */
-	public function __construct( $name = 'image', $data, $image_size, $icon = false, array $attributes = [], $before = '', $after = '' ) {
+	public function __construct( $name = 'image', $data, $image_size, $icon = false, $tag = 'img', array $attributes = [], $before = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content = null, $tag = 'img', $attributes, $structure = [], $before, $prepend = null, $append = null, $after );
+		parent::__construct( $name, $data, $content = null, $tag, $attributes, $structure = [], $before, $prepend = null, $append = null, $after );
 
 		$this->image_size = $image_size;
 		$this->icon       = $icon;
