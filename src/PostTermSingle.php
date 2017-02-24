@@ -29,7 +29,7 @@ class PostTermSingle extends Organism {
 	 */
 	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'div', $data = null, array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		$this->taxonomy = $taxonomy;
 

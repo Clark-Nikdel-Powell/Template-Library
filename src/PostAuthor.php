@@ -28,7 +28,7 @@ class PostAuthor extends Organism {
 	 */
 	public function __construct( $name = 'post-author', $author_meta = 'display_name', $tag = 'p', array $attributes = [], $data = null, $content = '', $before = '', $prepend = 'By: ', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content, $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content, $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		$this->author_meta = $author_meta;
 

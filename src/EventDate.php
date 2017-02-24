@@ -29,7 +29,7 @@ class EventDate extends Organism {
 	 */
 	public function __construct( $name = 'event-date', $event_start, $event_end, $event_all_day = false, $tag = 'p', array $attributes = [] ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
 		$this->event_start   = $event_start;
 		$this->event_end     = $event_end;

@@ -26,7 +26,7 @@ class ACFBlurb extends Organism {
 			$name = $data['name'];
 		}
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 

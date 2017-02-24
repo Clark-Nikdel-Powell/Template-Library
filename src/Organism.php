@@ -16,6 +16,8 @@ abstract class Organism {
 	public $content;
 	public $data;
 	public $structure;
+	public $parent_name;
+	public $separator;
 	public $before;
 	public $prepend;
 	public $append;
@@ -31,34 +33,39 @@ abstract class Organism {
 	 * @param string $content
 	 * @param null $data
 	 * @param array $structure
+	 * @param string $parent_name
+	 * @param string $separator
 	 * @param string $before
 	 * @param string $prepend
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = '', $data = null, $content = '', $tag = 'div', array $attributes = [], array $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = '', $data = null, $content = '', $tag = 'div', array $attributes = [], array $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		$this->name       = $name;
-		$this->tag        = $tag;
-		$this->attributes = $attributes;
-		$this->content    = $content;
-		$this->data       = $data;
-		$this->structure  = $structure;
-		$this->before     = $before;
-		$this->prepend    = $prepend;
-		$this->append     = $append;
-		$this->after      = $after;
+		$this->name        = $name;
+		$this->tag         = $tag;
+		$this->attributes  = $attributes;
+		$this->content     = $content;
+		$this->data        = $data;
+		$this->structure   = $structure;
+		$this->parent_name = $parent_name;
+		$this->separator   = $separator;
+		$this->before      = $before;
+		$this->prepend     = $prepend;
+		$this->append      = $append;
+		$this->after       = $after;
 	}
 
 	/**
-	 * get_markup
+	 * Get_markup
 	 *
 	 * Returns an Organism's completed markup.
 	 * Meant to be overridden when necessary. However, do_filter is required for all Organisms, so please include it as well.
 	 *
 	 * @return string
 	 */
-	public function get_markup() {
+	public
+	function get_markup() {
 
 		// Note: If a child organism overwrites get_markup, please include Organism->do_filter so that we don't have a filterless Organism.
 		$this->do_filter();
@@ -71,14 +78,17 @@ abstract class Organism {
 	}
 
 	/**
-	 * do_filter
+	 * Do_filter
 	 *
 	 * Run a namespaced filter for this organism, if we're in WordPress.
 	 * The standard practice is to modify the object itself.
 	 *
 	 * @param string $suffix
 	 */
-	public function do_filter( $suffix = '' ) {
+	public
+	function do_filter(
+		$suffix = ''
+	) {
 
 		if ( defined( 'WP_CONTENT_DIR' ) ) {
 			$filter_name = $this->name . $suffix;
@@ -87,23 +97,24 @@ abstract class Organism {
 	}
 
 	/**
-	 * get_attributes
+	 * Get_attributes
 	 *
 	 * @return string
 	 */
-	public function get_attributes() {
+	public
+	function get_attributes() {
 
 		// Add class for the Organism name.
 		if ( key_exists( 'class', $this->attributes ) ) {
 
-			if ( ! in_array( $this->name, $this->attributes['class'] ) ) {
+			if ( ! in_array( $this->name, $this->attributes['class'], true ) ) {
 				array_push( $this->attributes['class'], $this->name );
 			}
 		} else {
 			$this->attributes['class'] = [ $this->name ];
 		}
 
-		// Remove duplicate classes
+		// Remove duplicate classes.
 		array_filter( $this->attributes['class'] );
 
 		$attributes = [];
@@ -128,7 +139,8 @@ abstract class Organism {
 	 *
 	 * @return string
 	 */
-	public function get_content() {
+	public
+	function get_content() {
 
 		return $this->prepend . $this->content . $this->get_structure() . $this->append;
 	}
@@ -138,7 +150,8 @@ abstract class Organism {
 	 *
 	 * @return string
 	 */
-	public function get_structure() {
+	public
+	function get_structure() {
 
 		if ( ! isset( $this->structure ) || ! is_array( $this->structure ) ) {
 			return '';
@@ -146,7 +159,18 @@ abstract class Organism {
 
 		$structure = '';
 		foreach ( $this->structure as $child ) {
-			$child->get_structure();
+
+			// For scoping the children of a parent, i.e., "header__logo".
+			if ( ! empty( $this->parent_name ) ) {
+
+				// Pass the parent name and separator down to any children.
+				$child->parent_name = $this->parent_name;
+				$child->separator   = $this->separator;
+
+				// Prepend the parent name to the child name.
+				$child->name        = $child->parent_name . $this->separator . $child->name;
+			}
+
 			$structure .= $child->get_markup();
 		}
 
@@ -160,7 +184,8 @@ abstract class Organism {
 	 *
 	 * @return string
 	 */
-	public function class_name() {
+	public
+	function class_name() {
 
 		return strtolower( get_class( $this ) );
 	}
@@ -170,7 +195,8 @@ abstract class Organism {
 	 *
 	 * @return string
 	 */
-	public function class_root() {
+	public
+	function class_root() {
 
 		return sprintf( '%s_%s_', $this->class_name(), $this->name );
 	}
@@ -186,7 +212,10 @@ abstract class Organism {
 	 *
 	 * @return string
 	 */
-	public function organism_name( $org_name, $separator = '__' ) {
+	public
+	function organism_name(
+		$org_name, $separator = '__'
+	) {
 
 		return $this->name . $separator . $org_name;
 	}
@@ -196,7 +225,8 @@ abstract class Organism {
 	 *
 	 * Used for debugging purposes.
 	 */
-	public function debug() {
+	public
+	function debug() {
 
 		var_dump( $this );
 	}

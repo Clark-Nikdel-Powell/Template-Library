@@ -30,7 +30,7 @@ class PostThumbnail extends Organism {
 	 */
 	public function __construct( $name = 'post-thumbnail', $data = null, $size = 'post-thumbnail', array $attr = [], $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		$this->size = $size;
 		$this->attr = $attr;

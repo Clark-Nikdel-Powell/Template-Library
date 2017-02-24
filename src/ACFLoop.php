@@ -16,7 +16,7 @@ class ACFLoop extends Organism {
 
 	public function __construct( $name = 'loop', array $sub_items_data, $sub_item_organism_class = '', $data = [], $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		$this->sub_items_data = $sub_items_data;
 

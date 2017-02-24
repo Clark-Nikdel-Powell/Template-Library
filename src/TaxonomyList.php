@@ -12,13 +12,13 @@ namespace CNP\TemplateLibrary;
 class TaxonomyList extends Organism {
 
 	public $taxonomy;
-	public $separator;
+	public $delimiter;
 
 	/**
 	 * TaxonomyList constructor.
 	 *
 	 * @param null $taxonomy
-	 * @param string $separator
+	 * @param string $delimiter
 	 * @param string|array|WP_post $data Optional. Name of the type of taxonomy object, or an object (row from posts). Defaults to global $post.
 	 * @param string $name
 	 * @param string $tag
@@ -28,14 +28,16 @@ class TaxonomyList extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = 'taxonomy-list', $taxonomy = null, $separator = ', ', $data = null, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'taxonomy-list', $taxonomy = null, $delimiter = ', ', $data = null, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		// This catches if we didn't pass anything in.
 		if ( null === $this->data ) {
 			$this->data = get_post();
 		}
+
+		$this->delimiter = $delimiter;
 
 		if ( null !== $taxonomy ) {
 			$this->taxonomy = $taxonomy;
@@ -61,7 +63,7 @@ class TaxonomyList extends Organism {
 				$term_names_arr[] = '<span class="name">' . $term_obj->name . '</span>';
 			}
 
-			$terms_list = implode( $this->separator, $term_names_arr );
+			$terms_list = implode( $this->delimiter, $term_names_arr );
 
 			$this->content = $this->prepend . $terms_list . $this->append;
 		} else {
