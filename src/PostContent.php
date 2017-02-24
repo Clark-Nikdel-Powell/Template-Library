@@ -25,10 +25,6 @@ class PostContent extends Content {
 
 		parent::__construct( $name, get_the_content() );
 
-		if ( is_array( $this->attributes['class'] ) ) {
-			array_push( $this->attributes['class'], $this->class );
-		} else {
-			$this->attributes['class'] = $this->class;
-		}
+		$this->attributes['class'] = [ $this->class ];
 	}
 }
