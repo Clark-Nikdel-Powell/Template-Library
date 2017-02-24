@@ -23,7 +23,7 @@ class PostContent extends Content {
 	 */
 	public function __construct( $name = 'postcontent', $class = 'postcontent' ) {
 
-		parent::__construct( $name, get_the_content() );
+		parent::__construct( $name, apply_filters( 'the_content', get_the_content() ) );
 
 		$this->attributes['class'] = [ $this->class ];
 	}

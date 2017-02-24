@@ -19,7 +19,7 @@ class ACFTabs extends Organism {
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
 		$name = 'acf-tabs';
-		if ( isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 

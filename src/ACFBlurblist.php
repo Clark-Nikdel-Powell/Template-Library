@@ -28,7 +28,7 @@ class ACFBlurblist extends Organism {
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
 		$name = 'acf-blurblist';
-		if ( isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 

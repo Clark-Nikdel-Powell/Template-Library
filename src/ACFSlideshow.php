@@ -21,7 +21,7 @@ class ACFSlideshow extends Organism {
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
 		$name = 'acf-slideshow';
-		if ( isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 

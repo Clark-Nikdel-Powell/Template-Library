@@ -13,7 +13,7 @@ class ACFSection extends Organism {
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
 		$name = 'acf-section';
-		if ( isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 

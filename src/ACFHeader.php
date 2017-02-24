@@ -25,7 +25,7 @@ class ACFHeader extends Organism {
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
 		$name = 'acf-header';
-		if ( isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 

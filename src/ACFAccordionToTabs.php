@@ -15,7 +15,7 @@ class ACFAccordionToTabs extends ACFAccordion {
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
 		// Name is treated a little differently here, since we're extending the ACFAccordion class.
-		if ( ! isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$data['name'] = 'acf-accordion-tabs';
 		}
 

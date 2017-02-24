@@ -3,23 +3,35 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class ACFContent
+ *
  * @package CNP\TemplateLibrary
  */
 class ACFContent extends Organism {
 
+	/**
+	 * ACFContent constructor.
+	 *
+	 * @param string $data       Data from ACF.
+	 * @param string $tag        Tag.
+	 * @param array  $attributes Attributes.
+	 * @param string $before     Before text.
+	 * @param string $prepend    Prepended text.
+	 * @param string $append     Appended text.
+	 * @param string $after      After text.
+	 */
 	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		//——————————————————————————————————————————————————————————
-		//  0. Parse Data
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 0. Parse Data
+		// ——————————————————————————————————————————————————————————
 		$name = 'acf-content';
-		if ( isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 
 		$content = trim( $data['content'] );
 
-		parent::__construct( $name, $tag, $attributes, $content, $data, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content, $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
@@ -27,6 +39,8 @@ class ACFContent extends Organism {
 	}
 
 	/**
+	 * Get_markup
+	 *
 	 * @return string
 	 */
 	public function get_markup() {

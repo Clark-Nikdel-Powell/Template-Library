@@ -30,7 +30,7 @@ class ACFGallery extends Organism {
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
 		$name = 'acf-gallery';
-		if ( isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 
@@ -118,7 +118,7 @@ class ACFGallery extends Organism {
 
 		foreach ( $this->images_data as $image_index => $image_datum ) {
 
-			$new_image   = new Image( Organism::organism_name( 'image' ), $image_datum['id'], $this->image_size, $icon = false, [ 'data-image' => $image_index ] );
+			$new_image = new Image( Organism::organism_name( 'image' ), $image_datum['id'], $this->image_size, $icon = false, [ 'data-image' => $image_index ] );
 
 			$new_caption = new Content( Organism::organism_name( 'caption' ), $image_datum['caption'], 'div', [ 'data-image' => $image_index ] );
 
