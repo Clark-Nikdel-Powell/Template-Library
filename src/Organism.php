@@ -165,7 +165,6 @@ abstract class Organism {
 
 				// Pass the parent name and separator down to any children.
 				$child->parent_name = $this->parent_name;
-				$child->separator   = $this->separator;
 
 				// Prepend the parent name to the child name.
 				$child->name        = $child->parent_name . $this->separator . $child->name;
