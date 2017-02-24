@@ -29,7 +29,7 @@ class ShareLink extends Organism {
 	 */
 	public function __construct( $name = 'share-link', $network, $href_base, $share_url = '', $use_icon = false, $content = '', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data = null, $content, $tag = 'a', $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data = null, $content, $tag = 'a', $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		$this->network   = $network;
 		$this->href_base = $href_base;

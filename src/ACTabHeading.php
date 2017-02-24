@@ -14,7 +14,7 @@ class ACFTabHeading extends Organism {
 		//——————————————————————————————————————————————————————————
 		//  0. Parse Data
 		//——————————————————————————————————————————————————————————
-		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'li', $attributes = [], $structure = [], $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'li', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 

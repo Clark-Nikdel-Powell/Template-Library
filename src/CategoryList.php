@@ -11,7 +11,7 @@ namespace CNP\TemplateLibrary;
  */
 class CategoryList extends Organism {
 
-	public $separator;
+	public $delimiter;
 	public $parents;
 
 	/**
@@ -19,7 +19,7 @@ class CategoryList extends Organism {
 	 *
 	 * @param string $name
 	 * @param string|bool $data Optional. A WordPress post ID. Assumes global $post if not supplied.
-	 * @param string $separator The separator for the category links.
+	 * @param string $delimiter The separator for the category links.
 	 * @param string $parents
 	 * @param string $tag
 	 * @param array $attributes
@@ -28,14 +28,14 @@ class CategoryList extends Organism {
 	 * @param string $append
 	 * @param string $after
 	 */
-	public function __construct( $name = 'category-list', $data = false, $separator = ', ', $parents = '', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'category-list', $data = false, $delimiter = ', ', $parents = '', $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
-		$this->separator = $separator;
+		$this->delimiter = $delimiter;
 		$this->parents   = $parents;
 
-		$this->content = get_the_category_list( $this->separator, $this->parents, $this->data );
+		$this->content = get_the_category_list( $this->delimiter, $this->parents, $this->data );
 	}
 
 	/**

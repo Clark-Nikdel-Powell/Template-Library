@@ -27,7 +27,7 @@ class Menu extends Organism {
 	 */
 	public function __construct( $name = 'menu', array $menu_args, $tag = 'div', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		$menu_defaults = [
 			'echo' => false,

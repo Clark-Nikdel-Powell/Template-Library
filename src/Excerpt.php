@@ -24,7 +24,7 @@ class Excerpt extends Organism {
 	 */
 	public function __construct( $name = 'excerpt', $tag = 'p', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		// This catches if we didn't pass anything in.
 		if ( null === $this->data ) {

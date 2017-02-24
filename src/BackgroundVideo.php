@@ -20,6 +20,7 @@ class BackgroundVideo extends Organism {
 	 * @param array $vide_bg Expects an array of settings for Vide's data attribute. The keys are 'mp4', 'webm', and 'jpg'. mp4 and jpg are required.
 	 * @param string $name
 	 * @param string $tag
+	 * @param string $separator
 	 * @param array $attributes Set 'data-vide-options' to a comma-delimited string of settings.
 	 * @param string $before
 	 * @param string $prepend
@@ -28,7 +29,7 @@ class BackgroundVideo extends Organism {
 	 */
 	public function __construct( $name = 'background-video', array $vide_bg, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $before, $prepend, $append, $after );
+		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
 
 		$this->vide_bg = $vide_bg;
 
