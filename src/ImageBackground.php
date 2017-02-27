@@ -2,26 +2,32 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class ImageBackgound
+ * Class ImageBackground
+ *
  * @package CNP\TemplateLibrary
  *
  * Returns a background image on a div instead of an img tag. Relies on the Image class for determining the attachment ID.
  *
- * @link https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
+ * @link    https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
  */
 class ImageBackground extends Image {
 
+	/**
+	 * Set from wp_get_attachment_image_src
+	 *
+	 * @var string
+	 */
 	private $image_url;
 
 	/**
 	 * Image constructor.
 	 *
-	 * @param string $name
-	 * @param null $data Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
+	 * @param string $name       Organism name.
+	 * @param null   $data       Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
 	 * @param string $image_size A WordPress defined image size.
-	 * @param array $attributes
-	 * @param string $before
-	 * @param string $after
+	 * @param array  $attributes Organism attributes.
+	 * @param string $before     Text/Markup before tag.
+	 * @param string $after      Text/Markup after tag.
 	 */
 	public function __construct( $name = 'image-background', $data, $image_size, array $attributes = [], $before = '', $after = '' ) {
 
@@ -35,8 +41,6 @@ class ImageBackground extends Image {
 	}
 
 	/**
-	 * get_markup
-	 *
 	 * Returns default Organism markup.
 	 *
 	 * @return string
