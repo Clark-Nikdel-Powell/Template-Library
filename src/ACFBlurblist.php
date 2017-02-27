@@ -3,36 +3,104 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class Blurblist
+ *
  * @package CNP\TemplateLibrary
  */
 class ACFBlurblist extends Organism {
 
-	// Supporting Data
+	/**
+	 * Elements to show.
+	 *
+	 * @var array $elements
+	 */
 	public $elements;
+
+	/**
+	 * Blurblist classes
+	 *
+	 * @var string $class
+	 */
 	public $class;
+
+	/**
+	 * Blurblist ID
+	 *
+	 * @var string $id
+	 */
 	public $id;
+
+	/**
+	 * Array of data for individual blurbs
+	 *
+	 * @var array $blurbs_data
+	 */
 	public $blurbs_data;
+
+	/**
+	 * Array of list-wide blurb settings.
+	 *
+	 * @var array $blurb_settings
+	 */
 	public $blurb_settings;
 
-	// Pieces
+	/**
+	 * Header container for list_title and list_intro
+	 *
+	 * @var Container $list_header
+	 */
 	public $list_header;
+
+	/**
+	 * The list title
+	 *
+	 * @var Content $list_title
+	 */
 	public $list_title;
+
+	/**
+	 * The list intro
+	 *
+	 * @var Content $list_intro
+	 */
 	public $list_intro;
+
+	/**
+	 * Loop for all blurbs
+	 *
+	 * @var ACFLoop $blurbs_loop
+	 */
 	public $blurbs_loop;
+
+	/**
+	 * Container for list_link
+	 *
+	 * @var Container $list_footer
+	 */
 	public $list_footer;
+
+	/**
+	 * List link
+	 *
+	 * @var Link $list_link
+	 */
 	public $list_link;
 
-	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	/**
+	 * ACFBlurblist constructor.
+	 *
+	 * @param string $data ACF data.
+	 */
+	public function __construct( $data ) {
 
-		//——————————————————————————————————————————————————————————
-		//  0. Parse Data
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 0. Parse Data
+		// ——————————————————————————————————————————————————————————
 		$name = 'acf-blurblist';
 		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
@@ -49,21 +117,20 @@ class ACFBlurblist extends Organism {
 			'link_location'   => $this->data['link_location'],
 		];
 
-		//——————————————————————————————————————————————————————————
-		//  1. Set Up Pieces
-		//——————————————————————————————————————————————————————————
-
-		//——————————————————————————————————————————
-		//  Header
-		//——————————————————————————————————————————
-		if ( in_array( 'List Title', $this->elements ) ) {
+		// ——————————————————————————————————————————————————————————
+		// 1. Set Up Pieces
+		// ——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————
+		// Header
+		// ——————————————————————————————————————————
+		if ( in_array( 'List Title', $this->elements, true ) ) {
 			$this->list_title = new Content( Organism::organism_name( 'list-title' ), $this->data['list_title'] );
 		}
-		if ( in_array( 'List Intro', $this->elements ) ) {
+		if ( in_array( 'List Intro', $this->elements, true ) ) {
 			$this->list_intro = new Content( Organism::organism_name( 'list-intro' ), $this->data['list_intro'] );
 		}
 
-		// Container for the List Title & Intro
+		// Container for the List Title & Intro.
 		if ( is_object( $this->list_title ) || is_object( $this->list_intro ) ) {
 
 			$this->list_header = new Container( Organism::organism_name( 'list-header' ), [] );
@@ -76,25 +143,25 @@ class ACFBlurblist extends Organism {
 			}
 		}
 
-		//——————————————————————————————————————————
-		//  Loop
-		//——————————————————————————————————————————
+		// ——————————————————————————————————————————
+		// Loop
+		// ——————————————————————————————————————————
 		$this->blurbs_loop = new ACFLoop( Organism::organism_name( 'list-loop' ), $this->blurbs_data, 'CNP\\TemplateLibrary\\ACFBlurblistblurb', $this->blurb_settings );
 
-		//——————————————————————————————————————————
-		//  Footer
-		//——————————————————————————————————————————
-		if ( in_array( 'List Link', $this->elements ) ) {
+		// ——————————————————————————————————————————
+		// Footer
+		// ——————————————————————————————————————————
+		if ( in_array( 'List Link', $this->elements, true ) ) {
 
 			$this->list_link = new Link( Organism::organism_name( 'list-link' ), $this->data['list_link'], $this->data['list_link_text'] );
 
-			// Container for the List Link
+			// Container for the List Link.
 			$this->list_footer = new Container( Organism::organism_name( 'list-footer' ), [ $this->list_link ] );
 		}
 
-		//——————————————————————————————————————————————————————————
-		//  2. Assemble Structure
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 2. Assemble Structure
+		// ——————————————————————————————————————————————————————————
 		if ( is_object( $this->list_header ) ) {
 			array_push( $this->structure, $this->list_header );
 		}
@@ -104,13 +171,5 @@ class ACFBlurblist extends Organism {
 		if ( is_object( $this->list_footer ) ) {
 			array_push( $this->structure, $this->list_footer );
 		}
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }
