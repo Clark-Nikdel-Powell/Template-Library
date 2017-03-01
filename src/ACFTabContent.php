@@ -3,22 +3,56 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class ACFTabContent
+ *
  * @package CNP\TemplateLibrary
  */
 class ACFTabContent extends Organism {
 
-	public $inside;
+	/**
+	 * Title
+	 *
+	 * @var Content
+	 */
 	public $title;
+
+	/**
+	 * Subtitle
+	 *
+	 * @var Content
+	 */
 	public $subtitle;
+
+	/**
+	 * Text
+	 *
+	 * @var Content
+	 */
 	public $text;
+
+	/**
+	 * Link text
+	 *
+	 * @var string
+	 */
 	public $link_text;
+
+	/**
+	 * Link
+	 *
+	 * @var Link
+	 */
 	public $link;
 
+	/**
+	 * ACFTabContent constructor.
+	 *
+	 * @param string $data ACF Data.
+	 */
 	public function __construct( $data ) {
 
-		//——————————————————————————————————————————————————————————
-		//  0. Parse Data
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 0. Parse Data
+		// ——————————————————————————————————————————————————————————
 		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
@@ -36,25 +70,17 @@ class ACFTabContent extends Organism {
 			$this->link_text = 'Click Here';
 		}
 
-		//——————————————————————————————————————————————————————————
-		//  1. Set Up Pieces
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 1. Set Up Pieces
+		// ——————————————————————————————————————————————————————————
 		$this->title    = new Content( Organism::organism_name( 'title' ), $this->data['title'] );
 		$this->subtitle = new Content( Organism::organism_name( 'subtitle' ), $this->data['subtitle'] );
 		$this->text     = new Content( Organism::organism_name( 'text' ), $this->data['text'] );
 		$this->link     = new Link( Organism::organism_name( 'link' ), $this->data['link'], $this->link_text );
 
-		//——————————————————————————————————————————————————————————
-		//  2. Assemble Structure
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 2. Assemble Structure
+		// ——————————————————————————————————————————————————————————
 		$this->structure = [ $this->title, $this->subtitle, $this->text, $this->link ];
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }

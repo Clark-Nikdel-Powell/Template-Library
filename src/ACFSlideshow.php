@@ -3,29 +3,55 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class ACFSlideshow
+ *
  * @package CNP\TemplateLibrary
  */
 class ACFSlideshow extends Organism {
 
-	// Supporting Data
+	/**
+	 * Elements to display
+	 *
+	 * @var array
+	 */
 	public $elements;
+
+	/**
+	 * Array of slides data
+	 *
+	 * @var array
+	 */
 	public $slides_data;
+
+	/**
+	 * Slideshow settings.
+	 *
+	 * @var array
+	 */
 	public $slide_settings;
 
-	// Pieces
+	/**
+	 * Loop of slides
+	 *
+	 * @var ACFLoop
+	 */
 	public $slides;
 
-	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	/**
+	 * ACFSlideshow constructor.
+	 *
+	 * @param string $data ACF Data.
+	 */
+	public function __construct( $data ) {
 
-		//——————————————————————————————————————————————————————————
-		//  0. Parse Data
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 0. Parse Data
+		// ——————————————————————————————————————————————————————————
 		$name = 'acf-slideshow';
 		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $tag = 'div', $attributes = [], $content = '', $data, $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
@@ -40,33 +66,25 @@ class ACFSlideshow extends Organism {
 			'slide_elements' => $this->elements,
 		];
 
-		//——————————————————————————————————————————————————————————
-		//  1. Set Up Pieces
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 1. Set Up Pieces
+		// ——————————————————————————————————————————————————————————
 		$this->slides = new ACFLoop( Organism::organism_name( 'slides' ), $this->slides_data, 'CNP\\TemplateLibrary\\ACFSlideshowSlide', $this->slide_settings );
 
-		//——————————————————————————————————————————————————————————
-		//  2. Assemble Structure
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 2. Assemble Structure
+		// ——————————————————————————————————————————————————————————
 		$this->structure = [ $this->slides ];
 	}
 
 	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
-	}
-
-	/*
-	 * get_slideshow_settings
-	 *
 	 * Finds settings from a Slideshow settings
 	 *
 	 * These settings don't come from the $data (i.e., from the page itself), but rather from a centralized ACF Options
-     * Page for site-wide Slideshow Settings. If options aren't available from the ACF Options page, they could still
+	 * Page for site-wide Slideshow Settings. If options aren't available from the ACF Options page, they could still
 	 * be filtered in or Slick can use the defaults.
+	 *
+	 * @return bool
 	 */
 	private function get_slideshow_settings() {
 
@@ -137,7 +155,7 @@ class ACFSlideshow extends Organism {
 			'dotsClass',
 		];
 
-		// Retrieve string settings data
+		// Retrieve string settings data.
 		$string_vars = Utilities::get_acf_fields_as_array( $settings_keys, true );
 
 		// If both arrays come back empty, something's gone wrong, and we don't need to go through the rest.
@@ -145,29 +163,29 @@ class ACFSlideshow extends Organism {
 			return false;
 		}
 
-		/*——————————————————————————————————————————————————————————
-		/  Combine and Encode Slideshow Options
-		——————————————————————————————————————————————————————————*/
+		// ——————————————————————————————————————————————————————————
+		// Combine and Encode Slideshow Options
+		// ——————————————————————————————————————————————————————————
 		$slideshow_vars = array_merge( $boolean_vars, $string_vars );
 
 		if ( 'none' !== $slideshow_vars['pagination_type'] ) {
 			$slideshow_vars['dots'] = true;
 		}
 
-		//——————————————————————————————————————————
-		//  Filter before we switch to JSON
-		//——————————————————————————————————————————
+		// ——————————————————————————————————————————
+		// Filter before we switch to JSON
+		// ——————————————————————————————————————————
 		if ( defined( 'WP_CONTENT_DIR' ) ) {
 
-			// Global filter
+			// Global filter.
 			$slideshow_vars = apply_filters( 'slideshow_organism_vars', $slideshow_vars );
 
-			// Namespaced filter
+			// Namespaced filter.
 			$slideshow_vars_filter = $this->name . '_slideshow_vars';
 			$slideshow_vars        = apply_filters( $slideshow_vars_filter, $slideshow_vars );
 		}
 
-		$acf_slideshow_settings_json = json_encode( $slideshow_vars, JSON_NUMERIC_CHECK );
+		$acf_slideshow_settings_json = wp_json_encode( $slideshow_vars, JSON_NUMERIC_CHECK );
 
 		$this->attributes['data-slick'] = $acf_slideshow_settings_json;
 

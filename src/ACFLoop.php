@@ -3,20 +3,37 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class Loop
+ *
  * @package CNP\TemplateLibrary
  *
  * A basic foreach loop, used for handling an array of data
- *
- * @link http://php.net/manual/en/functions.arguments.php#functions.variable-arg-list
  */
 class ACFLoop extends Organism {
 
+	/**
+	 * Sub-item Template Library class
+	 *
+	 * @var string
+	 */
 	public $sub_item_organism_class;
+
+	/**
+	 * Sub-item data
+	 *
+	 * @var array
+	 */
 	public $sub_items_data;
 
-	public function __construct( $name = 'loop', array $sub_items_data, $sub_item_organism_class = '', $data = [], $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	/**
+	 * ACFLoop constructor.
+	 *
+	 * @param string $name                    The Organism Name.
+	 * @param array  $sub_items_data          The data for each sub-item.
+	 * @param string $sub_item_organism_class The TemplateLibrary Class.
+	 */
+	public function __construct( $name = 'loop', array $sub_items_data, $sub_item_organism_class = '' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $data = null, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
 		$this->sub_items_data = $sub_items_data;
 
@@ -27,11 +44,13 @@ class ACFLoop extends Organism {
 	}
 
 	/**
+	 * Runs a foreach loop and gets the content.
+	 *
 	 * @return string
 	 */
 	public function get_markup() {
 
-		// Filter for the main Organism
+		// Filter for the main Organism.
 		Organism::do_filter();
 
 		foreach ( $this->sub_items_data as $sub_item_index => $sub_item_data ) {
@@ -41,7 +60,7 @@ class ACFLoop extends Organism {
 				$sub_item_data = array_merge( $sub_item_data, $this->data );
 			}
 
-			// Add the loop index
+			// Add the loop index.
 			$sub_item_data['loop-index'] = $sub_item_index;
 
 			// Filter with suffix for individual pieces.

@@ -11,7 +11,7 @@ class ACFContent extends Organism {
 	/**
 	 * ACFContent constructor.
 	 *
-	 * @param string $data Data from ACF.
+	 * @param string $data ACF Data.
 	 */
 	public function __construct( $data ) {
 

@@ -3,18 +3,35 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class ACFAccordion
+ *
  * @package CNP\TemplateLibrary
  */
 class ACFAccordion extends Organism {
 
+	/**
+	 * Array of individual panel data
+	 *
+	 * @var array
+	 */
 	public $panels_data;
+
+	/**
+	 * The generated panels
+	 *
+	 * @var ACFLoop
+	 */
 	public $panels;
 
-	public function __construct( $data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	/**
+	 * ACFAccordion constructor.
+	 *
+	 * @param string $data ACF Data.
+	 */
+	public function __construct( $data ) {
 
-		//——————————————————————————————————————————————————————————
-		//  0. Parse Data
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 0. Parse Data
+		// ——————————————————————————————————————————————————————————
 		$name = 'acf-accordion';
 		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
@@ -27,22 +44,14 @@ class ACFAccordion extends Organism {
 		$this->hide        = $this->data['hide'];
 		$this->panels_data = $this->data['panels'];
 
-		//——————————————————————————————————————————————————————————
-		//  1. Set Up Pieces
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 1. Set Up Pieces
+		// ——————————————————————————————————————————————————————————
 		$this->panels = new ACFLoop( Organism::organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel', [], 'div', [ 'data-accordion' => '' ] );
 
-		//——————————————————————————————————————————————————————————
-		//  2. Assemble Structure
-		//——————————————————————————————————————————————————————————
+		// ——————————————————————————————————————————————————————————
+		// 2. Assemble Structure
+		// ——————————————————————————————————————————————————————————
 		$this->structure = [ $this->panels ];
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }

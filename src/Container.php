@@ -13,11 +13,11 @@ class Container extends Organism {
 	 * Container constructor.
 	 *
 	 * @param string $name
-	 * @param array $structure
+	 * @param array  $structure
 	 * @param string $parent_name
 	 * @param string $separator
 	 * @param string $tag
-	 * @param array $attributes
+	 * @param array  $attributes
 	 * @param string $before
 	 * @param string $prepend
 	 * @param string $append
@@ -29,6 +29,8 @@ class Container extends Organism {
 	}
 
 	/**
+	 * Get markup
+	 *
 	 * @return string
 	 */
 	public function get_markup() {
