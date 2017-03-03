@@ -3,23 +3,29 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class SchemaAddress
+ *
  * @package CNP\TemplateLibrary
  */
 class SchemaAddress extends Organism {
 
+	/**
+	 * Address data
+	 *
+	 * @var string
+	 */
 	public $address_data;
 
 	/**
 	 * SchemaAddress constructor.
 	 *
-	 * @param string $address_data
-	 * @param string $name
-	 * @param string $tag
-	 * @param array $attributes
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string $name         Organism name.
+	 * @param string $address_data Address data.
+	 * @param string $tag          HTML tag.
+	 * @param array  $attributes   Attributes.
+	 * @param string $before       Before tag.
+	 * @param string $prepend      Inside opening tag.
+	 * @param string $append       Just before closing tag.
+	 * @param string $after        After closing tag.
 	 */
 	public function __construct( $name = 'schema-address', $address_data, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
@@ -29,7 +35,9 @@ class SchemaAddress extends Organism {
 	}
 
 	/**
-	 * get_content
+	 * Assemble the address schema block
+	 *
+	 * @return string
 	 */
 	public function get_content() {
 
@@ -57,14 +65,6 @@ class SchemaAddress extends Organism {
 
 		$address = '<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">' . implode( '', $address_pieces ) . '</div>';
 
-		$this->content = $this->prepend . $address . $this->append;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
+		return $this->prepend . $address . $this->append;
 	}
 }
