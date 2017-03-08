@@ -23,13 +23,6 @@ class ACFSlideshow extends Organism {
 	public $slides_data;
 
 	/**
-	 * Slideshow settings.
-	 *
-	 * @var array
-	 */
-	public $slide_settings;
-
-	/**
 	 * Loop of slides
 	 *
 	 * @var ACFLoop
@@ -51,7 +44,7 @@ class ACFSlideshow extends Organism {
 			$name = $data['name'];
 		}
 
-		parent::__construct( $name, $data, $content = '', $tag = 'div', $attributes = [] , $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
@@ -59,17 +52,17 @@ class ACFSlideshow extends Organism {
 		$this->elements    = $this->data['elements'];
 		$this->slides_data = $this->data['slides'];
 
-		$this->get_slideshow_settings();
+		foreach ( $this->slides_data as $key => $value ) {
+			$this->slides_data[ $key ]['name'] = Organism::organism_name( 'slide' );
+			$this->slides_data[ $key ]['elements'] = $this->elements;
+		}
 
-		$this->slide_settings = [
-			'name'           => Organism::organism_name( 'slide' ),
-			'slide_elements' => $this->elements,
-		];
+		// $this->get_slideshow_settings();
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->slides = new ACFLoop( Organism::organism_name( 'slides' ), $this->slides_data, 'CNP\\TemplateLibrary\\ACFSlideshowSlide', $this->slide_settings );
+		$this->slides = new ACFLoop( Organism::organism_name( 'slides' ), $this->slides_data, 'CNP\\TemplateLibrary\\ACFSlideshowSlide' );
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure
