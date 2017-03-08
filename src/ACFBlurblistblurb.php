@@ -1,5 +1,6 @@
 <?php
 namespace CNP\TemplateLibrary;
+use \CNP\Utility;
 
 /**
  * Class ACFBlurblistblurb
@@ -65,6 +66,13 @@ class ACFBlurblistblurb extends Organism {
 	public $background;
 
 	/**
+	 * Blurb icon
+	 *
+	 * @var Content
+	 */
+	public $icon;
+
+	/**
 	 * Foreground Image
 	 *
 	 * @var Image
@@ -128,13 +136,14 @@ class ACFBlurblistblurb extends Organism {
 		// ——————————————————————————————————————————————————————————
 		$this->do_background_link(); // Gets put on $this->inside if applicable
 		$this->background = Utilities::acf_do_background( $this->data, $this );
+		$this->icon       = new Content( $this->organism_name( 'icon', $this->separator ), Utility::get_svg_icon( $this->data['icon'] ) );
 		$this->image      = new Image( Organism::organism_name( 'image', $this->separator ), $this->data['foreground_image'], '' );
 		$this->title      = new Content( Organism::organism_name( 'title', $this->separator ), $this->data['title'] );
 		$this->subtitle   = new Content( Organism::organism_name( 'subtitle', $this->separator ), $this->data['subtitle'] );
 		$this->text       = new Content( Organism::organism_name( 'text', $this->separator ), $this->data['text'] );
 		$this->do_button();
 
-		$this->inside = new Container( Organism::organism_name( 'inside', $this->separator ), [ $this->image, $this->title, $this->subtitle, $this->text ], $this->inside_tag, $this->inside_attributes );
+		$this->inside = new Container( Organism::organism_name( 'inside', $this->separator ), [ $this->icon, $this->image, $this->title, $this->subtitle, $this->text ], $this->inside_tag, $this->inside_attributes );
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure
