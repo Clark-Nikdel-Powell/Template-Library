@@ -19,7 +19,7 @@ class SchemaAddress extends Organism {
 	 * SchemaAddress constructor.
 	 *
 	 * @param string $name         Organism name.
-	 * @param string $address_data Address data.
+	 * @param array  $address_data Address data.
 	 * @param string $tag          HTML tag.
 	 * @param array  $attributes   Attributes.
 	 * @param string $before       Before tag.
