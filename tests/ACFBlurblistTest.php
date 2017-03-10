@@ -79,7 +79,7 @@ class ACFBlurblistTest extends \PHPUnit_Framework_TestCase {
 			'blurb_classes'   => '',
 		];
 
-		$acf_blurblist = new ACFBlurblist( $blurblist_data );
+		$acf_blurblist = new ACFBlurbList( $blurblist_data );
 
 		// Act
 
