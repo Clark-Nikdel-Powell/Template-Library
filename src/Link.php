@@ -13,7 +13,7 @@ class Link extends Organism {
 	 * @param string $href
 	 * @param string $content
 	 * @param string $name
-	 * @param array $attributes
+	 * @param array  $attributes
 	 * @param string $before
 	 * @param string $prepend
 	 * @param string $append
@@ -31,7 +31,7 @@ class Link extends Organism {
 	 */
 	public function get_markup() {
 
-		$this->hide = empty( $this->content );
+		$this->hide = empty( $this->content ) && empty( $this->structure );
 
 		return parent::get_markup();
 	}
