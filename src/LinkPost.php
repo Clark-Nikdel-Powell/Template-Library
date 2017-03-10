@@ -25,7 +25,7 @@ class LinkPost extends Link {
 	 * @param string       $append     Before closing tag.
 	 * @param string       $after      After closing tag.
 	 */
-	public function __construct( $name = 'link-post', $content, array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'link-post', $content = '', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
 
 		parent::__construct( $name, $href = get_permalink( $data ), $content, $attributes, $before, $prepend, $append, $after );
 	}
