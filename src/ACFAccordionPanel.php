@@ -50,30 +50,63 @@ class ACFAccordionPanel extends Organism {
 	 */
 	public function __construct( $data ) {
 
+		$name = 'acf-accordion__panel';
+		if ( ! empty( $data['name'] ) ) {
+			$name = $data['name'];
+		}
+
 		// ——————————————————————————————————————————————————————————
 		// 0. Parse Data
 		// ——————————————————————————————————————————————————————————
-		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
-		$this->hide                              = $this->data['hide'];
+		$this->hide             = $this->data['hide'];
+		$this->content_title    = $this->data['title'];
+		$this->content_subtitle = $this->data['subtitle'];
+		$this->content_text     = $this->data['text'];
+
+		$this->attributes['class'] = [ 'accordion-item' ];
+		if ( 0 === $data['loop-index'] ) {
+			array_push( $this->attributes['class'], 'is-active' );
+		}
+
 		$this->attributes['data-accordion-item'] = '';
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->panel_title = new Link( Organism::organism_name( 'title' ), '#', $this->data['panel_title'] );
+		$link                      = new Link( $this->organism_name( 'title' ), '#', $this->data['panel_title'] );
+		$link->attributes['class'] = [ 'accordion-title' ];
 
-		$this->content_title    = new Content( Organism::organism_name( 'content-title' ), $this->data['title'] );
-		$this->content_subtitle = new Content( Organism::organism_name( 'content-subtitle' ), $this->data['subtitle'] );
-		$this->content_text     = new Content( Organism::organism_name( 'content-text' ), $this->data['text'] );
+		$title = new Content( $this->organism_name( 'content-title' ), $this->data['title'] );
 
-		$this->content = new Container( Organism::organism_name( 'content' ), [ $this->content_title, $this->content_subtitle, $this->content_text ], 'div', [ 'data-tab-content' => '' ] );
+		$subtitle = new Content( $this->organism_name( 'content-subtitle' ), $this->data['subtitle'] );
+		$text     = new Content( $this->organism_name( 'content-text' ), $this->data['text'] );
+
+		$container = new Container( $this->organism_name( 'content' ), [
+			$title,
+			$subtitle,
+			$text,
+		] );
+
+		$container->attributes['class']            = [ 'accordion-content' ];
+		$container->attributes['data-tab-content'] = '';
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure
 		// ——————————————————————————————————————————————————————————
-		$this->structure = [ $this->panel_title, $this->content ];
+		$this->structure = [ $link, $container ];
+	}
+
+	/**
+	 * Get organism markup
+	 *
+	 * @return string
+	 */
+	public function get_markup() {
+
+		return parent::get_markup();
 	}
 }

@@ -37,7 +37,7 @@ class ACFAccordion extends Organism {
 			$name = $data['name'];
 		}
 
-		parent::__construct( $name, $tag, $attributes, $content = '', $data, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $data );
 
 		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
 
@@ -47,7 +47,7 @@ class ACFAccordion extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->panels = new ACFLoop( Organism::organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel', [], 'div', [ 'data-accordion' => '' ] );
+		$this->panels = new ACFLoop( $this->organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel' );
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure
