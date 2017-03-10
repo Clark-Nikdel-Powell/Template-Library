@@ -2,11 +2,11 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class Blurblist
+ * Class ACFBlurbList
  *
  * @package CNP\TemplateLibrary
  */
-class ACFBlurblist extends Organism {
+class ACFBlurbList extends Organism {
 
 	/**
 	 * Elements to show.
@@ -108,14 +108,14 @@ class ACFBlurblist extends Organism {
 		$this->elements    = $this->data['elements'];
 		$this->blurbs_data = $this->data['blurbs'];
 
-		$this->blurb_settings = [
-			'name'            => Organism::organism_name( 'blurb' ),
-			'blurb_elements'  => $this->elements,
-			'blurb_classes'   => $this->data['blurb_classes'],
-			'background_type' => $this->data['background_type'],
-			'link_type'       => $this->data['link_type'],
-			'link_location'   => $this->data['link_location'],
-		];
+		foreach ( $this->blurbs_data as $key => $value ) {
+			$this->blurbs_data[ $key ]['name'] = $this->organism_name( 'blurb' );
+			$this->blurbs_data[ $key ]['blurb_elements'] = $this->elements;
+			$this->blurbs_data[ $key ]['blurb_classes'] = $this->data['blurb_classes'];
+			$this->blurbs_data[ $key ]['background_type'] = $this->data['background_type'];
+			$this->blurbs_data[ $key ]['link_type'] = $this->data['link_type'];
+			$this->blurbs_data[ $key ]['link_location'] = $this->data['link_location'];
+		}
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
@@ -146,7 +146,7 @@ class ACFBlurblist extends Organism {
 		// ——————————————————————————————————————————
 		// Loop
 		// ——————————————————————————————————————————
-		$this->blurbs_loop = new ACFLoop( Organism::organism_name( 'list-loop' ), $this->blurbs_data, 'CNP\\TemplateLibrary\\ACFBlurblistblurb', $this->blurb_settings );
+		$this->blurbs_loop = new ACFLoop( Organism::organism_name( 'list-loop' ), $this->blurbs_data, 'CNP\\TemplateLibrary\\ACFBlurbListBlurb' );
 
 		// ——————————————————————————————————————————
 		// Footer
