@@ -12,7 +12,7 @@ class WPListPages extends WPList {
 
 	public function __construct( $name = 'wp-list-pages', $list_args, $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
 
-		parent::__construct( $list_args, $name, $tag, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $name, $list_args, $tag, $attributes, $before, $prepend, $append, $after );
 
 		$list_defaults   = [
 			'post_type' => 'page',
