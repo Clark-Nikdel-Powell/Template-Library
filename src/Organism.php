@@ -179,15 +179,28 @@ abstract class Organism {
 		// Add class for the Organism name.
 		if ( key_exists( 'class', $this->attributes ) ) {
 
-			if ( ! in_array( $this->name, $this->attributes['class'], true ) ) {
-				array_push( $this->attributes['class'], $this->name );
+			if ( is_array( $this->attributes['class'] ) ) {
+
+				if ( ! in_array( $this->name, $this->attributes['class'], true ) ) {
+					array_push( $this->attributes['class'], $this->name );
+				}
+			}
+
+			// This covers weird circumstances where the class value is a string, like in the WordPress image function attributes.
+			if ( is_string( $this->attributes['class'] ) ) {
+
+				if ( false === strpos( $this->attributes['class'], $this->name ) ) {
+					$this->attributes['class'] .= $this->name;
+				}
 			}
 		} else {
 			$this->attributes['class'] = [ $this->name ];
 		}
 
 		// Remove duplicate classes.
-		array_filter( $this->attributes['class'] );
+		if ( is_array( $this->attributes['class'] ) ) {
+			array_filter( $this->attributes['class'] );
+		}
 
 		$attributes = [];
 		if ( is_array( $this->attributes ) ) {
@@ -284,6 +297,7 @@ abstract class Organism {
 	 * Used for debugging purposes.
 	 */
 	public function debug() {
+
 		var_dump( $this );
 	}
 }
