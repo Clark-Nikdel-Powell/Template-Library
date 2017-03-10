@@ -29,6 +29,8 @@ class Image extends Organism {
 
 		parent::__construct( $name, $data, $content = null, $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend = null, $append = null, $after );
 
+		$this->attributes['class'] = $this->name;
+
 		$this->image_size = $image_size;
 		$this->icon       = $icon;
 
