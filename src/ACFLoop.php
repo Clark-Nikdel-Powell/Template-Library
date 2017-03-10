@@ -33,7 +33,7 @@ class ACFLoop extends Organism {
 	 */
 	public function __construct( $name = 'loop', array $sub_items_data, $sub_item_organism_class = '' ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name );
 
 		$this->sub_items_data = $sub_items_data;
 
@@ -51,7 +51,7 @@ class ACFLoop extends Organism {
 	public function get_markup() {
 
 		// Filter for the main Organism.
-		Organism::do_filter();
+		$this->do_filter();
 
 		foreach ( $this->sub_items_data as $sub_item_index => $sub_item_data ) {
 
@@ -64,7 +64,7 @@ class ACFLoop extends Organism {
 			$sub_item_data['loop-index'] = $sub_item_index;
 
 			// Filter with suffix for individual pieces.
-			Organism::do_filter( "item-$sub_item_index" );
+			$this->do_filter( "item-$sub_item_index" );
 
 			$sub_item_organism_object = new $this->sub_item_organism_class( $sub_item_data );
 
