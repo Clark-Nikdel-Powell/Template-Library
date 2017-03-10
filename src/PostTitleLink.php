@@ -30,7 +30,7 @@ class PostTitleLink extends PostTitle {
 
 		parent::__construct( $name, $tag, $attributes, $data, $before, $prepend, $append, $after );
 
-		$this->link = new LinkPost( $this->content, $this->name . '-anchor', $this->attributes, $this->data, $this->before, $this->prepend, $this->append, $this->after );
+		$this->link = new LinkPost( $this->name . '-anchor', $this->content, $this->attributes, $this->data, $this->before, $this->prepend, $this->append, $this->after );
 	}
 
 	/**
