@@ -9,6 +9,17 @@ namespace CNP\TemplateLibrary;
 class SchemaAddress extends Organism {
 
 	/**
+	 * SchemaAddress constructor.
+	 *
+	 * @param string $name Organism name.
+	 * @param array  $data Address data.
+	 */
+	public function __construct( $name = 'schema-address', $data = null ) {
+
+		parent::__construct( $name, $data );
+	}
+
+	/**
 	 * Assemble the address schema block
 	 *
 	 * @return string
