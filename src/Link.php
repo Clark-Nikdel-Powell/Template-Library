@@ -3,6 +3,7 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class Link
+ *
  * @package CNP\TemplateLibrary
  */
 class Link extends Organism {
@@ -10,23 +11,21 @@ class Link extends Organism {
 	/**
 	 * Link constructor.
 	 *
-	 * @param string $href
-	 * @param string $content
-	 * @param string $name
-	 * @param array  $attributes
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string $name       Organism name.
+	 * @param string $data       Link href attribute.
+	 * @param string $content    The link text.
+	 * @param array  $attributes Any additional attributes.
 	 */
-	public function __construct( $name = 'link', $href, $content = '', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'link', $data, $content = '', array $attributes = [] ) {
 
-		parent::__construct( $name, $data = null, $content, $tag = 'a', $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content, $tag = 'a', $attributes, $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
-		$this->attributes['href'] = $href;
+		$this->attributes['href'] = $data;
 	}
 
 	/**
+	 * Check for content and structure.
+	 *
 	 * @return string
 	 */
 	public function get_markup() {

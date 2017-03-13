@@ -3,29 +3,30 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class ShareLinkTwitter
+ *
  * @package CNP\TemplateLibrary
  */
 class ShareLinkTwitter extends ShareLink {
 
+	/**
+	 * Used to pre-fill a tweet.
+	 *
+	 * @var string
+	 */
 	public $status;
 
 	/**
 	 * ShareLinkTwitter constructor.
 	 *
-	 * @param string $name
-	 * @param string $status Optional. The status is used to pre-fill a tweet.
+	 * @param string $name      Organism name.
+	 * @param string $status    Optional. The status is used to pre-fill a tweet.
 	 * @param string $share_url Optional. A custom URL to share. Defaults to the current post, or the site URL.
-	 * @param bool $use_icon Optional. Whether to substitute content with an icon. Resolved in parent ShareLink class.
-	 * @param string $content Optional. Content to display inside the link, can be overridden with use_icon parameter.
-	 * @param array $attributes
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param bool   $use_icon  Optional. Whether to substitute content with an icon. Resolved in parent ShareLink class.
+	 * @param string $content   Optional. Content to display inside the link, can be overridden with use_icon parameter.
 	 */
-	public function __construct( $name = 'share-link-twitter', $status = '', $share_url = '', $use_icon = false, $content = 'Share on Twitter', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'share-link-twitter', $status = '', $share_url = '', $use_icon = false, $content = 'Share on Twitter' ) {
 
-		parent::__construct( $network = 'twitter', $href_base = 'https://twitter.com/home?status=', $share_url, $use_icon, $content, $name, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $name, $network = 'twitter', $href_base = 'https://twitter.com/home?status=', $share_url, $use_icon, $content );
 
 		$this->status = $status;
 
@@ -33,7 +34,7 @@ class ShareLinkTwitter extends ShareLink {
 	}
 
 	/**
-	 * build_share_href
+	 * Build the share href.
 	 */
 	public function build_share_href() {
 
@@ -56,7 +57,9 @@ class ShareLinkTwitter extends ShareLink {
 	}
 
 	/**
-	 * @param $status_arr
+	 * Encode the status for the link.
+	 *
+	 * @param array $status_arr The pieces of a status.
 	 *
 	 * @return mixed
 	 */
@@ -65,15 +68,5 @@ class ShareLinkTwitter extends ShareLink {
 		$status_share = implode( ' ', $status_arr );
 
 		return preg_replace( '/ /', '+', $status_share );
-	}
-
-	/**
-	 * get_markup
-	 *
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }
