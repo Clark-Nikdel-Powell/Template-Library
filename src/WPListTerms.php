@@ -3,18 +3,32 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class WPListTerms
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/wp_parse_args/
- * @link https://developer.wordpress.org/reference/functions/wp_list_pages/
+ * @link    https://developer.wordpress.org/reference/functions/wp_parse_args/
+ * @link    https://developer.wordpress.org/reference/functions/wp_list_pages/
  */
 class WPListTerms extends WPList {
 
+	/**
+	 * Registered taxonomy name.
+	 *
+	 * @var string
+	 */
 	public $taxonomy;
 
-	public function __construct( $name = 'wp-list-terms', $list_args, $taxonomy = '', $data = null, $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	/**
+	 * WPListTerms constructor.
+	 *
+	 * @param string   $name      Organism name.
+	 * @param array    $list_args List args.
+	 * @param string   $taxonomy  Registered taxonomy name.
+	 * @param \WP_Post $data      WP_Post object.
+	 */
+	public function __construct( $name = 'wp-list-terms', $list_args, $taxonomy = '', $data = null ) {
 
-		parent::__construct( $list_args, $name, $tag, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $name, $list_args );
 
 		if ( null === $data && '' === $taxonomy ) {
 			$this->data = get_post();
@@ -35,8 +49,6 @@ class WPListTerms extends WPList {
 	}
 
 	/**
-	 * resolve_taxonomy
-	 *
 	 * If a taxonomy was not passed in, assume either "category" or the first taxonomy associated with the post type.
 	 */
 	public function resolve_taxonomy() {
@@ -54,20 +66,12 @@ class WPListTerms extends WPList {
 	}
 
 	/**
-	 * get_content
+	 * Get the content.
 	 *
 	 * @return string
 	 */
 	public function get_content() {
 
 		return $this->prepend . wp_list_categories( $this->list_vars ) . $this->append;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }

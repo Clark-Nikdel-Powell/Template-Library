@@ -3,16 +3,23 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class WPListPages
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/wp_parse_args/
- * @link https://developer.wordpress.org/reference/functions/wp_list_pages/
+ * @link    https://developer.wordpress.org/reference/functions/wp_parse_args/
+ * @link    https://developer.wordpress.org/reference/functions/wp_list_pages/
  */
 class WPListPages extends WPList {
 
-	public function __construct( $name = 'wp-list-pages', $list_args, $tag = 'ul', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	/**
+	 * WPListPages constructor.
+	 *
+	 * @param string $name      Organism name.
+	 * @param array  $list_args List args.
+	 */
+	public function __construct( $name = 'wp-list-pages', $list_args ) {
 
-		parent::__construct( $name, $list_args, $tag, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $name, $list_args );
 
 		$list_defaults   = [
 			'post_type' => 'page',
@@ -23,20 +30,12 @@ class WPListPages extends WPList {
 	}
 
 	/**
-	 * get_content
+	 * Get the content.
 	 *
 	 * @return string
 	 */
 	public function get_content() {
 
 		return $this->prepend . wp_list_pages( $this->list_vars ) . $this->append;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }
