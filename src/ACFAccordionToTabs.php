@@ -39,7 +39,7 @@ class ACFAccordionToTabs extends ACFAccordion {
 		$this->panels                      = new ACFLoop( $this->organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel' );
 		$this->panels->attributes['class'] = [ 'accordion' ];
 
-		$this->panels->attributes['data-responsive-accordion-tabs'] = [ 'accordion', 'large-tabs' ];
+		$this->panels->attributes['data-responsive-accordion-tabs'] = [ 'accordion', 'medium-accordion', 'large-tabs' ];
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure

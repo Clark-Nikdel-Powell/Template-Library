@@ -92,6 +92,11 @@ class ACFAccordionPanel extends Organism {
 		] );
 
 		$container->attributes['class']            = [ 'accordion-content' ];
+
+		if ( 0 !== $data['loop-index'] ) {
+			$container->attributes['style'] = [ 'display:none;' ];
+		}
+
 		$container->attributes['data-tab-content'] = '';
 
 		// ——————————————————————————————————————————————————————————
