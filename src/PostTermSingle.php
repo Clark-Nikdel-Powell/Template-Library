@@ -3,33 +3,40 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class PostTermSingle
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/get_post/
- * @link https://developer.wordpress.org/reference/functions/wp_get_post_terms/
- * @link https://developer.wordpress.org/reference/functions/is_wp_error/
+ * @link    https://developer.wordpress.org/reference/functions/get_post/
+ * @link    https://developer.wordpress.org/reference/functions/wp_get_post_terms/
+ * @link    https://developer.wordpress.org/reference/functions/is_wp_error/
  */
 class PostTermSingle extends Organism {
 
+	/**
+	 * Registered taxonomy term.
+	 *
+	 * @var string
+	 */
 	public $taxonomy;
+
+	/**
+	 * A single taxonomy term.
+	 *
+	 * @var string
+	 */
 	public $term;
 
 	/**
 	 * PostTermSingle constructor.
 	 *
-	 * @param string $taxonomy
-	 * @param string $name
-	 * @param string $tag
-	 * @param int|WP_Post $data Optional. Either a post ID or WP_Post object. Defaults to global $post. Resolves to post ID.
-	 * @param array $attributes
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string       $name     Organism name.
+	 * @param string       $taxonomy Registered taxonomy name.
+	 * @param string       $tag      Optional. Included because PostTermSingleLink changes the tag to 'a'.
+	 * @param int|\WP_Post $data     Optional. Either a post ID or WP_Post object. Defaults to global $post. Resolves to post ID.
 	 */
-	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'div', $data = null, array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'div', $data = null ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $data, $content = '', $tag, $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
 
 		$this->taxonomy = $taxonomy;
 
@@ -46,10 +53,15 @@ class PostTermSingle extends Organism {
 		$this->content = $this->get_term();
 	}
 
+	/**
+	 * Get a single term.
+	 *
+	 * @return string
+	 */
 	public function get_term() {
 
-		// Get the post terms
-		$post_terms          = wp_get_post_terms( $this->data, $this->taxonomy );
+		// Get the post terms.
+		$post_terms          = get_the_terms( $this->data, $this->taxonomy );
 		$first_post_term_obj = '';
 		$term_name           = '';
 
@@ -68,13 +80,5 @@ class PostTermSingle extends Organism {
 		}
 
 		return $term_name;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }

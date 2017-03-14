@@ -3,44 +3,28 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class PostTermSingleLink
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/get_term_link/
+ * @link    https://developer.wordpress.org/reference/functions/get_term_link/
  */
 class PostTermSingleLink extends PostTermSingle {
-
-	public $taxonomy;
-	public $term;
 
 	/**
 	 * PostTermSingleLink constructor.
 	 *
-	 * @param string $taxonomy
-	 * @param string $name
-	 * @param string $tag
-	 * @param int|WP_Post $data Optional. Either a post ID or WP_Post object. Defaults to global $post. Resolves to post ID in the parent class, PostTermSingle.
-	 * @param array $attributes
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string      $name     Organism name.
+	 * @param string      $taxonomy Registered taxonomy name.
+	 * @param string      $tag      Organism tag.
+	 * @param int|WP_Post $data     Optional. Either a post ID or WP_Post object. Defaults to global $post. Resolves to post ID in the parent class, PostTermSingle.
 	 */
-	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'a', $data = null, array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'post-term-single-link', $taxonomy = 'category', $tag = 'a', $data = null ) {
 
-		parent::__construct( $taxonomy, $name, $tag, $data, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $taxonomy, $name, $tag, $data );
 
 		// Post/taxonomy resolution is handled in parent class constructor.
-
 		$this->content = parent::get_term();
 
 		$this->attributes['href'] = get_term_link( $this->term->term_id, $this->taxonomy );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }
