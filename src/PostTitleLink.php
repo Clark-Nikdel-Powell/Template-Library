@@ -17,11 +17,10 @@ class PostTitleLink extends PostTitle {
 	 * PostTitleLink constructor.
 	 *
 	 * @param string $name Organism name.
-	 * @param string $tag  Optional. Defaults to h2.
 	 */
-	public function __construct( $name = 'posttitle-link', $tag = 'h2' ) {
+	public function __construct( $name = 'posttitle-link' ) {
 
-		parent::__construct( $name, $tag );
+		parent::__construct( $name );
 	}
 
 	/**
