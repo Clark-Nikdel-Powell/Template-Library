@@ -3,47 +3,31 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class Menu
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/wp_parse_args/
- * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
+ * @link    https://developer.wordpress.org/reference/functions/wp_parse_args/
+ * @link    https://developer.wordpress.org/reference/functions/wp_nav_menu/
  */
 class Menu extends Organism {
-
-	public $menu_vars;
 
 	/**
 	 * Menu constructor.
 	 *
-	 * @param array $menu_args
-	 * @param string $name
-	 * @param string $tag
-	 * @param array $attributes
-	 * @param null $data
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string $name Organism name.
+	 * @param array  $data Menu args for wp_nav_menu.
 	 */
-	public function __construct( $name = 'menu', array $menu_args, $tag = 'div', array $attributes = [], $data = null, $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'menu', $data ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name );
 
 		$menu_defaults = [
 			'echo' => false,
 		];
-		$menu_vars     = wp_parse_args( $menu_defaults, $menu_args );
+		$menu_vars     = wp_parse_args( $menu_defaults, $this->data );
 
-		$this->menu_vars = $menu_vars;
+		$this->data = $menu_vars;
 
-		$this->content = wp_nav_menu( $this->menu_vars );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
+		$this->content = wp_nav_menu( $this->data );
 	}
 }

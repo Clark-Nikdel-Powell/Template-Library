@@ -3,37 +3,30 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class ContainerPostClass
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/get_post_class/
+ * @link    https://developer.wordpress.org/reference/functions/get_post_class/
  */
 class ContainerPostClass extends Container {
 
 	/**
 	 * ContainerPostClass constructor.
 	 *
-	 * @param string $name
-	 * @param string $tag
-	 * @param array $attributes
-	 * @param int|WP_Post $data Optional. A post ID or WP_Post object. Defaults to global $post.
-	 * @param array $structure
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string   $name        Organism name.
+	 * @param array    $structure   Structure.
+	 * @param string   $parent_name Optional. Parent name.
+	 * @param string   $separator   Optional. Separator between parent name and sub-organism names.
+	 * @param \WP_Post $data        Optional. Defaults to current post.
 	 */
-	public function __construct( $name = 'container-post-class', $tag = 'div', array $attributes = [], $data = null, $structure = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'container-post-class', $structure, $parent_name = '', $separator = '__', $data = null ) {
 
-		parent::__construct( $name, $structure, $parent_name = '', $separator = '__', $tag, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $name, $structure, $parent_name, $separator );
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
 
 		array_merge( $this->attributes['class'], get_post_class( '', $this->data ) );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }

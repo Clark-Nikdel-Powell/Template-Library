@@ -22,22 +22,27 @@ class ACFTabHeading extends Organism {
 	 */
 	public function __construct( $data ) {
 
+		$name = 'acf-tabheading';
+		if ( ! empty( $data['name'] ) ) {
+			$name = $data['name'];
+		}
+
 		// ——————————————————————————————————————————————————————————
 		// 0. Parse Data
 		// ——————————————————————————————————————————————————————————
-		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'li', $attributes = [], $structure = [], $parent_name = '', $separator = '-', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data );
 
 		$this->hide = $this->data['hide'];
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->link = new Link( Organism::organism_name( 'link', '-' ), '#panel' . $this->data['loop-index'], $this->data['tab_title'] );
+		$this->link = new Link( $this->organism_name( 'link', '-' ), '#panel' . $this->data['loop-index'], $this->data['tab_title'] );
 
 		if ( 0 === $this->data['loop-index'] ) {
-			$this->attributes['class'][]               = Organism::organism_name( 'isActive', '--' );
+			$this->attributes['class'][]               = $this->organism_name( 'isActive', '--' );
 			$this->link['attributes']['aria-selected'] = 'true';
 		}
 

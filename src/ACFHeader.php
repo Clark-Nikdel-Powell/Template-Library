@@ -65,9 +65,9 @@ class ACFHeader extends Organism {
 			$name = $data['name'];
 		}
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data );
 
 		$this->hide = $this->data['hide'];
 
@@ -75,12 +75,12 @@ class ACFHeader extends Organism {
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
 		$this->background  = Utilities::acf_do_background( $this->data, $this );
-		$this->title       = new Content( Organism::organism_name( 'title' ), $this->data['title'] );
-		$this->subtitle    = new Content( Organism::organism_name( 'subtitle' ), $this->data['subtitle'] );
-		$this->description = new Content( Organism::organism_name( 'description' ), $this->data['description'] );
-		$this->link        = new Link( Organism::organism_name( 'link' ), $this->data['link'], $this->data['link_text'] );
+		$this->title       = new Content( $this->organism_name( 'title' ), $this->data['title'] );
+		$this->subtitle    = new Content( $this->organism_name( 'subtitle' ), $this->data['subtitle'] );
+		$this->description = new Content( $this->organism_name( 'description' ), $this->data['description'] );
+		$this->link        = new Link( $this->organism_name( 'link' ), $this->data['link'], $this->data['link_text'] );
 
-		$this->text = new Container( Organism::organism_name( 'text' ), [ $this->title, $this->subtitle, $this->description, $this->link ] );
+		$this->text = new Container( $this->organism_name( 'text' ), [ $this->title, $this->subtitle, $this->description, $this->link ] );
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure

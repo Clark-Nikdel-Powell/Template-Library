@@ -15,19 +15,16 @@ class CommentNumber extends Organism {
 	/**
 	 * CommentNumber constructor.
 	 *
-	 * @param string      $name       Organism name.
-	 * @param int|WP_Post $data       Optional. Post ID or WP_Post object. Default is global $post.
-	 * @param string      $tag        Organism tag.
-	 * @param array       $attributes Organism attributes.
-	 * @param string      $content    Organism content.
-	 * @param string      $before     Before.
-	 * @param string      $prepend    Prepend.
-	 * @param string      $append     Append.
-	 * @param string      $after      After.
+	 * @param string       $name Organism name.
+	 * @param int|\WP_Post $data Optional. Post ID or WP_Post object. Default is global $post.
 	 */
-	public function __construct( $name = 'comment-number', $data = 0, $tag = 'div', array $attributes = [], $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'comment-number', $data = null ) {
 
-		parent::__construct( $name, $data, $content, $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $data );
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
 
 		$this->content = get_comments_number( $this->data );
 	}

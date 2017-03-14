@@ -24,7 +24,7 @@ class PostsLoop extends Organism {
 	 */
 	public function __construct( $name = 'posts-loop', $data, $post_organism ) {
 
-		parent::__construct( $name, $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data );
 
 		$this->post_organism = $post_organism;
 	}

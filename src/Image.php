@@ -3,36 +3,49 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class Image
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/wp_get_attachment_image/
+ * @link    https://developer.wordpress.org/reference/functions/wp_get_attachment_image/
  */
 class Image extends Organism {
 
+	/**
+	 * The image attachment ID.
+	 *
+	 * @var null|string
+	 */
 	public $attachment_id = '';
+
+	/**
+	 * A registered WordPress image size.
+	 *
+	 * @var string
+	 */
 	public $image_size;
+
+	/**
+	 * Honestly, idk what this does.
+	 *
+	 * @var bool
+	 */
 	public $icon;
 
 	/**
 	 * Image constructor.
 	 *
-	 * @param string $name
-	 * @param null $data Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
+	 * @param string $name       Organism name.
+	 * @param null   $data       Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
 	 * @param string $image_size A registered WordPress image size.
-	 * @param bool $icon Whether this image should be treated as an icon.
-	 * @param string $tag Default to 'img,' but could be div if it's a ImageBackground Organism.
-	 * @param array $attributes
-	 * @param string $before
-	 * @param string $after
+	 * @param bool   $icon       Whether this image should be treated as an icon.
 	 */
-	public function __construct( $name = 'image', $data, $image_size, $icon = false, $tag = 'img', array $attributes = [], $before = '', $after = '' ) {
+	public function __construct( $name = 'image', $data, $image_size, $icon = false ) {
 
-		parent::__construct( $name, $data, $content = null, $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend = null, $append = null, $after );
-
+		parent::__construct( $name, $data );
+		$this->tag                 = 'img';
 		$this->attributes['class'] = $this->name;
-
-		$this->image_size = $image_size;
-		$this->icon       = $icon;
+		$this->image_size          = $image_size;
+		$this->icon                = $icon;
 
 		if ( isset( $data ) && is_object( $data ) ) {
 			$this->attachment_id = $data->ID;
@@ -44,8 +57,6 @@ class Image extends Organism {
 	}
 
 	/**
-	 * get_markup
-	 *
 	 * Returns WordPress responsive image markup.
 	 *
 	 * @return null|string

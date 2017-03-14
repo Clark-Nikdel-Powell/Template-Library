@@ -21,12 +21,11 @@ class WPListTerms extends WPList {
 	/**
 	 * WPListTerms constructor.
 	 *
-	 * @param string   $name      Organism name.
-	 * @param array    $list_args List args.
-	 * @param string   $taxonomy  Registered taxonomy name.
-	 * @param \WP_Post $data      WP_Post object.
+	 * @param string $name      Organism name.
+	 * @param array  $list_args List args.
+	 * @param string $taxonomy  Registered taxonomy name.
 	 */
-	public function __construct( $name = 'wp-list-terms', $list_args, $taxonomy = '', $data = null ) {
+	public function __construct( $name = 'wp-list-terms', $list_args, $taxonomy = '' ) {
 
 		parent::__construct( $name, $list_args );
 

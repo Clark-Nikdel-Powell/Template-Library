@@ -72,9 +72,9 @@ class ACFSlideshowSlide extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 0. Parse Data
 		// ——————————————————————————————————————————————————————————
-		parent::__construct( $name, $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '-', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data );
 
 		$this->hide = $this->data['hide'];
 
@@ -83,30 +83,30 @@ class ACFSlideshowSlide extends Organism {
 		// ——————————————————————————————————————————————————————————
 		$this->background = Utilities::acf_do_background( $this->data, $this );
 
-		$this->text = new Container( Organism::organism_name( 'text', $this->separator ), [] );
+		$this->text = new Container( $this->organism_name( 'text' ), [] );
 
 		if ( isset( $this->data['foreground_image'] ) ) {
-			$this->image = new Image( Organism::organism_name( 'image', $this->separator ), $this->data['foreground_image'], '' );
+			$this->image = new Image( $this->organism_name( 'image' ), $this->data['foreground_image'], '' );
 			array_push( $this->text->structure, $this->image );
 		}
 
 		if ( isset( $this->data['title'] ) ) {
-			$this->title = new Content( Organism::organism_name( 'title', $this->separator ), $this->data['title'] );
+			$this->title = new Content( $this->organism_name( 'title' ), $this->data['title'] );
 			array_push( $this->text->structure, $this->title );
 		}
 
 		if ( isset( $this->data['subtitle'] ) ) {
-			$this->subtitle = new Content( Organism::organism_name( 'subtitle', $this->separator ), $this->data['subtitle'] );
+			$this->subtitle = new Content( $this->organism_name( 'subtitle' ), $this->data['subtitle'] );
 			array_push( $this->text->structure, $this->subtitle );
 		}
 
 		if ( isset( $this->data['description'] ) ) {
-			$this->description = new Content( Organism::organism_name( 'description', $this->separator ), $this->data['description'] );
+			$this->description = new Content( $this->organism_name( 'description' ), $this->data['description'] );
 			array_push( $this->text->structure, $this->description );
 		}
 
 		if ( isset( $this->data['link_text'] ) ) {
-			$this->link = new Link( Organism::organism_name( 'link', $this->separator ), $this->data['link'], $this->data['link_text'] );
+			$this->link = new Link( $this->organism_name( 'link' ), $this->data['link'], $this->data['link_text'] );
 			array_push( $this->text->structure, $this->link );
 		}
 

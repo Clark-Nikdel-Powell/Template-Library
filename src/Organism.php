@@ -284,11 +284,15 @@ abstract class Organism {
 	 * Example: TODO: add example
 	 *
 	 * @param string $org_name  The organism name.
-	 * @param string $separator The separator.
+	 * @param string $separator Separator string.
 	 *
 	 * @return string
 	 */
-	public function organism_name( $org_name, $separator = '__' ) {
+	public function organism_name( $org_name, $separator = '' ) {
+
+		if ( '' === $separator ) {
+			$separator = $this->separator;
+		}
 
 		return $this->name . $separator . $org_name;
 	}

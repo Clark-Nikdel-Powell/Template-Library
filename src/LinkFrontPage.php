@@ -3,38 +3,26 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class LinkFrontPage
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/get_site_url/
- * @link https://developer.wordpress.org/reference/functions/get_bloginfo/
+ * @link    https://developer.wordpress.org/reference/functions/get_site_url/
+ * @link    https://developer.wordpress.org/reference/functions/get_bloginfo/
  */
 class LinkFrontPage extends Link {
 
 	/**
 	 * LinkFrontPage constructor.
 	 *
-	 * @param string $name
-	 * @param array $attributes
-	 * @param string $content
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string $name    Organism name.
+	 * @param string $content Link content.
 	 */
-	public function __construct( $name = 'link-front-page', $content = '', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'link-front-page', $content = '' ) {
 
-		parent::__construct( $name, $href = get_site_url(), $content, $attributes, $before, $prepend, $append, $after );
+		parent::__construct( $name, $data = get_site_url(), $content );
 
 		if ( '' === $this->content ) {
 			$this->content = get_bloginfo( 'name' );
 		}
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }

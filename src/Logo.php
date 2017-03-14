@@ -1,17 +1,39 @@
 <?php
 namespace CNP\TemplateLibrary;
 
+/**
+ * Class Logo
+ *
+ * @package CNP\TemplateLibrary
+ */
 class Logo extends Organism {
 
+	/**
+	 * Piece for the site title.
+	 *
+	 * @var Content
+	 */
 	public $title;
+
+	/**
+	 * Piece for the logo.
+	 *
+	 * @var Content
+	 */
 	public $mark;
+
+	/**
+	 * Link to the front page.
+	 *
+	 * @var LinkFrontPage
+	 */
 	public $link;
 
 	/**
 	 * Logo constructor.
 	 *
-	 * @param string $name Organism name
-	 * @param null $data Log file (image or svg tag)
+	 * @param string $name Organism name.
+	 * @param null   $data Log file (image or svg tag).
 	 */
 	public function __construct( $name = '', $data = null ) {
 
@@ -31,10 +53,5 @@ class Logo extends Organism {
 			$this->mark,
 			$this->link,
 		];
-	}
-
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }

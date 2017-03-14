@@ -18,8 +18,8 @@ class PostContent extends Content {
 	/**
 	 * PostContent constructor.
 	 *
-	 * @param string $name The organism name.
-	 * @param string $class A CSS class.
+	 * @param string $name  The organism name.
+	 * @param string $class Optional. A CSS class.
 	 */
 	public function __construct( $name = 'postcontent', $class = 'postcontent' ) {
 

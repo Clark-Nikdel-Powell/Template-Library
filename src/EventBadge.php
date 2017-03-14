@@ -1,41 +1,67 @@
 <?php
 namespace CNP\TemplateLibrary;
 
-use CNP\TemplateLibrary\Util\Utility;
-
 /**
  * Class EventBadge
+ *
  * @package CNP\TemplateLibrary
  *
- * @link http://php.net/manual/en/function.date.php
+ * @link    http://php.net/manual/en/function.date.php
  */
 class EventBadge extends Organism {
 
+	/**
+	 * Event start time.
+	 *
+	 * @var int
+	 */
 	public $event_start;
+
+	/**
+	 * Event start time
+	 *
+	 * @var int
+	 */
 	public $event_end;
+
+	/**
+	 * Whether it's an all-day event.
+	 *
+	 * @var bool
+	 */
 	public $event_all_day;
+
+	/**
+	 * The type of event.
+	 *
+	 * @var string
+	 */
 	public $event_date_type;
 
 	/**
 	 * EventBadge constructor.
 	 *
-	 * @param string $event_start Required. The start date of the event.
-	 * @param array $event_end Required. The end date of the event.
-	 * @param bool $event_all_day Required. Whether an event is all day or not.
-	 * @param array $structure Optional. The structure for the badge. Defaults to a month/day block in Jan/05 format.
-	 * @param string $name
-	 * @param string $tag
-	 * @param array $attributes
+	 * @param string $name          Organism name.
+	 * @param int    $event_start   Event start time.
+	 * @param int    $event_end     Event end time.
+	 * @param bool   $event_all_day Whether or not it's an all-day event.
 	 */
-	public function __construct( $name = 'event-badge', $event_start, $event_end, $event_all_day = false, array $structure = [], $tag = 'div', array $attributes = [] ) {
+	public function __construct( $name = 'event-badge', $event_start, $event_end, $event_all_day = false ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure, $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
-
+		parent::__construct( $name );
 		$this->event_start   = $event_start;
 		$this->event_end     = $event_end;
 		$this->event_all_day = $event_all_day;
 
-		$this->event_date_type = Utility::set_event_date_type( $this->event_start, $this->event_end, $this->event_all_day );
+		$this->event_date_type = Utilities::set_event_date_type( $this->event_start, $this->event_end, $this->event_all_day );
+	}
+
+	/**
+	 * Get the badge markup.
+	 *
+	 * @return string
+	 */
+	public function get_markup() {
 
 		// Set up default structure, if it hasn't been passed in.
 		if ( empty( $this->structure ) ) {
@@ -45,12 +71,6 @@ class EventBadge extends Organism {
 				'day'   => date( 'd', $this->event_start ),
 			];
 		}
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
 
 		return parent::get_markup();
 	}

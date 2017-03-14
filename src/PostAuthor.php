@@ -3,33 +3,30 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class PostAuthor
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/get_post/
- * @link https://developer.wordpress.org/reference/functions/get_the_author_meta/
+ * @link    https://developer.wordpress.org/reference/functions/get_post/
+ * @link    https://developer.wordpress.org/reference/functions/get_the_author_meta/
  */
 class PostAuthor extends Organism {
 
+	/**
+	 * The author meta to display.
+	 *
+	 * @var string
+	 */
 	public $author_meta;
 
 	/**
 	 * PostAuthor constructor.
 	 *
-	 * @param string $author_meta
-	 * @param string $name
-	 * @param string $tag
-	 * @param array $attributes
-	 * @param WP_Post|int $data Optional. A WP_Post object, or an Author ID. Defaults to global $post if not supplied.
-	 * @param string $content
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string $name        Organism name.
+	 * @param string $author_meta The author meta to display in the content.
 	 */
-	public function __construct( $name = 'post-author', $author_meta = 'display_name', $tag = 'p', array $attributes = [], $data = null, $content = '', $before = '', $prepend = 'By: ', $append = '', $after = '' ) {
+	public function __construct( $name = 'post-author', $author_meta = 'display_name' ) {
 
-		parent::__construct( $name, $data, $content, $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
-
+		parent::__construct( $name );
 		$this->author_meta = $author_meta;
 
 		// This catches if we didn't pass anything in.
@@ -43,18 +40,9 @@ class PostAuthor extends Organism {
 		}
 
 		// The other alternative for $data is if an author id has been passed in directly.
-
 		// This is so that child classes (PostAuthorLink) can pass in their own content, if they need to.
 		if ( '' === $this->content ) {
 			$this->content = get_the_author_meta( $this->author_meta, $this->data );
 		}
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }

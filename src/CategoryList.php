@@ -49,21 +49,22 @@ class CategoryList extends Organism {
 	 * @param string      $parents       Either "multiple" or "single".
 	 * @param string      $parents_order Either "first" or "last".
 	 * @param bool        $include_links Include category links or not.
-	 * @param string      $tag           HTML tag.
-	 * @param array       $attributes    Attributes.
-	 * @param string      $before        Markup/content before the tag.
-	 * @param string      $prepend       Markup/content inside the opening tag.
-	 * @param string      $append        Markup/content before the closing tag.
-	 * @param string      $after         Markup/content after the closing tag.
 	 */
-	public function __construct( $name = 'category-list', $data = false, $delimiter = ', ', $parents = '', $parents_order = 'first', $include_links = true, $tag = 'p', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'category-list', $data = false, $delimiter = ', ', $parents = '', $parents_order = 'first', $include_links = true ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
-
+		parent::__construct( $name, $data );
 		$this->delimiter     = $delimiter;
 		$this->parents       = $parents;
 		$this->parents_order = $parents_order;
 		$this->include_links = $include_links;
+	}
+
+	/**
+	 * Get the content.
+	 *
+	 * @return string
+	 */
+	public function get_content() {
 
 		if ( true === $this->include_links ) {
 			$this->content = get_the_category_list( $this->delimiter, $this->parents, $this->data );
@@ -71,15 +72,16 @@ class CategoryList extends Organism {
 		if ( false === $this->include_links ) {
 			$this->content = self::get_the_category_list_without_links( $this->delimiter, $this->parents, $this->data );
 		}
-	}
 
+		return parent::get_content();
+	}
 
 	/**
 	 * Retrieve category list in either HTML list or custom format.
 	 *
 	 * @since 1.5.1
 	 *
-	 * @global WP_Rewrite $wp_rewrite
+	 * @global \WP_Rewrite $wp_rewrite
 	 *
 	 * @param string   $separator Optional, default is empty string. Separator for between the categories.
 	 * @param string   $parents   Optional. How to display the parents.
@@ -203,7 +205,7 @@ class CategoryList extends Organism {
 	 * @param bool   $nicename  Optional, default is false. Whether to use nice name for display.
 	 * @param array  $visited   Optional. Already linked to categories to prevent duplicates.
 	 *
-	 * @return string|WP_Error A list of category parents on success, WP_Error on failure.
+	 * @return string|\WP_Error A list of category parents on success, WP_Error on failure.
 	 */
 	private function get_category_parents_without_links( $id, $link = false, $separator = '/', $nicename = false, $visited = array() ) {
 

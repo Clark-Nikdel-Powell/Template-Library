@@ -141,7 +141,7 @@ class ACFBlurbListBlurb extends Organism {
 			$this->link_location = $this->data['link_location'];
 		}
 
-		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data );
 
 		$this->hide = $this->data['hide'];
 
@@ -161,17 +161,17 @@ class ACFBlurbListBlurb extends Organism {
 		}
 
 		if ( in_array( 'Blurb Image', $this->data['blurb_elements'], true ) ) {
-			$this->image = new Image( Organism::organism_name( 'image', $this->separator ), $this->data['foreground_image'], '' );
+			$this->image = new Image( $this->organism_name( 'image', $this->separator ), $this->data['foreground_image'], '' );
 			array_push( $container_structure, $this->image );
 		}
-		$this->title    = new Content( Organism::organism_name( 'title', $this->separator ), $this->data['title'] );
-		$this->subtitle = new Content( Organism::organism_name( 'subtitle', $this->separator ), $this->data['subtitle'] );
-		$this->text     = new Content( Organism::organism_name( 'text', $this->separator ), $this->data['text'] );
+		$this->title    = new Content( $this->organism_name( 'title', $this->separator ), $this->data['title'] );
+		$this->subtitle = new Content( $this->organism_name( 'subtitle', $this->separator ), $this->data['subtitle'] );
+		$this->text     = new Content( $this->organism_name( 'text', $this->separator ), $this->data['text'] );
 		$this->do_button();
 
 		array_push( $container_structure, $this->title, $this->subtitle, $this->text );
 
-		$this->inside = new Container( Organism::organism_name( 'inside', $this->separator ), $container_structure );
+		$this->inside = new Container( $this->organism_name( 'inside', $this->separator ), $container_structure );
 
 		$this->inside->tag        = $this->inside_tag;
 		$this->inside->attributes = $this->inside_attributes;
@@ -260,7 +260,7 @@ class ACFBlurbListBlurb extends Organism {
 		$text = isset( $this->data['link_text'] ) && ! empty( $this->data['link_text'] ) ? $this->data['link_text'] : 'Learn More';
 
 		if ( $this->is_button_link() && $link ) {
-			$this->link = new Link( Organism::organism_name( 'link', $this->separator ), $link, $text );
+			$this->link = new Link( $this->organism_name( 'link', $this->separator ), $link, $text );
 		}
 	}
 

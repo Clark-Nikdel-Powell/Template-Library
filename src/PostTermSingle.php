@@ -29,14 +29,13 @@ class PostTermSingle extends Organism {
 	/**
 	 * PostTermSingle constructor.
 	 *
-	 * @param string       $name     Organism name.
-	 * @param string       $taxonomy Registered taxonomy name.
-	 * @param string       $tag      Optional. Included because PostTermSingleLink changes the tag to 'a'.
-	 * @param int|\WP_Post $data     Optional. Either a post ID or WP_Post object. Defaults to global $post. Resolves to post ID.
+	 * @param string $name     Organism name.
+	 * @param string $taxonomy Registered taxonomy name.
+	 * @param string $tag      Optional. Included because PostTermSingleLink changes the tag to 'a'.
 	 */
-	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'div', $data = null ) {
+	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'div' ) {
 
-		parent::__construct( $name, $data, $content = '', $tag, $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data = null, $content = '', $tag );
 
 		$this->taxonomy = $taxonomy;
 

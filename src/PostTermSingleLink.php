@@ -13,14 +13,13 @@ class PostTermSingleLink extends PostTermSingle {
 	/**
 	 * PostTermSingleLink constructor.
 	 *
-	 * @param string      $name     Organism name.
-	 * @param string      $taxonomy Registered taxonomy name.
-	 * @param string      $tag      Organism tag.
-	 * @param int|WP_Post $data     Optional. Either a post ID or WP_Post object. Defaults to global $post. Resolves to post ID in the parent class, PostTermSingle.
+	 * @param string $name     Organism name.
+	 * @param string $taxonomy Registered taxonomy name.
+	 * @param string $tag      Organism tag.
 	 */
-	public function __construct( $name = 'post-term-single-link', $taxonomy = 'category', $tag = 'a', $data = null ) {
+	public function __construct( $name = 'post-term-single-link', $taxonomy = 'category', $tag = 'a' ) {
 
-		parent::__construct( $taxonomy, $name, $tag, $data );
+		parent::__construct( $taxonomy, $name, $tag );
 
 		// Post/taxonomy resolution is handled in parent class constructor.
 		$this->content = parent::get_term();

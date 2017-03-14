@@ -3,34 +3,22 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class LinkPostsPage
+ *
  * @package CNP\TemplateLibrary
  *
- * @link https://developer.wordpress.org/reference/functions/get_permalink/
- * @link https://developer.wordpress.org/reference/functions/get_option/
+ * @link    https://developer.wordpress.org/reference/functions/get_permalink/
+ * @link    https://developer.wordpress.org/reference/functions/get_option/
  */
 class LinkPostsPage extends Link {
 
 	/**
 	 * LinkPostsPage constructor.
 	 *
-	 * @param string $name
-	 * @param array $attributes
-	 * @param string $content
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string $name    Organism name.
+	 * @param string $content Content for the link.
 	 */
-	public function __construct( $name = 'link-posts-page', array $attributes = [], $content = '', $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'link-posts-page', $content ) {
 
-		parent::__construct( $href = get_permalink( get_option( 'page_for_posts' ) ), $content, $name, $attributes, $before, $prepend, $append, $after );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
+		parent::__construct( $name, $data = get_permalink( get_option( 'page_for_posts' ) ), $content );
 	}
 }

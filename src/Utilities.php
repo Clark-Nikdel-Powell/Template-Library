@@ -67,7 +67,7 @@ class Utilities {
 
 		$timezone_string = get_option( 'timezone_string' );
 
-		// Temporary fix-- TODO: figure out a bulletproof way of getting the current time
+		// Temporary fix-- TODO: figure out a bulletproof way of getting the current time.
 		if ( '' === $timezone_string ) {
 			$timezone_string = 'America/New_York';
 		}
@@ -101,7 +101,7 @@ class Utilities {
 		return $event_date_type;
 	}
 
-	public static function acf_set_class_and_id( $object, $data, $attributes ) {
+	public static function acf_set_class_and_id( $object, $data ) {
 
 		if ( ! empty( $data['class'] ) ) {
 			$object->attributes['class'] = Utilities::parse_classes_as_array( $data['class'] );
@@ -120,11 +120,11 @@ class Utilities {
 	 *
 	 * @since 0.8.0
 	 *
-	 * @see get_field
-	 * @link https://www.advancedcustomfields.com/resources/get_field/
+	 * @see   get_field
+	 * @link  https://www.advancedcustomfields.com/resources/get_field/
 	 *
 	 * @param array $fields_names_arr An array of the fields to get.
-	 * @param bool $option Optional. Set to true if the fields are from an options page.
+	 * @param bool  $option           Optional. Set to true if the fields are from an options page.
 	 *
 	 * @return array $data_arr Data array keyed to the field names.
 	 */
@@ -243,9 +243,9 @@ class Utilities {
 	 * out markup, either from a string or a function call.
 	 *
 	 *
-	 * @param string|array $string_or_array The variable to check for data.
+	 * @param string|array    $string_or_array    The variable to check for data.
 	 * @param string|function $markup_or_function Markup as a string, or a 'get' function call that returns markup.
-	 * @param array $parameters Parameters to pass into anonymous function.
+	 * @param array           $parameters         Parameters to pass into anonymous function.
 	 *
 	 * @return string  Prints out markup if check is successful.
 	 **/
@@ -388,9 +388,9 @@ class Utilities {
 	 * or at the end if the needle is not found or not supplied.
 	 * Modifies $haystack in place.
 	 *
-	 * @param array &$haystack the associative array to search. This will be modified by the function
-	 * @param string $needle the key to search for
-	 * @param mixed $stuff one or more arrays or scalars to be inserted into $haystack
+	 * @param array  &$haystack the associative array to search. This will be modified by the function
+	 * @param string $needle    the key to search for
+	 * @param mixed  $stuff     one or more arrays or scalars to be inserted into $haystack
 	 *
 	 * @return array the index at which $needle was found
 	 */
@@ -458,7 +458,7 @@ class Utilities {
 	 *
 	 * Sanitizes and returns the provided classes as a strong
 	 *
-	 * @param string $prefix | The prefix for filters.
+	 * @param string       $prefix      | The prefix for filters.
 	 * @param string|array $raw_classes | The classes to check.
 	 *
 	 * @filter $classes_filter | Use this filter to adjust the atom classes array.
@@ -534,7 +534,7 @@ class Utilities {
 	 * @see configure_atom_attributes
 	 *
 	 * @param string|array $raw_id | The ID to check.
-	 * @param string $prefix | The prefix for filters.
+	 * @param string       $prefix | The prefix for filters.
 	 *
 	 * @filter $atomname_id | Use this filter to adjust the atom ID string.
 	 *

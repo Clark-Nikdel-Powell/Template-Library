@@ -50,18 +50,23 @@ class ACFTabContent extends Organism {
 	 */
 	public function __construct( $data ) {
 
+		$name = 'acf-tabcontent';
+		if ( ! empty( $data['name'] ) ) {
+			$name = $data['name'];
+		}
+
 		// ——————————————————————————————————————————————————————————
 		// 0. Parse Data
 		// ——————————————————————————————————————————————————————————
-		parent::__construct( $name = $data['name'], $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data );
 
 		$this->hide             = $this->data['hide'];
 		$this->attributes['id'] = 'panel' . $this->data['loop-index'];
 
 		if ( 0 === $this->data['loop-index'] ) {
-			$this->attributes['class'][] = Organism::organism_name( 'isActive', '--' );
+			$this->attributes['class'][] = $this->organism_name( 'isActive', '--' );
 		}
 
 		if ( ! empty( trim( $this->data['link_text'] ) ) ) {
@@ -73,10 +78,10 @@ class ACFTabContent extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->title    = new Content( Organism::organism_name( 'title' ), $this->data['title'] );
-		$this->subtitle = new Content( Organism::organism_name( 'subtitle' ), $this->data['subtitle'] );
-		$this->text     = new Content( Organism::organism_name( 'text' ), $this->data['text'] );
-		$this->link     = new Link( Organism::organism_name( 'link' ), $this->data['link'], $this->link_text );
+		$this->title    = new Content( $this->organism_name( 'title' ), $this->data['title'] );
+		$this->subtitle = new Content( $this->organism_name( 'subtitle' ), $this->data['subtitle'] );
+		$this->text     = new Content( $this->organism_name( 'text' ), $this->data['text'] );
+		$this->link     = new Link( $this->organism_name( 'link' ), $this->data['link'], $this->link_text );
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure

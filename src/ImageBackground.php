@@ -25,13 +25,10 @@ class ImageBackground extends Image {
 	 * @param string $name       Organism name.
 	 * @param null   $data       Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
 	 * @param string $image_size A WordPress defined image size.
-	 * @param array  $attributes Organism attributes.
-	 * @param string $before     Text/Markup before tag.
-	 * @param string $after      Text/Markup after tag.
 	 */
-	public function __construct( $name = 'image-background', $data, $image_size, array $attributes = [], $before = '', $after = '' ) {
+	public function __construct( $name = 'image-background', $data, $image_size ) {
 
-		parent::__construct( $name, $data, $image_size, $icon = false, $tag = 'div', $attributes, $before, $after );
+		parent::__construct( $name, $data, $image_size, $icon = false, $tag = 'div' );
 
 		if ( ! empty( $this->attachment_id ) ) {
 			$img_array                 = wp_get_attachment_image_src( $this->attachment_id, $this->image_size, $this->icon );

@@ -36,17 +36,17 @@ class ACFTabs extends Organism {
 	 */
 	public function __construct( $data ) {
 
-		// ——————————————————————————————————————————————————————————
-		// 0. Parse Data
-		// ——————————————————————————————————————————————————————————
 		$name = 'acf-tabs';
 		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 
-		parent::__construct( $name, $tag = 'div', $attributes = [], $content = '', $data, $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		// ——————————————————————————————————————————————————————————
+		// 0. Parse Data
+		// ——————————————————————————————————————————————————————————
+		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data );
 
 		$this->hide      = $this->data['hide'];
 		$this->tabs_data = $this->data['tabs'];
@@ -54,8 +54,8 @@ class ACFTabs extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->headings = new ACFLoop( Organism::organism_name( 'headings' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabHeading', [], 'ul', [ 'data-tabs' => '', 'id' => '' ] );
-		$this->content  = new ACFLoop( Organism::organism_name( 'content' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabContent', [], 'div', [ 'data-tabs-content' => '' ] );
+		$this->headings = new ACFLoop( $this->organism_name( 'headings' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabHeading', [], 'ul', [ 'data-tabs' => '', 'id' => '' ] );
+		$this->content  = new ACFLoop( $this->organism_name( 'content' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabContent', [], 'div', [ 'data-tabs-content' => '' ] );
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure

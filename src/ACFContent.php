@@ -25,9 +25,9 @@ class ACFContent extends Organism {
 
 		$content = trim( $data['content'] );
 
-		parent::__construct( $name, $data, $content, $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data, $content );
 
-		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data );
 
 		$this->hide = $this->data['hide'];
 	}

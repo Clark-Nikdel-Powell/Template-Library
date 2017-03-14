@@ -1,54 +1,65 @@
 <?php
 namespace CNP\TemplateLibrary;
 
-use CNP\TemplateLibrary\Util\Utility;
-
 /**
  * Class EventDate
+ *
  * @package CNP\TemplateLibrary
  *
  * Displays an event date.
- *
  */
 class EventDate extends Organism {
 
+	/**
+	 * Event start time.
+	 *
+	 * @var int
+	 */
 	public $event_start;
+
+	/**
+	 * Event start time
+	 *
+	 * @var int
+	 */
 	public $event_end;
+
+	/**
+	 * Whether it's an all-day event.
+	 *
+	 * @var bool
+	 */
 	public $event_all_day;
+
+	/**
+	 * The type of event.
+	 *
+	 * @var string
+	 */
 	public $event_date_type;
 
 	/**
 	 * EventDate constructor.
 	 *
-	 * @param string $event_start
-	 * @param string $event_end
-	 * @param bool $event_all_day
-	 * @param string $name
-	 * @param string $tag
-	 * @param array $attributes
+	 * @param string $name          Organism name.
+	 * @param int    $event_start   Event start time.
+	 * @param int    $event_end     Event end time.
+	 * @param bool   $event_all_day Whether or not it's an all-day event.
 	 */
-	public function __construct( $name = 'event-date', $event_start, $event_end, $event_all_day = false, $tag = 'p', array $attributes = [] ) {
+	public function __construct( $name = 'event-date', $event_start, $event_end, $event_all_day = false ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name );
 
 		$this->event_start   = $event_start;
 		$this->event_end     = $event_end;
 		$this->event_all_day = $event_all_day;
 
-		$this->event_date_type = Utility::set_event_date_type( $this->event_start, $this->event_end, $this->event_all_day );
+		$this->event_date_type = Utilities::set_event_date_type( $this->event_start, $this->event_end, $this->event_all_day );
 		$this->get_content();
 	}
 
 	/**
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
-	}
-
-	/**
-	 * set_content
+	 * Get the correct format based on the type of event.
 	 */
 	public function get_content() {
 
@@ -56,7 +67,7 @@ class EventDate extends Organism {
 
 			case 'now':
 
-				// Now - 1:45 PM
+				// Now - 1:45 PM.
 				$this->content = sprintf(
 					'Now - %s',
 					date( 'g:i A', $this->event_end )
@@ -66,14 +77,14 @@ class EventDate extends Organism {
 
 			case 'allday-single':
 
-				// Jan 1, 2016 - All Day
+				// Jan 1, 2016 - All Day.
 				$this->content = date( 'M j, Y', $this->event_start ) . ' - All Day';
 
 				break;
 
 			case 'allday-multiple':
 
-				// Mon, Jan 13 - Fri, Jan 18
+				// Mon, Jan 13 - Fri, Jan 18.
 				$this->content = sprintf(
 					'%s - %s',
 					date( 'D, M j, Y', $this->event_start ),
@@ -84,7 +95,7 @@ class EventDate extends Organism {
 
 			case 'single-day':
 
-				// 11:05 AM - 1:45 PM
+				// 11:05 AM - 1:45 PM.
 				$this->content = sprintf(
 					'%s - %s',
 					date( 'g:i A', $this->event_start ),
@@ -95,7 +106,7 @@ class EventDate extends Organism {
 
 			default:
 
-				// Mon, Jan 13 @ 11:05 AM - Fri, Jan 18 @ 1:45 PM
+				// Mon, Jan 13 @ 11:05 AM - Fri, Jan 18 @ 1:45 PM.
 				$this->content = sprintf(
 					'%s - %s',
 					date( 'D, M j, Y @ g:i A', $this->event_start ),
@@ -105,7 +116,7 @@ class EventDate extends Organism {
 				break;
 		}
 
-		// This filter is here so that we can adjust the event date format site wide, if necessary.
+		// This filter is here so that we can adjust the event date format site-wide, if necessary.
 		if ( defined( 'WP_CONTENT_DIR' ) ) {
 			$this->content = apply_filters( 'event_date_format', $this->content, $this );
 		}

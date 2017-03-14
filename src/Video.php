@@ -16,9 +16,10 @@ class Video extends Organism {
 	 */
 	public function __construct( $name = 'video', array $attributes ) {
 
-		$tag = 'video';
+		parent::__construct( $name );
 
-		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '', $before = '', $prepend = '', $append = '', $after = '' );
+		$this->attributes = $attributes;
+		$this->tag        = 'video';
 
 	}
 }

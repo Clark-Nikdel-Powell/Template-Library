@@ -35,7 +35,7 @@ class TaxonomyList extends Organism {
 	 */
 	public function __construct( $name = 'taxonomy-list', $taxonomy = '', $delimiter = ', ' ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name );
 
 		$this->data      = get_post();
 		$this->delimiter = $delimiter;

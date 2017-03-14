@@ -3,29 +3,24 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class Container
+ *
  * @package CNP\TemplateLibrary
  *
- * A containing div. Meant to hold other things, not to have content itself. If you need a generic Organism for content, please see Content.php
+ * A containing div. Meant to hold other things, not to have content itself. If you need a generic Organism for content, please see Content
  */
 class Container extends Organism {
 
 	/**
 	 * Container constructor.
 	 *
-	 * @param string $name
-	 * @param array  $structure
-	 * @param string $parent_name
-	 * @param string $separator
-	 * @param string $tag
-	 * @param array  $attributes
-	 * @param string $before
-	 * @param string $prepend
-	 * @param string $append
-	 * @param string $after
+	 * @param string $name        Organism name.
+	 * @param array  $structure   Structure.
+	 * @param string $parent_name Optional. Parent name.
+	 * @param string $separator   Optional. Separator between parent name and sub-organism names.
 	 */
-	public function __construct( $name, $structure, $parent_name = '', $separator = '__', $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name, $structure, $parent_name = '', $separator = '__' ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure, $parent_name, $separator, $before, $prepend, $append, $after );
+		parent::__construct( $name, $data = null, $content = '', $tag = 'div', $attributes = [], $structure, $parent_name, $separator );
 	}
 
 	/**
@@ -37,8 +32,6 @@ class Container extends Organism {
 
 		$this->hide = empty( $this->structure );
 
-		$markup = parent::get_markup();
-
-		return $markup;
+		return parent::get_markup();
 	}
 }

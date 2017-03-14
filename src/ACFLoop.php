@@ -71,6 +71,7 @@ class ACFLoop extends Organism {
 			$this->content .= $sub_item_organism_object->get_markup();
 		}
 
+		// TODO: test with prepend and append.
 		return sprintf( '%s<%s %s>%s</%s>%s', $this->before, $this->tag, $this->get_attributes(), $this->content, $this->tag, $this->after );
 	}
 }

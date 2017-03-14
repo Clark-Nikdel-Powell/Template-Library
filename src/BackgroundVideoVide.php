@@ -13,31 +13,16 @@ namespace CNP\TemplateLibrary;
 class BackgroundVideoVide extends Organism {
 
 	/**
-	 * Vide options
-	 *
-	 * @var array
-	 */
-	public $vide_bg;
-
-	/**
 	 * BackgroundVideoVide constructor.
 	 *
-	 * @param string $name       Organism name.
-	 * @param array  $vide_bg    Expects an array of settings for Vide's data attribute. The keys are 'mp4', 'webm', and 'jpg'. mp4 and jpg are required.
-	 * @param string $tag        Organism tag.
-	 * @param array  $attributes Set 'data-vide-options' to a comma-delimited string of settings.
-	 * @param string $before     Text/Markup before the tag.
-	 * @param string $prepend    Text/Markup after the opening tag.
-	 * @param string $append     Text/Markup before the closing tag.
-	 * @param string $after      Text/Markup after the closing tag.
+	 * @param string $name Organism name.
+	 * @param array  $data Vide BG options. Expects an array of settings for Vide's data attribute. The keys are 'mp4', 'webm', and 'jpg'. mp4 and jpg are required.
 	 */
-	public function __construct( $name = 'background-video', array $vide_bg, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	public function __construct( $name = 'background-video', array $data ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag, $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name, $data );
 
-		$this->vide_bg = $vide_bg;
-
-		$this->attributes['data-vide-bg'] = implode( ', ', $this->vide_bg );
+		$this->attributes['data-vide-bg'] = implode( ', ', $this->data );
 
 		if ( ! isset( $this->attributes['data-vide-options'] ) ) {
 			$this->attributes['data-vide-options'] = 'autoplay: true, posterType: jpg, loop: true, muted: true, position: left top';

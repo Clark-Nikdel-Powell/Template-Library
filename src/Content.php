@@ -3,16 +3,26 @@ namespace CNP\TemplateLibrary;
 
 /**
  * Class Content
+ *
  * @package CNP\TemplateLibrary
  */
 class Content extends Organism {
 
-	public function __construct( $name, $content, $tag = 'div', array $attributes = [], $before = '', $prepend = '', $append = '', $after = '' ) {
+	/**
+	 * Content constructor.
+	 *
+	 * @param string $name    Organism name.
+	 * @param null   $content Content.
+	 */
+	public function __construct( $name, $content ) {
 
-		parent::__construct( $name, $data = null, $content, $tag = 'div', $attributes, $structure = [], $parent_name = '', $separator = '__', $before, $prepend, $append, $after );
+		parent::__construct( $name );
+		$this->content = $content;
 	}
 
 	/**
+	 * Hide if no content.
+	 *
 	 * @return string
 	 */
 	public function get_markup() {

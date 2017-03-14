@@ -60,7 +60,7 @@ class ACFAccordionPanel extends Organism {
 		// ——————————————————————————————————————————————————————————
 		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data, $this->attributes );
+		Utilities::acf_set_class_and_id( $this, $this->data );
 
 		$this->hide             = $this->data['hide'];
 		$this->content_title    = $this->data['title'];
@@ -103,15 +103,5 @@ class ACFAccordionPanel extends Organism {
 		// 2. Assemble Structure
 		// ——————————————————————————————————————————————————————————
 		$this->structure = [ $link, $container ];
-	}
-
-	/**
-	 * Get organism markup
-	 *
-	 * @return string
-	 */
-	public function get_markup() {
-
-		return parent::get_markup();
 	}
 }
