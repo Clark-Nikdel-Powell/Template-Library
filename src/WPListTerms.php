@@ -28,23 +28,7 @@ class WPListTerms extends WPList {
 	public function __construct( $name = 'wp-list-terms', $list_args, $taxonomy = '' ) {
 
 		parent::__construct( $name, $list_args );
-
-		if ( null === $data && '' === $taxonomy ) {
-			$this->data = get_post();
-		}
-
-		if ( '' !== $taxonomy ) {
-			$this->taxonomy = $taxonomy;
-		} else {
-			$this->resolve_taxonomy();
-		}
-
-		$list_defaults   = [
-			'taxonomy' => $this->taxonomy,
-			'title_li' => '',
-			'echo'     => false,
-		];
-		$this->list_vars = wp_parse_args( $list_defaults, $list_args );
+		$this->taxonomy = $taxonomy;
 	}
 
 	/**
@@ -53,14 +37,11 @@ class WPListTerms extends WPList {
 	public function resolve_taxonomy() {
 
 		if ( 'post' === $this->data->post_type ) {
-
 			$this->taxonomy = 'category';
-
 		} else {
 
 			$post_object_taxonomies = get_object_taxonomies( $this->data );
-
-			$this->taxonomy = array_shift( $post_object_taxonomies );
+			$this->taxonomy         = array_shift( $post_object_taxonomies );
 		}
 	}
 
@@ -70,6 +51,21 @@ class WPListTerms extends WPList {
 	 * @return string
 	 */
 	public function get_content() {
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
+
+		if ( '' !== $this->taxonomy ) {
+			$this->resolve_taxonomy();
+		}
+
+		$list_defaults   = [
+			'taxonomy' => $this->taxonomy,
+			'title_li' => '',
+			'echo'     => false,
+		];
+		$this->list_vars = wp_parse_args( $list_defaults, $list_args );
 
 		return $this->prepend . wp_list_categories( $this->list_vars ) . $this->append;
 	}

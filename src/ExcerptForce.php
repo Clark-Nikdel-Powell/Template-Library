@@ -15,10 +15,10 @@ class ExcerptForce extends Excerpt {
 	/**
 	 * ExcerptForce constructor.
 	 *
-	 * @param string $name Organism name.
-	 * @param string $data Optional. WP_Post Object. Set by Excerpt if not defined.
+	 * @param string   $name Organism name.
+	 * @param \WP_Post $data Optional. WP_Post Object. Set by Excerpt if not defined.
 	 */
-	public function __construct( $name = 'excerpt', $data = null ) {
+	public function __construct( $name = 'excerpt', \WP_Post $data = null ) {
 
 		parent::__construct( $name, $data );
 

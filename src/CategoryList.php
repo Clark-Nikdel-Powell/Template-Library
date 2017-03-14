@@ -43,14 +43,14 @@ class CategoryList extends Organism {
 	/**
 	 * CategoryList constructor.
 	 *
-	 * @param string      $name          The Organism name.
-	 * @param string|bool $data          Optional. A WordPress post ID. Assumes global $post if not supplied.
-	 * @param string      $delimiter     The separator for the category links.
-	 * @param string      $parents       Either "multiple" or "single".
-	 * @param string      $parents_order Either "first" or "last".
-	 * @param bool        $include_links Include category links or not.
+	 * @param string   $name          The Organism name.
+	 * @param string   $delimiter     The separator for the category links.
+	 * @param string   $parents       Either "multiple" or "single".
+	 * @param string   $parents_order Either "first" or "last".
+	 * @param bool     $include_links Include category links or not.
+	 * @param \WP_Post $data          Optional. A WordPress post ID. Assumes global $post if not supplied.
 	 */
-	public function __construct( $name = 'category-list', $data = false, $delimiter = ', ', $parents = '', $parents_order = 'first', $include_links = true ) {
+	public function __construct( $name = 'category-list', $delimiter = ', ', $parents = '', $parents_order = 'first', $include_links = true, \WP_Post $data = null ) {
 
 		parent::__construct( $name, $data );
 		$this->delimiter     = $delimiter;
@@ -83,9 +83,9 @@ class CategoryList extends Organism {
 	 *
 	 * @global \WP_Rewrite $wp_rewrite
 	 *
-	 * @param string   $separator Optional, default is empty string. Separator for between the categories.
-	 * @param string   $parents   Optional. How to display the parents.
-	 * @param int|bool $post_id   Optional. Post ID to retrieve categories.
+	 * @param string       $separator Optional, default is empty string. Separator for between the categories.
+	 * @param string       $parents   Optional. How to display the parents.
+	 * @param int|bool     $post_id   Optional. Post ID to retrieve categories.
 	 *
 	 * @return string
 	 */

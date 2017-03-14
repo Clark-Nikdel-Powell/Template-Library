@@ -32,9 +32,9 @@ class ACFTabs extends Organism {
 	/**
 	 * ACFTabs constructor.
 	 *
-	 * @param string $data ACF Data.
+	 * @param array $data ACF Data.
 	 */
-	public function __construct( $data ) {
+	public function __construct( array $data ) {
 
 		$name = 'acf-tabs';
 		if ( ! empty( $data['name'] ) ) {

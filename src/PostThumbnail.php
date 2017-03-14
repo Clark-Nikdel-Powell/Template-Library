@@ -40,6 +40,14 @@ class PostThumbnail extends Organism {
 
 		$this->size = $size;
 		$this->attr = $attr;
+	}
+
+	/**
+	 * Set up the content.
+	 *
+	 * @return string
+	 */
+	public function get_content() {
 
 		// This catches if we didn't pass anything in.
 		if ( null === $this->data ) {
@@ -53,5 +61,7 @@ class PostThumbnail extends Organism {
 
 		// This uses call_user_func so that $attr can be passed in as an array. Pretty sure that's why.
 		$this->content = call_user_func( 'get_the_post_thumbnail', $this->data, $this->size, $this->attr );
+
+		return parent::get_content();
 	}
 }

@@ -11,9 +11,9 @@ class ACFSection extends Organism {
 	/**
 	 * ACFSection constructor.
 	 *
-	 * @param string $data Data from ACF.
+	 * @param array $data Data from ACF.
 	 */
-	public function __construct( $data ) {
+	public function __construct( array $data ) {
 
 		// ——————————————————————————————————————————————————————————
 		// 0. Parse Data
@@ -23,7 +23,7 @@ class ACFSection extends Organism {
 			$name = $data['name'];
 		}
 
-		parent::__construct( $name, $data, $content = '', $tag = 'div', $attributes = [], $structure = [], $parent_name = '', $separator = '__', $before = '', $prepend = '', $append = '', $after = '' );
+		parent::__construct( $name, $data );
 
 		Utilities::acf_set_class_and_id( $this, $this->data );
 

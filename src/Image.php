@@ -34,10 +34,10 @@ class Image extends Organism {
 	/**
 	 * Image constructor.
 	 *
-	 * @param string $name       Organism name.
-	 * @param null   $data       Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
-	 * @param string $image_size A registered WordPress image size.
-	 * @param bool   $icon       Whether this image should be treated as an icon.
+	 * @param string             $name       Organism name.
+	 * @param int|\WP_Post|array $data       Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
+	 * @param string             $image_size A registered WordPress image size.
+	 * @param bool               $icon       Whether this image should be treated as an icon.
 	 */
 	public function __construct( $name = 'image', $data, $image_size, $icon = false ) {
 

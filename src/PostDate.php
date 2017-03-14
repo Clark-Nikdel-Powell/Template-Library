@@ -34,11 +34,21 @@ class PostDate extends Organism {
 		} else {
 			$this->date_format = $date_format;
 		}
+	}
+
+	/**
+	 * Sets up the content.
+	 *
+	 * @return string
+	 */
+	public function get_content() {
 
 		if ( null === $this->data ) {
 			$this->data = get_post();
 		}
 
 		$this->content = get_the_date( $this->date_format, $this->data );
+
+		return parent::get_content();
 	}
 }

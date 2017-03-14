@@ -25,12 +25,12 @@ class ExcerptSearch extends Excerpt {
 	/**
 	 * ExcerptSearch constructor.
 	 *
-	 * @param string $name              Organism name.
-	 * @param int    $characters_before Characters to display before matched search term.
-	 * @param int    $characters_total  Characters to display after matched search term.
-	 * @param string $data              Optional. WP_Post Object. Set by Excerpt if not defined.
+	 * @param string   $name              Organism name.
+	 * @param int      $characters_before Characters to display before matched search term.
+	 * @param int      $characters_total  Characters to display after matched search term.
+	 * @param \WP_Post $data              Optional. WP_Post Object. Set by Excerpt if not defined.
 	 */
-	public function __construct( $name = 'excerpt-search', $characters_before = 100, $characters_total = 250, $data = null ) {
+	public function __construct( $name = 'excerpt-search', $characters_before = 100, $characters_total = 250, \WP_Post $data = null ) {
 
 		parent::__construct( $name, $data );
 

@@ -29,6 +29,10 @@ class TaxonomyListWithLinks extends TaxonomyList {
 	 */
 	public function get_content() {
 
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
+
 		$this->content = get_the_term_list( $this->data, $this->taxonomy, $this->prepend, $this->delimiter, $this->append );
 	}
 }

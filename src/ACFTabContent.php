@@ -46,9 +46,9 @@ class ACFTabContent extends Organism {
 	/**
 	 * ACFTabContent constructor.
 	 *
-	 * @param string $data ACF Data.
+	 * @param array $data ACF Data.
 	 */
-	public function __construct( $data ) {
+	public function __construct( array $data ) {
 
 		$name = 'acf-tabcontent';
 		if ( ! empty( $data['name'] ) ) {

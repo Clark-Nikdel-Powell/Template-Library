@@ -18,9 +18,9 @@ class ACFTabHeading extends Organism {
 	/**
 	 * ACFTabHeading constructor.
 	 *
-	 * @param string $data ACF Data.
+	 * @param array $data ACF Data.
 	 */
-	public function __construct( $data ) {
+	public function __construct( array $data ) {
 
 		$name = 'acf-tabheading';
 		if ( ! empty( $data['name'] ) ) {

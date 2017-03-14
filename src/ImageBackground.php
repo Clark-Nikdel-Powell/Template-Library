@@ -22,9 +22,9 @@ class ImageBackground extends Image {
 	/**
 	 * Image constructor.
 	 *
-	 * @param string $name       Organism name.
-	 * @param null   $data       Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
-	 * @param string $image_size A WordPress defined image size.
+	 * @param string             $name       Organism name.
+	 * @param int|\WP_Post|array $data       Required. Either an Attachment post object, an Attachment array (like from ACF) or an Attachment ID.
+	 * @param string             $image_size A WordPress defined image size.
 	 */
 	public function __construct( $name = 'image-background', $data, $image_size ) {
 

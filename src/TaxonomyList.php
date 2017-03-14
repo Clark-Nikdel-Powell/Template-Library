@@ -36,8 +36,6 @@ class TaxonomyList extends Organism {
 	public function __construct( $name = 'taxonomy-list', $taxonomy = '', $delimiter = ', ' ) {
 
 		parent::__construct( $name );
-
-		$this->data      = get_post();
 		$this->delimiter = $delimiter;
 
 		if ( null !== $taxonomy ) {
@@ -52,6 +50,10 @@ class TaxonomyList extends Organism {
 	 * Gets the list.
 	 */
 	public function get_content() {
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
 
 		$terms_arr      = get_the_terms( $this->data, $this->taxonomy );
 		$term_names_arr = array();

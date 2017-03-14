@@ -54,9 +54,19 @@ class ShareLink extends Organism {
 		$this->href_base = $href_base;
 		$this->share_url = $share_url;
 		$this->use_icon  = $use_icon;
+	}
+
+	/**
+	 * Gets the content.
+	 *
+	 * @return string
+	 */
+	public function get_content() {
 
 		$this->build_link_target();
 		$this->substitute_icon_in_content();
+
+		return parent::get_content();
 	}
 
 	/**

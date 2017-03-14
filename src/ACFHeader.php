@@ -53,9 +53,9 @@ class ACFHeader extends Organism {
 	/**
 	 * ACFHeader constructor.
 	 *
-	 * @param string $data ACF Data.
+	 * @param array $data ACF Data.
 	 */
-	public function __construct( $data ) {
+	public function __construct( array $data ) {
 
 		// ——————————————————————————————————————————————————————————
 		// 0. Parse Data

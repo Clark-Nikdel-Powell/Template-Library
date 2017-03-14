@@ -20,6 +20,5 @@ class Video extends Organism {
 
 		$this->attributes = $attributes;
 		$this->tag        = 'video';
-
 	}
 }

@@ -46,9 +46,9 @@ class ACFAccordionPanel extends Organism {
 	/**
 	 * ACFAccordionPanel constructor.
 	 *
-	 * @param string $data ACF Data.
+	 * @param array $data ACF Data.
 	 */
-	public function __construct( $data ) {
+	public function __construct( array $data ) {
 
 		$name = 'acf-accordion__panel';
 		if ( ! empty( $data['name'] ) ) {
