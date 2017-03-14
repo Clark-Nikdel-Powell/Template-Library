@@ -25,16 +25,4 @@ class PostTitleLink extends PostTitle {
 
 		$this->structure = [ new LinkPost( $this->name . '-anchor', $this->content, $this->attributes, $this->data ) ];
 	}
-
-	/**
-	 * Get the markup.
-	 *
-	 * @return string
-	 */
-	public function get_markup() {
-
-		$this->content = $this->link->get_markup();
-
-		return parent::get_markup();
-	}
 }

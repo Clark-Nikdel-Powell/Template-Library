@@ -28,7 +28,8 @@ class ImageBackground extends Image {
 	 */
 	public function __construct( $name = 'image-background', $data, $image_size ) {
 
-		parent::__construct( $name, $data, $image_size, $icon = false, $tag = 'div' );
+		parent::__construct( $name, $data, $image_size, $icon = false );
+		$this->tag = 'div';
 
 		if ( ! empty( $this->attachment_id ) ) {
 			$img_array                 = wp_get_attachment_image_src( $this->attachment_id, $this->image_size, $this->icon );

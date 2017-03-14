@@ -35,9 +35,9 @@ class Logo extends Organism {
 	 * @param string $name Organism name.
 	 * @param string $data Logp file (image or svg tag).
 	 */
-	public function __construct( $name = '', $data = null ) {
+	public function __construct( $name = '', $data ) {
 
-		parent::__construct( $name );
+		parent::__construct( $name, $data );
 
 		$this->title                      = new Content( $this->organism_name( 'title', '-' ), get_bloginfo( 'name' ) );
 		$this->title->attributes['class'] = [ 'show-for-sr', 'logo-title' ];

@@ -19,7 +19,7 @@ class Menu extends Organism {
 	 */
 	public function __construct( $name = 'menu', array $data ) {
 
-		parent::__construct( $name );
+		parent::__construct( $name, $data );
 
 		$menu_defaults = [
 			'echo' => false,

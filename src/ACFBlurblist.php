@@ -88,9 +88,9 @@ class ACFBlurbList extends Organism {
 	/**
 	 * ACFBlurblist constructor.
 	 *
-	 * @param string $data ACF data.
+	 * @param array $data ACF data.
 	 */
-	public function __construct( $data ) {
+	public function __construct( array $data ) {
 
 		// ——————————————————————————————————————————————————————————
 		// 0. Parse Data
