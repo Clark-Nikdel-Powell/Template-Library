@@ -14,10 +14,26 @@ class PostTitle extends Organism {
 	 * PostTitle constructor.
 	 *
 	 * @param string $name Organism name.
-	 * @param string $tag  The HTML tag.
 	 */
-	public function __construct( $name = 'posttitle', $tag = 'h2' ) {
+	public function __construct( $name = 'posttitle' ) {
 
-		parent::__construct( $name, $data = null, $content = get_the_title( $data ), $tag );
+		parent::__construct( $name );
+		$this->tag = 'h2';
+	}
+
+	/**
+	 * Gets the content.
+	 *
+	 * @return string
+	 */
+	public function get_content() {
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
+
+		$this->content = get_the_title( $this->data );
+
+		return parent::get_content();
 	}
 }

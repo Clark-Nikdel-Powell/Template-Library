@@ -22,7 +22,20 @@ class PostTitleLink extends PostTitle {
 	public function __construct( $name = 'posttitle-link', $tag = 'h2' ) {
 
 		parent::__construct( $name, $tag );
+	}
 
-		$this->structure = [ new LinkPost( $this->name . '-anchor', $this->content, $this->attributes, $this->data ) ];
+	/**
+	 * Gets the post title from the parent class first, then generates and adds the link to the content based off of that.
+	 *
+	 * @return string
+	 */
+	public function get_content() {
+
+		$this->content = parent::get_content();
+
+		$post_link     = new LinkPost( $this->organism_name( 'anchor' ), $this->content, $this->attributes, $this->data );
+		$this->content = $post_link->get_markup();
+
+		return Organism::get_content();
 	}
 }
