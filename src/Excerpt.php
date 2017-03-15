@@ -30,4 +30,16 @@ class Excerpt extends Organism {
 			$this->content = $this->data->post_excerpt;
 		}
 	}
+
+	/**
+	 * Display none if no content found.
+	 *
+	 * @return string
+	 */
+	public function get_markup() {
+
+		$this->hide = empty( $this->content );
+
+		return parent::get_markup();
+	}
 }
