@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -85,6 +86,10 @@ class ExcerptSearch extends Excerpt {
 
 		// Get the part of the content that we'll use for the SearchExcerpt.
 		$search_excerpt_raw = substr( $content, $start, $this->characters_total );
+
+		if ( empty( $key ) ) {
+			return $search_excerpt_raw;
+		}
 
 		// Find matches for the search term.
 		preg_match_all( "/$key+/i", $search_excerpt_raw, $matches );
