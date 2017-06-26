@@ -2,7 +2,7 @@
 namespace CNP\TemplateLibrary;
 
 /**
- * Class Blurblist
+ * Class ACFHeader
  *
  * @package CNP\TemplateLibrary
  */
