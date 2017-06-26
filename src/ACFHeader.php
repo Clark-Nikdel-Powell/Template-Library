@@ -85,9 +85,11 @@ class ACFHeader extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure
 		// ——————————————————————————————————————————————————————————
-		$this->structure = [
-			$this->background,
-			$this->text,
-		];
+		if ( false !== $this->background ) {
+			$this->structure[] = $this->background;
+		}
+		if ( false !== $this->text ) {
+			$this->structure[] = $this->text;
+		}
 	}
 }
