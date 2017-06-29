@@ -36,6 +36,8 @@ class PostsLoop extends Organism {
 	 */
 	public function get_markup() {
 
+		Organism::do_filter();
+
 		if ( empty( $this->data ) || ! isset( $this->post_organism ) || '' === $this->post_organism ) {
 
 			$this->hide = true;
