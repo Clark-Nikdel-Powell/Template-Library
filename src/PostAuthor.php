@@ -28,14 +28,6 @@ class PostAuthor extends Organism {
 
 		parent::__construct( $name );
 		$this->author_meta = $author_meta;
-	}
-
-	/**
-	 * Set up author content.
-	 *
-	 * @return string
-	 */
-	public function get_content() {
 
 		// This catches if we didn't pass anything in.
 		if ( null === $this->data ) {
@@ -46,6 +38,14 @@ class PostAuthor extends Organism {
 		if ( is_object( $this->data ) ) {
 			$this->data = $this->data->post_author;
 		}
+	}
+
+	/**
+	 * Set up author content.
+	 *
+	 * @return string
+	 */
+	public function get_content() {
 
 		// The other alternative for $data is if an author id has been passed in directly.
 		// This is so that child classes (PostAuthorLink) can pass in their own content, if they need to.
