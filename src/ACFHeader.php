@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -74,7 +75,7 @@ class ACFHeader extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->background  = Utilities::acf_do_background( $this->data, $this );
+		$this->background  = new Container( $this->organism_name( 'background' ), [ Utilities::acf_do_background( $this->data, $this ) ] );
 		$this->title       = new Content( $this->organism_name( 'title' ), $this->data['title'] );
 		$this->subtitle    = new Content( $this->organism_name( 'subtitle' ), $this->data['subtitle'] );
 		$this->description = new Content( $this->organism_name( 'description' ), $this->data['description'] );
