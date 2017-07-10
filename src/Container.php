@@ -18,9 +18,9 @@ class Container extends Organism {
 	 * @param string $parent_name Optional. Parent name.
 	 * @param string $separator   Optional. Separator between parent name and sub-organism names.
 	 */
-	public function __construct( $name, $structure, $parent_name = '', $separator = '__' ) {
+	public function __construct( $name, $structure, $parent_name = '', $separator = '__', $tag = 'div' ) {
 
-		parent::__construct( $name, $data = null, $content = '', $tag = 'div', $attributes = [], $structure, $parent_name, $separator );
+		parent::__construct( $name, $data = null, $content = '', $tag, $attributes = [], $structure, $parent_name, $separator );
 	}
 
 	/**
