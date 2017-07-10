@@ -9,6 +9,7 @@ namespace CNP\TemplateLibrary;
  */
 class ACFPostList extends Organism {
 
+	public $data_type;
 	public $post_args;
 	public $post_organism = '';
 	public $post_query;
@@ -42,9 +43,18 @@ class ACFPostList extends Organism {
 
 		Utilities::acf_set_class_and_id( $this, $this->data );
 
-		$this->hide       = $this->data['hide'];
-		$this->post_args  = $this->data['post_args'];
-		$this->post_query = new \WP_Query( $this->post_args );
+		$this->hide      = $this->data['hide'];
+		$this->data_type = $this->data['data_type'];
+		$this->post_args = $this->data['post_args'];
+
+		if ( 'Manual' === $this->data_type && ! empty( $this->data['manual_posts'] ) ) {
+			$this->post_args['post__in'] = $this->data['manual_posts'];
+			$this->post_query = new \WP_Query( $this->post_args );
+		}
+
+		if ( 'Automatic' === $this->data_type || empty( $this->post_query ) ) {
+			$this->post_query = new \WP_Query( $this->post_args );
+		}
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
