@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -23,6 +24,13 @@ class ACFBlurb extends Organism {
 	public $image;
 
 	/**
+	 * Blurb Text
+	 *
+	 * @var Container
+	 */
+	public $text;
+
+	/**
 	 * Blurb Icon
 	 *
 	 * @var Content
@@ -44,11 +52,11 @@ class ACFBlurb extends Organism {
 	public $subtitle;
 
 	/**
-	 * Blurb Text
+	 * Blurb Text Content
 	 *
 	 * @var Content
 	 */
-	public $text;
+	public $text_content;
 
 	/**
 	 * Blurb Link
@@ -68,7 +76,7 @@ class ACFBlurb extends Organism {
 		// 0. Parse Data
 		// ——————————————————————————————————————————————————————————
 		$name = 'acf-blurb';
-		if ( isset( $data['name'] ) ) {
+		if ( ! empty( $data['name'] ) ) {
 			$name = $data['name'];
 		}
 
@@ -81,15 +89,17 @@ class ACFBlurb extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->image    = new Image( Organism::organism_name( 'image' ), $this->data['foreground_image'], '' );
-		$this->icon     = new Content( Organism::organism_name( 'icon' ), Utilities::get_svg_icon( $this->data['icon_name'] ) );
-		$this->title    = new Content( Organism::organism_name( 'title' ), $this->data['title'] );
-		$this->subtitle = new Content( Organism::organism_name( 'subtitle' ), $this->data['subtitle'] );
-		$this->text     = new Content( Organism::organism_name( 'text' ), $this->data['text'] );
-		// TODO: the key "link_url" is inconsistent with other organisms hee. We oughta standardize it to "link".
-		$this->link = new Link( Organism::organism_name( 'link' ), $this->data['link_url'], $this->data['link_text'] );
+		$this->image        = new Image( $this->organism_name( 'image' ), $this->data['foreground_image'], '' );
+		$this->icon         = new Content( $this->organism_name( 'icon' ), ( '' !== $this->data['icon_name'] ? Utilities::get_svg_icon( $this->data['icon_name'] ) : '' ) );
+		$this->title        = new Content( $this->organism_name( 'title' ), $this->data['title'] );
+		$this->subtitle     = new Content( $this->organism_name( 'subtitle' ), $this->data['subtitle'] );
+		$this->text_content = new Content( $this->organism_name( 'content' ), $this->data['text'] );
+		// TODO: the key "link_url" is inconsistent with other organisms here. We oughta standardize it to "link".
+		$this->link = new Link( $this->organism_name( 'link' ), $this->data['link_url'], $this->data['link_text'] );
 
-		$this->inside = new Container( Organism::organism_name( 'inside' ), [ $this->image, $this->icon, $this->title, $this->subtitle, $this->text, $this->link ] );
+		$this->text = new Container( $this->organism_name( 'text' ), [ $this->icon, $this->title, $this->subtitle, $this->text_content, $this->link ] );
+
+		$this->inside = new Container( $this->organism_name( 'inside' ), [ $this->image, $this->text ] );
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure
