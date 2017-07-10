@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -52,8 +53,7 @@ class PostsLoop extends Organism {
 			// the_post advances onto the next post and sets the global $post variable.
 			$this->data->the_post();
 
-			$post_organism = new $namespaced_post_organism();
-			$this->content .= $post_organism->get_markup();
+			$this->structure[] = new $namespaced_post_organism();
 		}
 		wp_reset_postdata();
 
