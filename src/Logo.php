@@ -45,7 +45,7 @@ class Logo extends Organism {
 		$this->mark                      = new Content( $this->organism_name( 'mark', '-' ), $this->data );
 		$this->mark->attributes['class'] = [ 'logo-mark' ];
 
-		$this->link                      = new LinkFrontPage( $this->organism_name( 'link', '-' ) );
+		$this->link                      = new LinkFrontPage( $this->organism_name( 'link', '-' ), ' ' );
 		$this->link->attributes['class'] = [ 'logo-link' ];
 
 		$this->structure = [
