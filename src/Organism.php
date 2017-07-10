@@ -244,7 +244,7 @@ abstract class Organism {
 		foreach ( $this->structure as $child ) {
 
 			// For scoping the children of a parent, i.e., "header__logo".
-			if ( ! empty( $this->parent_name ) ) {
+			if ( ! empty( $this->parent_name ) && false !== $child->parent_name ) {
 
 				// Pass the parent name and separator down to any children.
 				$child->parent_name = $this->parent_name;
