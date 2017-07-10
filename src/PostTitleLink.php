@@ -32,7 +32,7 @@ class PostTitleLink extends PostTitle {
 
 		$this->content = parent::get_content();
 
-		$post_link     = new LinkPost( $this->organism_name( 'anchor' ), $this->content, $this->attributes, $this->data );
+		$post_link     = new LinkPost( $this->organism_name( 'anchor' ), $this->content );
 		$this->content = $post_link->get_markup();
 
 		return Organism::get_content();
