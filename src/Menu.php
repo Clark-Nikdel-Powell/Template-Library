@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -14,12 +15,13 @@ class Menu extends Organism {
 	/**
 	 * Menu constructor.
 	 *
-	 * @param string $name Organism name.
-	 * @param array  $data Menu args for wp_nav_menu.
+	 * @param string $name       Organism name.
+	 * @param array  $data       Menu args for wp_nav_menu.
+	 * @param array  $attributes Extra attributes for this element.
 	 */
-	public function __construct( $name = 'menu', array $data ) {
+	public function __construct( $name = 'menu', array $data, $attributes = [] ) {
 
-		parent::__construct( $name, $data );
+		parent::__construct( $name, $data, '', 'div', $attributes );
 
 		$menu_defaults = [
 			'echo' => false,
