@@ -34,6 +34,10 @@ class PostDate extends Organism {
 		} else {
 			$this->date_format = $date_format;
 		}
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
 	}
 
 	/**
@@ -42,10 +46,6 @@ class PostDate extends Organism {
 	 * @return string
 	 */
 	public function get_content() {
-
-		if ( null === $this->data ) {
-			$this->data = get_post();
-		}
 
 		$this->content = get_the_date( $this->date_format, $this->data );
 
