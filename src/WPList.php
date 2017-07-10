@@ -13,6 +13,7 @@ class WPList extends Organism {
 	 *
 	 * @var array
 	 */
+	public $list_args;
 	public $list_vars;
 
 	/**
@@ -25,5 +26,6 @@ class WPList extends Organism {
 
 		parent::__construct( $name );
 		$this->tag = 'ul';
+		$this->list_args = $list_args;
 	}
 }
