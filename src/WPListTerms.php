@@ -65,8 +65,9 @@ class WPListTerms extends WPList {
 			'title_li' => '',
 			'echo'     => false,
 		];
-		$this->list_vars = wp_parse_args( $list_defaults, $list_args );
+		$this->list_vars = wp_parse_args( $list_defaults, $this->list_args );
+		$category_links = wp_list_categories( $this->list_vars );
 
-		return $this->prepend . wp_list_categories( $this->list_vars ) . $this->append;
+		return $this->prepend . $category_links . $this->append;
 	}
 }
