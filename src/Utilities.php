@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 class Utilities {
@@ -54,7 +55,10 @@ class Utilities {
 				return false;
 			}
 
-			$return_organism = new Content( $object->name . $object->separator . 'background', '&nbsp;', 'div', array( 'style' => 'background-color: ' . $data['background_color'] . ';' ) );
+			$return_organism             = new Content( $object->name . $object->separator . 'background', '&nbsp;' );
+			$return_organism->attributes = [
+				'style' => 'background-color: ' . $data['background_color'] . ';',
+			];
 		}
 
 		return $return_organism;
