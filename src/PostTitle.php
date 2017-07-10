@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -15,10 +16,14 @@ class PostTitle extends Organism {
 	 *
 	 * @param string $name Organism name.
 	 */
-	public function __construct( $name = 'posttitle' ) {
+	public function __construct( $name = 'posttitle', $data = null ) {
 
-		parent::__construct( $name );
+		parent::__construct( $name, $data );
 		$this->tag = 'h2';
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
 	}
 
 	/**
@@ -27,10 +32,6 @@ class PostTitle extends Organism {
 	 * @return string
 	 */
 	public function get_content() {
-
-		if ( null === $this->data ) {
-			$this->data = get_post();
-		}
 
 		$this->content = get_the_title( $this->data );
 
