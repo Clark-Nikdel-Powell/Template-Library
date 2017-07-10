@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -19,7 +20,10 @@ class Link extends Organism {
 	public function __construct( $name = 'link', $data, $content = '', array $attributes = [] ) {
 
 		parent::__construct( $name, $data, $content, $tag = 'a', $attributes );
-		$this->attributes['href'] = $data;
+
+		if ( null !== $this->data && is_string( $this->data ) ) {
+			$this->attributes['href'] = $this->data;
+		}
 	}
 
 	/**
