@@ -21,7 +21,7 @@ class Utilities {
 				return false;
 			}
 
-			$image_size = isset( $args['image-size'] ) ? $args['image-size'] : 'large';
+			$image_size = isset( $data['image-size'] ) ? $data['image-size'] : 'large';
 
 			$return_organism = new Image( $object->name . $object->separator . 'image', $data['background_image'], $image_size );
 		}
