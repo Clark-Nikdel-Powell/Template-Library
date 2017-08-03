@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 use \CNP\Utility;
@@ -67,6 +68,13 @@ class ACFBlurbListBlurb extends Organism {
 	public $background;
 
 	/**
+	 * Media
+	 *
+	 * @var Container
+	 */
+	public $media;
+
+	/**
 	 * Blurb icon
 	 *
 	 * @var Content
@@ -79,6 +87,13 @@ class ACFBlurbListBlurb extends Organism {
 	 * @var Image
 	 */
 	public $image;
+
+	/**
+	 * Text Container
+	 *
+	 * @var Container
+	 */
+	public $text_container;
 
 	/**
 	 * Title
@@ -99,7 +114,7 @@ class ACFBlurbListBlurb extends Organism {
 	 *
 	 * @var Content
 	 */
-	public $text;
+	public $text_content;
 
 	/**
 	 * Link
@@ -143,7 +158,7 @@ class ACFBlurbListBlurb extends Organism {
 
 		Utilities::acf_set_class_and_id( $this, $this->data );
 		$this->separator = '-';
-		$this->hide = $this->data['hide'];
+		$this->hide      = $this->data['hide'];
 
 		$this->inside_tag        = 'div'; // Can switch to 'a' if we're using a background link
 		$this->inside_attributes = []; // Can add an href if we're using a background link.
@@ -154,24 +169,26 @@ class ACFBlurbListBlurb extends Organism {
 		$this->do_background_link(); // Gets put on $this->inside if applicable
 		$this->background = Utilities::acf_do_background( $this->data, $this );
 
-		$container_structure = [];
+		$this->media = new Container( $this->organism_name( 'media' ), [] );
 		if ( in_array( 'Blurb Icon', $this->data['blurb_elements'], true ) ) {
 			$this->icon = new Content( $this->organism_name( 'icon' ), Utility::get_svg_icon( $this->data['icon'] ) );
-			array_push( $container_structure, $this->icon );
+			array_push( $this->media->structure, $this->icon );
 		}
 
 		if ( in_array( 'Blurb Image', $this->data['blurb_elements'], true ) ) {
 			$this->image = new Image( $this->organism_name( 'image' ), $this->data['foreground_image'], '' );
-			array_push( $container_structure, $this->image );
+			array_push( $this->media->structure, $this->image );
 		}
-		$this->title    = new Content( $this->organism_name( 'title' ), $this->data['title'] );
-		$this->subtitle = new Content( $this->organism_name( 'subtitle' ), $this->data['subtitle'] );
-		$this->text     = new Content( $this->organism_name( 'text' ), $this->data['text'] );
+
+		$this->title        = new Content( $this->organism_name( 'title' ), $this->data['title'] );
+		$this->subtitle     = new Content( $this->organism_name( 'subtitle' ), $this->data['subtitle'] );
+		$this->text_content = new Content( $this->organism_name( 'content' ), $this->data['text'] );
+
+		$this->text_container = new Container( $this->organism_name( 'text' ), [ $this->title, $this->subtitle, $this->text_content ] );
+
 		$this->do_button();
 
-		array_push( $container_structure, $this->title, $this->subtitle, $this->text );
-
-		$this->inside = new Container( $this->organism_name( 'inside' ), $container_structure );
+		$this->inside = new Container( $this->organism_name( 'inside' ), [ $this->media, $this->text_container ] );
 
 		$this->inside->tag        = $this->inside_tag;
 		$this->inside->attributes = $this->inside_attributes;
@@ -181,10 +198,6 @@ class ACFBlurbListBlurb extends Organism {
 		// ——————————————————————————————————————————————————————————
 		if ( is_object( $this->background ) ) {
 			array_unshift( $this->inside->structure, $this->background );
-		}
-
-		if ( is_object( $this->link ) ) {
-			array_push( $this->inside->structure, $this->link );
 		}
 
 		$this->structure = [
@@ -260,7 +273,8 @@ class ACFBlurbListBlurb extends Organism {
 		$text = isset( $this->data['link_text'] ) && ! empty( $this->data['link_text'] ) ? $this->data['link_text'] : 'Learn More';
 
 		if ( $this->is_button_link() && $link ) {
-			$this->link = new Link( $this->organism_name( 'link' ), $link, $text );
+			$this->link                        = new Link( $this->organism_name( 'link' ), $link, $text );
+			$this->text_container->structure[] = $this->link;
 		}
 	}
 
