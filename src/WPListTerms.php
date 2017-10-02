@@ -29,6 +29,10 @@ class WPListTerms extends WPList {
 
 		parent::__construct( $name, $list_args );
 		$this->taxonomy = $taxonomy;
+
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
 	}
 
 	/**
@@ -47,14 +51,8 @@ class WPListTerms extends WPList {
 
 	/**
 	 * Get the content.
-	 *
-	 * @return string
 	 */
 	public function get_content() {
-
-		if ( null === $this->data ) {
-			$this->data = get_post();
-		}
 
 		if ( '' !== $this->taxonomy ) {
 			$this->resolve_taxonomy();
@@ -68,6 +66,6 @@ class WPListTerms extends WPList {
 		$this->list_vars = wp_parse_args( $list_defaults, $this->list_args );
 		$category_links = wp_list_categories( $this->list_vars );
 
-		return $this->prepend . $category_links . $this->append;
+		$this->content = $category_links;
 	}
 }

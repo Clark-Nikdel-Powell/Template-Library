@@ -28,13 +28,9 @@ class PostTitle extends Organism {
 
 	/**
 	 * Gets the content.
-	 *
-	 * @return string
 	 */
 	public function get_content() {
 
 		$this->content = get_the_title( $this->data );
-
-		return parent::get_content();
 	}
 }

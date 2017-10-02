@@ -143,6 +143,8 @@ abstract class Organism {
 	 */
 	public function get_markup() {
 
+		$this->get_content();
+
 		// Note: If a child organism overwrites get_markup, please include Organism->do_filter so that we don't have a filterless Organism.
 		$this->do_filter();
 
@@ -150,7 +152,7 @@ abstract class Organism {
 			return '';
 		}
 
-		return sprintf( '%s<%s %s>%s</%s>%s', $this->before, $this->tag, $this->get_attributes(), $this->get_content(), $this->tag, $this->after );
+		return sprintf( '%s<%s %s>%s%s%s%s</%s>%s', $this->before, $this->tag, $this->get_attributes(), $this->prepend, $this->content, $this->get_structure(), $this->append, $this->tag, $this->after );
 	}
 
 	/**
@@ -220,13 +222,15 @@ abstract class Organism {
 	}
 
 	/**
-	 * Gets the content
+	 * Gets the content.
+	 * This is a placeholder method: it only exists so that child classes can overwrite it.
+	 * Child classes that use this method do not have to return parent::get_content.
 	 *
 	 * @return string
 	 */
 	public function get_content() {
 
-		return $this->prepend . $this->content . $this->get_structure() . $this->append;
+		return $this->content;
 	}
 
 	/**

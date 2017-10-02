@@ -58,15 +58,11 @@ class ShareLink extends Organism {
 
 	/**
 	 * Gets the content.
-	 *
-	 * @return string
 	 */
 	public function get_content() {
 
 		$this->build_link_target();
 		$this->substitute_icon_in_content();
-
-		return parent::get_content();
 	}
 
 	/**

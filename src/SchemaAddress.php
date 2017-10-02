@@ -21,8 +21,6 @@ class SchemaAddress extends Organism {
 
 	/**
 	 * Assemble the address schema block
-	 *
-	 * @return string
 	 */
 	public function get_content() {
 
@@ -50,6 +48,6 @@ class SchemaAddress extends Organism {
 
 		$address = '<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">' . implode( '', $address_pieces ) . '</div>';
 
-		return $this->prepend . $address . $this->append;
+		$this->content = $address;
 	}
 }

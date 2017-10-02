@@ -21,17 +21,18 @@ class TaxonomyListWithLinks extends TaxonomyList {
 
 		parent::__construct( $name, $taxonomy, $delimiter );
 
-		// Post and taxonomy are resolved in TaxonomyList.
+		// Double-checking
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
+
+		// Taxonomy is resolved in TaxonomyList.
 	}
 
 	/**
 	 * Gets the term list.
 	 */
 	public function get_content() {
-
-		if ( null === $this->data ) {
-			$this->data = get_post();
-		}
 
 		$this->content = get_the_term_list( $this->data, $this->taxonomy, $this->prepend, $this->delimiter, $this->append );
 	}

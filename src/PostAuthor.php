@@ -42,8 +42,6 @@ class PostAuthor extends Organism {
 
 	/**
 	 * Set up author content.
-	 *
-	 * @return string
 	 */
 	public function get_content() {
 
@@ -52,7 +50,5 @@ class PostAuthor extends Organism {
 		if ( '' === $this->content ) {
 			$this->content = get_the_author_meta( $this->author_meta, $this->data );
 		}
-
-		return parent::get_content();
 	}
 }

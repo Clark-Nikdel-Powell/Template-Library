@@ -42,13 +42,9 @@ class PostDate extends Organism {
 
 	/**
 	 * Sets up the content.
-	 *
-	 * @return string
 	 */
 	public function get_content() {
 
 		$this->content = get_the_date( $this->date_format, $this->data );
-
-		return parent::get_content();
 	}
 }

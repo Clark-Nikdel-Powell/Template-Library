@@ -36,6 +36,12 @@ class PostTermSingle extends Organism {
 	public function __construct( $name = 'post-term-single', $taxonomy = 'category', $tag = 'div' ) {
 
 		parent::__construct( $name, $data = null, $content = '', $tag );
+
+		// This catches if we didn't pass a post ID or WP_Post object in.
+		if ( null === $this->data ) {
+			$this->data = get_post();
+		}
+
 		$this->taxonomy = $taxonomy;
 	}
 
@@ -70,15 +76,8 @@ class PostTermSingle extends Organism {
 
 	/**
 	 * Gets the content.
-	 *
-	 * @return string
 	 */
 	public function get_content() {
-
-		// This catches if we didn't pass a post ID or WP_Post object in.
-		if ( null === $this->data ) {
-			$this->data = get_post();
-		}
 
 		// This catches objects that are passed in, and if we didn't pass anything in.
 		if ( is_object( $this->data ) ) {
@@ -86,7 +85,5 @@ class PostTermSingle extends Organism {
 		}
 
 		$this->content = $this->get_term();
-
-		return parent::get_content();
 	}
 }

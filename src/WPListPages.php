@@ -31,11 +31,9 @@ class WPListPages extends WPList {
 
 	/**
 	 * Get the content.
-	 *
-	 * @return string
 	 */
 	public function get_content() {
 
-		return $this->prepend . wp_list_pages( $this->list_vars ) . $this->append;
+		$this->content = wp_list_pages( $this->list_vars );
 	}
 }
