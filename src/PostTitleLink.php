@@ -8,7 +8,6 @@ namespace CNP\TemplateLibrary;
  * @package CNP\TemplateLibrary
  *
  * A link with the post title set as the content.
- *          TODO: we're probably putting this one together wrong. It should have a structure argument rather than setting up the content this way.
  *
  * @link    https://developer.wordpress.org/reference/functions/get_permalink/
  * @link    https://developer.wordpress.org/reference/functions/get_the_title/

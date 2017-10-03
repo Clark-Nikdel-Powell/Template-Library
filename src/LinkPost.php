@@ -17,7 +17,7 @@ class LinkPost extends Link {
 	/**
 	 * PostLink constructor.
 	 *
-	 * @param string       $name       Optional. Defaults to 'postlink'.
+	 * @param string       $name       Optional. Defaults to 'link-post'.
 	 * @param string       $content    Required. The content for the link.
 	 * @param array        $attributes Other attributes.
 	 * @param int|\WP_Post $data       Optional. Takes either a post ID or a WP_Post object. Defaults to the global $post.
