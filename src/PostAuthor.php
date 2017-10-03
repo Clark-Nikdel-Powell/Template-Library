@@ -43,7 +43,7 @@ class PostAuthor extends Organism {
 	/**
 	 * Set up author content.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		// The other alternative for $data is if an author id has been passed in directly.
 		// This is so that child classes (PostAuthorLink) can pass in their own content, if they need to.

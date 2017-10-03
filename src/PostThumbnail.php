@@ -55,7 +55,7 @@ class PostThumbnail extends Organism {
 	/**
 	 * Set up the content.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		// This uses call_user_func so that $attr can be passed in as an array. Pretty sure that's why.
 		$this->content = call_user_func( 'get_the_post_thumbnail', $this->data, $this->size, $this->attr );

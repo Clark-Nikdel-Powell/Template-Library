@@ -27,9 +27,9 @@ class PostTitle extends Organism {
 	}
 
 	/**
-	 * Gets the content.
+	 * Sets the content.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		$this->content = get_the_title( $this->data );
 	}

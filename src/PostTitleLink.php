@@ -26,19 +26,23 @@ class PostTitleLink extends PostTitle {
 
 		parent::__construct( $name );
 
+		$this->post_link = new LinkPost( $this->organism_name( 'anchor' ), $this->content, [], $this->data );
+		$this->structure = [ $this->post_link ];
+
 	}
 
 	/**
 	 * Gets the post title from the parent class first, then generates and adds the link to the content based off of that.
-	 *
-	 * @return string
 	 */
-	public function get_content() {
+	public function set_content() {
 
-		$this->content   = parent::get_content();
-		$this->post_link = new LinkPost( $this->organism_name( 'anchor' ), $this->content, [], $this->data );
-		$this->content   = $this->post_link->get_markup();
+		// Get the post title from the parent
+		parent::set_content();
 
-		return Organism::get_content();
+		// Pass the post title in to the post link
+		$this->post_link->content = $this->content;
+
+		// Clear out the content so we don't duplicate it
+		$this->content = '';
 	}
 }

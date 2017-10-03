@@ -57,9 +57,9 @@ class ShareLink extends Organism {
 	}
 
 	/**
-	 * Gets the content.
+	 * Sets the content.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		$this->build_link_target();
 		$this->substitute_icon_in_content();

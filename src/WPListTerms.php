@@ -52,7 +52,7 @@ class WPListTerms extends WPList {
 	/**
 	 * Get the content.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		if ( '' !== $this->taxonomy ) {
 			$this->resolve_taxonomy();

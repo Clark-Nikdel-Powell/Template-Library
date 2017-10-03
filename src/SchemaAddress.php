@@ -22,7 +22,7 @@ class SchemaAddress extends Organism {
 	/**
 	 * Assemble the address schema block
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		$address_pieces = array();
 

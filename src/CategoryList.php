@@ -57,6 +57,14 @@ class CategoryList extends Organism {
 		$this->parents       = $parents;
 		$this->parents_order = $parents_order;
 		$this->include_links = $include_links;
+	}
+
+	/**
+	 * Get the content.
+	 *
+	 * @return string
+	 */
+	public function set_content() {
 
 		if ( true === $this->include_links ) {
 			$this->content = get_the_category_list( $this->delimiter, $this->parents, $this->data );

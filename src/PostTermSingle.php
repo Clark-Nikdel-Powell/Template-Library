@@ -75,9 +75,9 @@ class PostTermSingle extends Organism {
 	}
 
 	/**
-	 * Gets the content.
+	 * Sets the content.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		// This catches objects that are passed in, and if we didn't pass anything in.
 		if ( is_object( $this->data ) ) {

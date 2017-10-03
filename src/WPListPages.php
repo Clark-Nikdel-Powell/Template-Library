@@ -32,7 +32,7 @@ class WPListPages extends WPList {
 	/**
 	 * Get the content.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		$this->content = wp_list_pages( $this->list_vars );
 	}

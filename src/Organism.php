@@ -131,6 +131,9 @@ abstract class Organism {
 		$this->prepend     = $prepend;
 		$this->append      = $append;
 		$this->after       = $after;
+
+		// Filter the construct method if you need to change something at the beginning.
+		$this->do_filter('-construct');
 	}
 
 	/**
@@ -143,7 +146,7 @@ abstract class Organism {
 	 */
 	public function get_markup() {
 
-		$this->get_content();
+		$this->set_content();
 
 		// Note: If a child organism overwrites get_markup, please include Organism->do_filter so that we don't have a filterless Organism.
 		$this->do_filter();
@@ -222,14 +225,18 @@ abstract class Organism {
 	}
 
 	/**
-	 * Gets the content.
+	 * Sets the content.
 	 * This is a placeholder method: it only exists so that child classes can overwrite it.
-	 * Child classes that use this method do not have to return parent::get_content.
+	 * Child classes that use this method do not have to return parent::set_content.
+	 */
+	public function set_content() {}
+
+	/**
+	 * Gets the content (for child classes).
 	 *
 	 * @return string
 	 */
-	public function get_content() {
-
+	public function return_content() {
 		return $this->content;
 	}
 

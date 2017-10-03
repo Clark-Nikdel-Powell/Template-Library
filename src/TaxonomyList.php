@@ -54,7 +54,7 @@ class TaxonomyList extends Organism {
 	/**
 	 * Gets the list.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		$terms_arr      = get_the_terms( $this->data, $this->taxonomy );
 		$term_names_arr = array();

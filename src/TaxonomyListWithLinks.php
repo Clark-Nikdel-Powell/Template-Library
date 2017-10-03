@@ -32,7 +32,7 @@ class TaxonomyListWithLinks extends TaxonomyList {
 	/**
 	 * Gets the term list.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		$this->content = get_the_term_list( $this->data, $this->taxonomy, $this->prepend, $this->delimiter, $this->append );
 	}

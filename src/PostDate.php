@@ -43,7 +43,7 @@ class PostDate extends Organism {
 	/**
 	 * Sets up the content.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		$this->content = get_the_date( $this->date_format, $this->data );
 	}

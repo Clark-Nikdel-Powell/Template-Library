@@ -56,13 +56,13 @@ class EventDate extends Organism {
 		$this->event_all_day = $event_all_day;
 
 		$this->event_date_type = Utilities::set_event_date_type( $this->event_start, $this->event_end, $this->event_all_day );
-		$this->get_content();
+		$this->set_content();
 	}
 
 	/**
 	 * Get the correct format based on the type of event.
 	 */
-	public function get_content() {
+	public function set_content() {
 
 		switch ( $this->event_date_type ) {
 
