@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -80,18 +81,24 @@ class ACFAccordionPanel extends Organism {
 		$link                      = new Link( $this->organism_name( 'title' ), '#', $this->data['panel_title'] );
 		$link->attributes['class'] = [ 'accordion-title' ];
 
-		$title = new Content( $this->organism_name( 'content-title' ), $this->data['title'] );
+		$title    = new Content( $this->organism_name( 'content-title' ), $this->content_title );
+		$subtitle = new Content( $this->organism_name( 'content-subtitle' ), $this->content_subtitle );
+		$text     = new Content( $this->organism_name( 'content-text' ), $this->content_text );
 
-		$subtitle = new Content( $this->organism_name( 'content-subtitle' ), $this->data['subtitle'] );
-		$text     = new Content( $this->organism_name( 'content-text' ), $this->data['text'] );
+		$image = new Image( $this->organism_name( 'content-image' ), $this->data['image'], 'large' );
 
-		$container = new Container( $this->organism_name( 'content' ), [
+		$content_text_container = new Container( $this->organism_name( 'content-text-container' ), [
 			$title,
 			$subtitle,
 			$text,
 		] );
 
-		$container->attributes['class']            = [ 'accordion-content' ];
+		$container = new Container( $this->organism_name( 'content' ), [
+			$content_text_container,
+			$image,
+		] );
+
+		$container->attributes['class'] = [ 'accordion-content' ];
 
 		if ( 0 !== $data['loop-index'] ) {
 			$container->attributes['style'] = [ 'display:none;' ];

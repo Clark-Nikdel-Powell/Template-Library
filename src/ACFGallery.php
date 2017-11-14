@@ -188,12 +188,12 @@ class ACFGallery extends Organism {
 
 		foreach ( $this->images_data as $image_index => $image_datum ) {
 
-			$new_image = new Image( $this->organism_name( 'image' ), $image_datum['id'], $this->image_size, $icon = false, [ 'data-image' => $image_index ] );
+			$new_image = new Image( $this->organism_name( 'image' ), $image_datum['id'], $this->image_size, $icon = false );
 
-			$new_caption = new Content( $this->organism_name( 'caption' ), $image_datum['caption'], 'div', [ 'data-image' => $image_index ] );
+			$new_caption = new Content( $this->organism_name( 'caption' ), $image_datum['caption'] );
 
 			if ( 0 === $image_index ) {
-				$active_caption_class = $this->nam . '__caption--isActive';
+				$active_caption_class = $this->name . '__caption--isActive';
 
 				if ( is_array( $new_caption->attributes['class'] ) ) {
 					array_push( $new_caption->attributes['class'], $active_caption_class );

@@ -75,8 +75,11 @@ class ACFHeader extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->background  = new Container( $this->organism_name( 'background' ), [] );
-		$background_atom   = Utilities::acf_do_background( $this->data, $this );
+		$this->background = new Container( $this->organism_name( 'background' ), [] );
+		$background_atom = false;
+		if ( isset( $this->data['elements']['Background'] ) ) {
+			$background_atom = Utilities::acf_do_background( $this->data, $this );
+		}
 		if ( false !== $background_atom ) {
 			$this->background->structure[] = $background_atom;
 		}
