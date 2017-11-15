@@ -153,8 +153,8 @@ class ACFGallery extends Organism {
 			// ——————————————————————————————————————————
 			// Nav
 			// ——————————————————————————————————————————
-			$this->nav_prev = new Content( $this->organism_name( 'prev' ), '<', 'button', [ 'class' => $this->nam . '__nav-item' ] );
-			$this->nav_next = new Content( $this->organism_name( 'next' ), '>', 'button', [ 'class' => $this->nam . '__nav-item' ] );
+			$this->nav_prev = new Content( $this->organism_name( 'prev' ), '<', 'button', [ 'class' => $this->name . '__nav-item' ] );
+			$this->nav_next = new Content( $this->organism_name( 'next' ), '>', 'button', [ 'class' => $this->name . '__nav-item' ] );
 
 			$this->nav = new Container( $this->organism_name( 'nav' ), [ $this->nav_prev, $this->nav_next ] );
 
@@ -190,12 +190,15 @@ class ACFGallery extends Organism {
 
 			$new_image = new Image( $this->organism_name( 'image' ), $image_datum['id'], $this->image_size, $icon = false );
 
-			$new_caption = new Content( $this->organism_name( 'caption' ), $image_datum['caption'] );
+			$new_caption             = new Content( $this->organism_name( 'caption' ), $image_datum['caption'] );
+			$new_caption->attributes = [
+				'data-image' => $image_index + 1,
+			];
 
 			if ( 0 === $image_index ) {
 				$active_caption_class = $this->name . '__caption--isActive';
 
-				if ( is_array( $new_caption->attributes['class'] ) ) {
+				if ( isset( $new_caption->attributes['class'] ) && is_array( $new_caption->attributes['class'] ) ) {
 					array_push( $new_caption->attributes['class'], $active_caption_class );
 				} else {
 					$new_caption->attributes['class'] = [ $active_caption_class ];
