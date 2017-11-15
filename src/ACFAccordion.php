@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -32,10 +33,7 @@ class ACFAccordion extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 0. Parse Data
 		// ——————————————————————————————————————————————————————————
-		$name = 'acf-accordion';
-		if ( ! empty( $data['name'] ) ) {
-			$name = $data['name'];
-		}
+		$name = ! empty( $data['name'] ) ? $data['name'] : 'acf-accordion';
 
 		parent::__construct( $name, $data );
 
@@ -47,7 +45,7 @@ class ACFAccordion extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->panels = new ACFLoop( $this->organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel' );
+		$this->panels = new ACFLoop( $this->organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel', 'div', [ 'data-accordion' => null ] );
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure

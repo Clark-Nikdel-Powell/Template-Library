@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -30,10 +31,12 @@ class ACFLoop extends Organism {
 	 * @param string $name                    The Organism Name.
 	 * @param array  $sub_items_data          The data for each sub-item.
 	 * @param string $sub_item_organism_class The TemplateLibrary Class.
+	 * @param string $container_tag           Tag of the container
+	 * @param array  $container_attributes    Array of attributes to apply to the container
 	 */
-	public function __construct( $name = 'loop', array $sub_items_data, $sub_item_organism_class = '' ) {
+	public function __construct( $name = 'loop', array $sub_items_data, $sub_item_organism_class = '', $container_tag = 'div', $container_attributes = [] ) {
 
-		parent::__construct( $name );
+		parent::__construct( $name, null, '', $container_tag, $container_attributes );
 
 		$this->sub_items_data = $sub_items_data;
 
