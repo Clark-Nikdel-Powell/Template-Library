@@ -198,7 +198,7 @@ class ACFGallery extends Organism {
 			if ( 0 === $image_index ) {
 				$active_caption_class = $this->name . '__caption--isActive';
 
-				if ( is_array( $new_caption->attributes['class'] ) ) {
+				if ( isset( $new_caption->attributes['class'] ) && is_array( $new_caption->attributes['class'] ) ) {
 					array_push( $new_caption->attributes['class'], $active_caption_class );
 				} else {
 					$new_caption->attributes['class'] = [ $active_caption_class ];
