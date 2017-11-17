@@ -85,17 +85,18 @@ class ACFAccordionPanel extends Organism {
 		$subtitle = new Content( $this->organism_name( 'content-subtitle' ), $this->content_subtitle );
 		$text     = new Content( $this->organism_name( 'content-text' ), $this->content_text );
 
-		$image = new Image( $this->organism_name( 'content-image' ), $this->data['image'], 'large' );
-
 		$content_text_container = new Container( $this->organism_name( 'content-text-container' ), [
 			$title,
 			$subtitle,
 			$text,
 		] );
 
+		$image           = new Image( $this->organism_name( 'content-image' ), $this->data['image'], 'large' );
+		$image_container = new Container( $this->organism_name( 'content-image-container' ), [ $image ] );
+
 		$container = new Container( $this->organism_name( 'content' ), [
 			$content_text_container,
-			$image,
+			$image_container,
 		] );
 
 		$container->attributes['class'] = [ 'accordion-content' ];
