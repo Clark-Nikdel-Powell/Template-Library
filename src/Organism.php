@@ -204,7 +204,7 @@ abstract class Organism {
 
 		// Remove duplicate classes.
 		if ( is_array( $this->attributes['class'] ) ) {
-			array_filter( $this->attributes['class'] );
+			$this->attributes['class'] = array_unique( $this->attributes['class'] );
 		}
 
 		$attributes = [];
