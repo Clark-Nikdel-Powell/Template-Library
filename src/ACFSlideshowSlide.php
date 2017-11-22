@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -76,7 +77,7 @@ class ACFSlideshowSlide extends Organism {
 
 		Utilities::acf_set_class_and_id( $this, $this->data );
 		$this->separator = '-';
-		$this->hide = $this->data['hide'];
+		$this->hide      = $this->data['hide'];
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces

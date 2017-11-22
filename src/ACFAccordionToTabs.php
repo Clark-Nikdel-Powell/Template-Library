@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -36,9 +37,8 @@ class ACFAccordionToTabs extends ACFAccordion {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->panels                      = new ACFLoop( $this->organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel' );
-		$this->panels->attributes['class'] = [ 'accordion' ];
-
+		$this->panels                                               = new ACFLoop( $this->organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel' );
+		$this->panels->attributes['class']                          = [ 'accordion' ];
 		$this->panels->attributes['data-responsive-accordion-tabs'] = [ 'accordion', 'medium-accordion', 'large-tabs' ];
 
 		// ——————————————————————————————————————————————————————————

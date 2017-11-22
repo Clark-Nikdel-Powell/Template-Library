@@ -160,13 +160,13 @@ class ACFBlurbListBlurb extends Organism {
 		$this->separator = '-';
 		$this->hide      = $this->data['hide'];
 
-		$this->inside_tag        = 'div'; // Can switch to 'a' if we're using a background link
+		$this->inside_tag        = 'div'; // Can switch to 'a' if we're using a background link.
 		$this->inside_attributes = []; // Can add an href if we're using a background link.
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->do_background_link(); // Gets put on $this->inside if applicable
+		$this->do_background_link(); // Gets put on $this->inside if applicable.
 		$this->background = Utilities::acf_do_background( $this->data, $this );
 
 		$this->media = new Container( $this->organism_name( 'media' ), [] );

@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -27,13 +28,14 @@ class ACFSection extends Organism {
 
 		Utilities::acf_set_class_and_id( $this, $this->data );
 
+		// TODO: maybe refactor this into the acf_set_class_and_id method, so we don't have to set it manually.
 		$this->hide = $this->data['hide'];
+	}
 
-		// ——————————————————————————————————————————————————————————
-		// 1. Set Up Content
-		// ——————————————————————————————————————————————————————————
-		if ( isset( $data['section_layouts'] ) && ! empty( $data['section_layouts'] ) ) {
-			$this->content = get_acf_organisms( $this->data['section_layouts'] ); // TODO: namespace this function name in da plugin.
+	public function set_content() {
+
+		if ( isset( $this->data['section_layouts'] ) && ! empty( $this->data['section_layouts'] ) ) {
+			$this->content = get_acf_organisms( $this->data['section_layouts'] ); // TODO: namespace this function name in the ACF Flex Layouts plugin.
 		}
 	}
 

@@ -49,7 +49,7 @@ class ACFPostList extends Organism {
 
 		if ( 'Manual' === $this->data_type && ! empty( $this->data['manual_posts'] ) ) {
 			$this->post_args['post__in'] = $this->data['manual_posts'];
-			$this->post_query = new \WP_Query( $this->post_args );
+			$this->post_query            = new \WP_Query( $this->post_args );
 		}
 
 		if ( 'Automatic' === $this->data_type || empty( $this->post_query ) ) {

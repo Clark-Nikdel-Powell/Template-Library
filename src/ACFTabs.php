@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -54,12 +55,20 @@ class ACFTabs extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->headings = new ACFLoop( $this->organism_name( 'headings' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabHeading', [], 'ul', [ 'data-tabs' => '', 'id' => '' ] );
-		$this->content  = new ACFLoop( $this->organism_name( 'content' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabContent', [], 'div', [ 'data-tabs-content' => '' ] );
+		$this->headings                          = new ACFLoop( $this->organism_name( 'headings' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabHeading' );
+		$this->headings                          = 'ul';
+		$this->headings->attributes['data-tabs'] = null;
+		$this->headings->attributes['id']        = null;
+
+		$this->content                                  = new ACFLoop( $this->organism_name( 'content' ), $this->tabs_data, 'CNP\\TemplateLibrary\\ACFTabContent' );
+		$this->content->attributes['data-tabs-content'] = null;
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure
 		// ——————————————————————————————————————————————————————————
-		$this->structure = [ $this->headings, $this->content ];
+		$this->structure = [
+			$this->headings,
+			$this->content,
+		];
 	}
 }

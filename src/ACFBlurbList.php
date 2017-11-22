@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -109,17 +110,18 @@ class ACFBlurbList extends Organism {
 		$this->blurbs_data = $this->data['blurbs'];
 
 		foreach ( $this->blurbs_data as $key => $value ) {
-			$this->blurbs_data[ $key ]['name'] = $this->organism_name( 'blurb' );
-			$this->blurbs_data[ $key ]['blurb_elements'] = $this->elements;
-			$this->blurbs_data[ $key ]['blurb_classes'] = $this->data['blurb_classes'];
+			$this->blurbs_data[ $key ]['name']            = $this->organism_name( 'blurb' );
+			$this->blurbs_data[ $key ]['blurb_elements']  = $this->elements;
+			$this->blurbs_data[ $key ]['blurb_classes']   = $this->data['blurb_classes'];
 			$this->blurbs_data[ $key ]['background_type'] = $this->data['background_type'];
-			$this->blurbs_data[ $key ]['link_type'] = $this->data['link_type'];
-			$this->blurbs_data[ $key ]['link_location'] = $this->data['link_location'];
+			$this->blurbs_data[ $key ]['link_type']       = $this->data['link_type'];
+			$this->blurbs_data[ $key ]['link_location']   = $this->data['link_location'];
 		}
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
+
 		// ——————————————————————————————————————————
 		// Header
 		// ——————————————————————————————————————————

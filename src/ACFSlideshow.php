@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -53,7 +54,7 @@ class ACFSlideshow extends Organism {
 		$this->slides_data = $this->data['slides'];
 
 		foreach ( $this->slides_data as $key => $value ) {
-			$this->slides_data[ $key ]['name'] = $this->organism_name( 'slide' );
+			$this->slides_data[ $key ]['name']     = $this->organism_name( 'slide' );
 			$this->slides_data[ $key ]['elements'] = $this->elements;
 		}
 

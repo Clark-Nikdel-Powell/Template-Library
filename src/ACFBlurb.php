@@ -94,8 +94,8 @@ class ACFBlurb extends Organism {
 		$this->title        = new Content( $this->organism_name( 'title' ), $this->data['title'] );
 		$this->subtitle     = new Content( $this->organism_name( 'subtitle' ), $this->data['subtitle'] );
 		$this->text_content = new Content( $this->organism_name( 'content' ), $this->data['text'] );
-		// TODO: the key "link_url" is inconsistent with other organisms here. We oughta standardize it to "link".
-		$this->link = new Link( $this->organism_name( 'link' ), $this->data['link_url'], $this->data['link_text'] );
+		// TODO: the data array key "link_url" is inconsistent with other organisms here. We ought to standardize it to "link", both here and in flex-content.php in ACF Flex Layouts.
+		$this->link = new Link( $this->organism_name( 'link' ), $this->data['link'], $this->data['link_text'] );
 
 		$this->text = new Container( $this->organism_name( 'text' ), [ $this->icon, $this->title, $this->subtitle, $this->text_content, $this->link ] );
 

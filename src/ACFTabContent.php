@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -86,6 +87,11 @@ class ACFTabContent extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure
 		// ——————————————————————————————————————————————————————————
-		$this->structure = [ $this->title, $this->subtitle, $this->text, $this->link ];
+		$this->structure = [
+			$this->title,
+			$this->subtitle,
+			$this->text,
+			$this->link,
+		];
 	}
 }

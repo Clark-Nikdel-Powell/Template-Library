@@ -45,7 +45,9 @@ class ACFAccordion extends Organism {
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces
 		// ——————————————————————————————————————————————————————————
-		$this->panels = new ACFLoop( $this->organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel', 'div', [ 'data-accordion' => null ] );
+		$this->panels = new ACFLoop( $this->organism_name( 'panels' ), $this->panels_data, 'CNP\\TemplateLibrary\\ACFAccordionPanel', 'div' );
+		$this->panels->tag = 'header';
+		$this->panels->attributes['data-accordion'] = null;
 
 		// ——————————————————————————————————————————————————————————
 		// 2. Assemble Structure

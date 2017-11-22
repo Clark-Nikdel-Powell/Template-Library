@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -135,6 +136,7 @@ class ACFGallery extends Organism {
 		// ——————————————————————————————————————————
 		// Images & Captions
 		// ——————————————————————————————————————————
+		// TODO: change method name to set_content?
 		if ( ! empty( $this->images_data ) ) {
 			self::generate_images_and_captions();
 		}
