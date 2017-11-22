@@ -20,7 +20,7 @@ class PostsLoop extends Organism {
 	 * PostsLoop constructor.
 	 *
 	 * @param string    $name          Organism Name.
-	 * @param \WP_Query $data          Array of post objects.
+	 * @param \WP_Query $data          WP_Query containing the post objects.
 	 * @param string    $post_organism The sub-organism to use.
 	 */
 	public function __construct( $name = 'posts-loop', $data, $post_organism ) {
@@ -32,6 +32,7 @@ class PostsLoop extends Organism {
 
 	/**
 	 * Uses a Loop to output post organisms to content.
+	 * TODO: test switching out get_markup for set_content here. We'd be able to remove Organism::do_filter(); and return parent::get_markup(); Would be a good opportunity for a unit test.
 	 *
 	 * @return bool
 	 */

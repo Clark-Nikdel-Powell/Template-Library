@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -30,10 +31,9 @@ class WPListPages extends WPList {
 	}
 
 	/**
-	 * Get the content.
+	 * Set the content.
 	 */
 	public function set_content() {
-
 		$this->content = wp_list_pages( $this->list_vars );
 	}
 }

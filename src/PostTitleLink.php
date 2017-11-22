@@ -35,13 +35,13 @@ class PostTitleLink extends PostTitle {
 	 */
 	public function set_content() {
 
-		// Get the post title from the parent
+		// Get the post title from the parent.
 		parent::set_content();
 
-		// Pass the post title in to the post link
+		// Pass the post title in to the post link.
 		$this->post_link->content = $this->content;
 
-		// Clear out the content so we don't duplicate it
+		// Clear out the content so we don't duplicate it.
 		$this->content = '';
 	}
 }

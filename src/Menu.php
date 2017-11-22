@@ -29,7 +29,9 @@ class Menu extends Organism {
 		$menu_vars     = wp_parse_args( $menu_defaults, $this->data );
 
 		$this->data = $menu_vars;
+	}
 
+	public function set_content() {
 		$this->content = wp_nav_menu( $this->data );
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -15,7 +16,7 @@ class Excerpt extends Organism {
 	 * Excerpt constructor.
 	 *
 	 * @param string   $name Organism name.
-	 * @param \WP_Post $data Optional. WP_Post object. Default is global $post.
+	 * @param \WP_Post $data Optional. WP_Post object. Default is the global $post.
 	 */
 	public function __construct( $name = 'excerpt', \WP_Post $data = null ) {
 
@@ -25,6 +26,9 @@ class Excerpt extends Organism {
 		if ( null === $this->data ) {
 			$this->data = get_post();
 		}
+	}
+
+	public function set_content() {
 
 		if ( ! empty( $this->data->post_excerpt ) ) {
 			$this->content = $this->data->post_excerpt;

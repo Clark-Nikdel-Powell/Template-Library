@@ -21,7 +21,9 @@ class ExcerptForce extends Excerpt {
 	public function __construct( $name = 'excerpt', \WP_Post $data = null ) {
 
 		parent::__construct( $name, $data );
+	}
 
-		$this->content = get_the_excerpt( $data );
+	public function set_content() {
+		$this->content = get_the_excerpt( $this->data );
 	}
 }

@@ -15,15 +15,14 @@ class LinkPostParent extends Link {
 	 * @param string          $name       Organism name.
 	 * @param string|\WP_Post $data       Optional. We'll try finding the post parent link if the post type supports it.
 	 * @param string          $content    Link content.
-	 * @param array           $attributes Link attributes.
 	 */
-	public function __construct( $name = 'link-post-parent', $data = null, $content = '', array $attributes = [] ) {
+	public function __construct( $name = 'link-post-parent', $content = '', $data = null ) {
 
-		parent::__construct( $name, $data, $content, $attributes );
-
-		if ( null === $this->data ) {
-			$this->data = get_post();
+		if ( null === $data ) {
+			$data = get_post();
 		}
+
+		parent::__construct( $name, $data, $content );
 
 		if ( is_int( $this->data ) ) {
 			$this->attributes['href'] = get_permalink( $this->data );

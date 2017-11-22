@@ -37,8 +37,6 @@ class ExcerptSearch extends Excerpt {
 
 		$this->characters_before = $characters_before;
 		$this->characters_total  = $characters_total;
-
-		$this->content = $this->search_excerpt();
 	}
 
 	/**
@@ -46,7 +44,7 @@ class ExcerptSearch extends Excerpt {
 	 *
 	 * @return string
 	 */
-	public function search_excerpt() {
+	public function set_content() {
 
 		if ( ! is_object( $this->data ) ) {
 			return '';
@@ -105,6 +103,6 @@ class ExcerptSearch extends Excerpt {
 
 		$search_excerpt = $before . $search_excerpt_highlights . $after;
 
-		return $search_excerpt;
+		$this->content = $search_excerpt;
 	}
 }

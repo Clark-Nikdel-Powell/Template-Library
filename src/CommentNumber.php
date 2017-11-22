@@ -25,7 +25,9 @@ class CommentNumber extends Organism {
 		if ( null === $this->data ) {
 			$this->data = get_post();
 		}
+	}
 
+	public function set_content() {
 		$this->content = get_comments_number( $this->data );
 	}
 }

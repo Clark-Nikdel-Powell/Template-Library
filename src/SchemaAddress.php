@@ -20,7 +20,7 @@ class SchemaAddress extends Organism {
 	}
 
 	/**
-	 * Assemble the address schema block
+	 * Assemble the address schema block.
 	 */
 	public function set_content() {
 

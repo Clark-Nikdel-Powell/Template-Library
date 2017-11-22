@@ -77,8 +77,6 @@ class CategoryList extends Organism {
 	/**
 	 * Retrieve category list in either HTML list or custom format.
 	 *
-	 * @since 1.5.1
-	 *
 	 * @global \WP_Rewrite $wp_rewrite
 	 *
 	 * @param string       $separator Optional, default is empty string. Separator for between the categories.

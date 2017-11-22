@@ -37,15 +37,4 @@ class ImageBackground extends Image {
 			$this->attributes['style'] = 'background-image: url(' . $this->image_url . ')';
 		}
 	}
-
-	/**
-	 * Returns default Organism markup.
-	 *
-	 * @return string
-	 */
-	public function get_markup() {
-
-		// Skip over the Image organism get_markup method.
-		return Organism::get_markup();
-	}
 }

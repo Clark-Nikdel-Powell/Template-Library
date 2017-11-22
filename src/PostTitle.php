@@ -30,7 +30,6 @@ class PostTitle extends Organism {
 	 * Sets the content.
 	 */
 	public function set_content() {
-
 		$this->content = get_the_title( $this->data );
 	}
 }

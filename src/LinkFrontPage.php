@@ -21,6 +21,10 @@ class LinkFrontPage extends Link {
 
 		parent::__construct( $name, $data = get_site_url(), $content );
 
+	}
+
+	public function set_content() {
+
 		if ( '' === $this->content ) {
 			$this->content = get_bloginfo( 'name' );
 		}

@@ -16,8 +16,7 @@ class Content extends Organism {
 	 */
 	public function __construct( $name, $content ) {
 
-		parent::__construct( $name );
-		$this->content = $content;
+		parent::__construct( $name, null, $content );
 	}
 
 	/**

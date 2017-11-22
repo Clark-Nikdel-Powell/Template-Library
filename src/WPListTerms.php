@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -64,7 +65,7 @@ class WPListTerms extends WPList {
 			'echo'     => false,
 		];
 		$this->list_vars = wp_parse_args( $list_defaults, $this->list_args );
-		$category_links = wp_list_categories( $this->list_vars );
+		$category_links  = wp_list_categories( $this->list_vars );
 
 		$this->content = $category_links;
 	}

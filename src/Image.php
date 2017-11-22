@@ -1,4 +1,5 @@
 <?php
+
 namespace CNP\TemplateLibrary;
 
 /**
@@ -57,16 +58,9 @@ class Image extends Organism {
 	}
 
 	/**
-	 * Returns WordPress responsive image markup.
-	 *
-	 * @return null|string
+	 * Generates WordPress responsive image markup.
 	 */
-	public function get_markup() {
-
-		Organism::do_filter();
-
-		if ( defined( 'WP_CONTENT_DIR' ) ) {
-			return $this->before . wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes ) . $this->after;
-		}
+	public function set_content() {
+		$this->content = wp_get_attachment_image( $this->attachment_id, $this->image_size, $this->icon, $this->attributes );
 	}
 }

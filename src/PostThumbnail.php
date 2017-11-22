@@ -32,7 +32,7 @@ class PostThumbnail extends Organism {
 	 * @param string       $name Organism name.
 	 * @param int|\WP_Post $data Optional. Either a post ID or WP_Post object. Defaults to global $post. Resolves to post ID.
 	 * @param string       $size Optional. A registered WordPress image size.
-	 * @param array        $attr Optional. NOTE: this is the "attr" parameter specific to get_the_post_thumbnail(), not the Organism-level attributes setting.
+	 * @param array        $attr Optional. NOTE: this is the "attr" parameter specific to get_the_post_thumbnail(), NOT the Organism-level attributes array.
 	 */
 	public function __construct( $name = 'post-thumbnail', $data = null, $size = 'post-thumbnail', array $attr = [] ) {
 
