@@ -103,9 +103,8 @@ class ACFBlurbList extends Organism {
 
 		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data );
+		Utilities::acf_set_class_id_and_hide( $this, $this->data );
 
-		$this->hide        = $this->data['hide'];
 		$this->elements    = $this->data['elements'];
 		$this->blurbs_data = $this->data['blurbs'];
 

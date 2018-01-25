@@ -45,15 +45,11 @@ class ACFLoop extends Organism {
 	}
 
 	/**
-	 * Runs a foreach loop and gets the content.
-	 * TODO: refactor this to set_content and take out the do_filter call.
+	 * Runs a foreach loop and sets the content.
 	 *
 	 * @return string
 	 */
-	public function get_markup() {
-
-		// Filter for the main Organism.
-		$this->do_filter();
+	public function set_content() {
 
 		foreach ( $this->sub_items_data as $sub_item_index => $sub_item_data ) {
 
@@ -72,8 +68,5 @@ class ACFLoop extends Organism {
 
 			$this->content .= $sub_item_organism_object->get_markup();
 		}
-
-		// TODO: test with prepend and append.
-		return sprintf( '%s<%s %s>%s</%s>%s', $this->before, $this->tag, $this->get_attributes(), $this->content, $this->tag, $this->after );
 	}
 }

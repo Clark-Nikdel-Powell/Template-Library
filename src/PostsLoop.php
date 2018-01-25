@@ -36,9 +36,7 @@ class PostsLoop extends Organism {
 	 *
 	 * @return bool
 	 */
-	public function get_markup() {
-
-		Organism::do_filter();
+	public function set_content() {
 
 		if ( empty( $this->data ) || ! isset( $this->post_organism ) || '' === $this->post_organism ) {
 
@@ -57,7 +55,5 @@ class PostsLoop extends Organism {
 			$this->structure[] = new $namespaced_post_organism();
 		}
 		wp_reset_postdata();
-
-		return parent::get_markup();
 	}
 }

@@ -67,7 +67,6 @@ class Utilities {
 	public static function set_event_date_type( $event_start, $event_end, $event_all_day ) {
 
 		$event_date_type = 'uncategorized';
-		$timezone_string = '';
 
 		$timezone_string = get_option( 'timezone_string' );
 
@@ -105,7 +104,7 @@ class Utilities {
 		return $event_date_type;
 	}
 
-	public static function acf_set_class_and_id( $object, $data ) {
+	public static function acf_set_class_id_and_hide( $object, $data ) {
 
 		if ( ! empty( $data['class'] ) ) {
 			$object->attributes['class'] = Utilities::parse_classes_as_array( $data['class'] );
@@ -114,6 +113,8 @@ class Utilities {
 		if ( ! empty( $data['id'] ) ) {
 			$object->attributes['id'] = Utilities::get_id( $data['id'] );
 		}
+
+		$object->hide = ( isset( $data['hide'] ) ? $data['hide'] : false );
 	}
 
 	/**

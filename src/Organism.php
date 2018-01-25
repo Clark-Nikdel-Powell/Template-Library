@@ -291,8 +291,8 @@ abstract class Organism {
 	}
 
 	/**
-	 * Returns a namespaced organism based on the current name and the given org_name.
-	 * Example: TODO: add example
+	 * Returns a namespaced organism based on the current parent name and the given org_name.
+	 * Example: an organism with a $org_name of logo belongs to a parent named masthead. Output is masthead__logo
 	 *
 	 * @param string $org_name  The organism name.
 	 * @param string $separator Separator string.

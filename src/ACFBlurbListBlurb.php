@@ -156,9 +156,8 @@ class ACFBlurbListBlurb extends Organism {
 			$this->link_location = $this->data['link_location'];
 		}
 
-		Utilities::acf_set_class_and_id( $this, $this->data );
+		Utilities::acf_set_class_id_and_hide( $this, $this->data );
 		$this->separator = '-';
-		$this->hide      = $this->data['hide'];
 
 		$this->inside_tag        = 'div'; // Can switch to 'a' if we're using a background link.
 		$this->inside_attributes = []; // Can add an href if we're using a background link.

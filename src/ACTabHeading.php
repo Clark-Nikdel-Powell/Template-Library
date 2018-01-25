@@ -33,9 +33,7 @@ class ACFTabHeading extends Organism {
 		// ——————————————————————————————————————————————————————————
 		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data );
-
-		$this->hide = $this->data['hide'];
+		Utilities::acf_set_class_id_and_hide( $this, $this->data );
 
 		// ——————————————————————————————————————————————————————————
 		// 1. Set Up Pieces

@@ -26,16 +26,13 @@ class ACFSection extends Organism {
 
 		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data );
-
-		// TODO: maybe refactor this into the acf_set_class_and_id method, so we don't have to set it manually.
-		$this->hide = $this->data['hide'];
+		Utilities::acf_set_class_id_and_hide( $this, $this->data );
 	}
 
 	public function set_content() {
 
 		if ( isset( $this->data['section_layouts'] ) && ! empty( $this->data['section_layouts'] ) ) {
-			$this->content = get_acf_organisms( $this->data['section_layouts'] ); // TODO: namespace this function name in the ACF Flex Layouts plugin.
+			$this->content = get_afl_acf_organisms( $this->data['section_layouts'] );
 		}
 	}
 

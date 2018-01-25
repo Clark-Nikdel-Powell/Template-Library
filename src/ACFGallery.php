@@ -117,9 +117,8 @@ class ACFGallery extends Organism {
 
 		parent::__construct( $name, $data );
 
-		Utilities::acf_set_class_and_id( $this, $this->data );
+		Utilities::acf_set_class_id_and_hide( $this, $this->data );
 
-		$this->hide        = $this->data['hide'];
 		$this->images_data = $this->data['images'];
 		$this->image_size  = ( isset( $this->data['image_size'] ) && ! empty( $this->data['image_size'] ) ? $this->data['image_size'] : 'post-thumbnail' );
 
@@ -136,7 +135,6 @@ class ACFGallery extends Organism {
 		// ——————————————————————————————————————————
 		// Images & Captions
 		// ——————————————————————————————————————————
-		// TODO: change method name to set_content?
 		if ( ! empty( $this->images_data ) ) {
 			self::generate_images_and_captions();
 		}
