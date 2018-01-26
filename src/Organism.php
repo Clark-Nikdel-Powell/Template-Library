@@ -148,7 +148,7 @@ abstract class Organism {
 
 		$this->set_content();
 
-		// Note: If a child organism overwrites get_markup, please include Organism->do_filter so that we don't have a filterless Organism.
+		// Note: If a child organism overwrites get_markup (i.e., if it doesn't include return parent::get_markup();), please include Organism->do_filter at the beginning of the get_markup method so that we don't have a filterless Organism.
 		$this->do_filter();
 
 		if ( true === $this->hide ) {
