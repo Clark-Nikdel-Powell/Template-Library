@@ -32,11 +32,12 @@ class PostsLoop extends Organism {
 
 	/**
 	 * Uses a Loop to output post organisms to content.
-	 * TODO: test switching out get_markup for set_content here. We'd be able to remove Organism::do_filter(); and return parent::get_markup(); Would be a good opportunity for a unit test.
 	 *
 	 * @return bool
 	 */
-	public function set_content() {
+	public function get_markup() {
+
+		Organism::do_filter();
 
 		if ( empty( $this->data ) || ! isset( $this->post_organism ) || '' === $this->post_organism ) {
 
@@ -55,5 +56,7 @@ class PostsLoop extends Organism {
 			$this->structure[] = new $namespaced_post_organism();
 		}
 		wp_reset_postdata();
+
+		return parent::get_markup();
 	}
 }
